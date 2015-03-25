@@ -10,8 +10,12 @@ import javax.net.SocketFactory;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamWriter;
 
 import org.ietf.epp.domain.Check;
+import org.ietf.epp.domain.Info;
+import org.ietf.epp.domain.InfoNameType;
 import org.ietf.epp.epp.CommandType;
 import org.ietf.epp.epp.Epp;
 import org.ietf.epp.epp.ReadWriteType;
@@ -25,33 +29,77 @@ public class SampleEPPClient {
 				.clientID("Regica2-EPP") //
 				.password("hC8oQV951");
 
-		if (true) {
-			Epp request = new Epp();
-			request.setHello("");
-			see.send(request);
-		}
-
-		if (true) {
-			Epp request = new Epp();
-			CommandType cmd = new CommandType();
-			{
-				ReadWriteType rw = new ReadWriteType();
-				{
-					Check check = new Check();
-					check.getNames().add("domena1.hr");
-					check.getNames().add("domena2.hr");
-					rw.getAnies().add(check);
-				}
-				cmd.setCheck(rw);
-			}
-			request.setCommand(cmd);
-			see.send(request);
-		}
+		// hello(see);
+		//checkDomain(see);
+		infoDomain(see);
 
 		see.close();
+	}
 
-		// byte[] hello =
-		// "<?xml version='1.0' encoding='utf-8'?> <epp xmlns='urn:ietf:params:xml:ns:epp-1.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'><hello /></epp>".getBytes("utf-8");
+	@SuppressWarnings("resource")
+	public static void main2(String[] args) throws Exception {
+		final Epp request = new Epp();
+		CommandType cmd = new CommandType();
+		{
+			ReadWriteType rw = new ReadWriteType();
+			{
+				Check check = new Check();
+				check.getNames().add("domena1.hr");
+				check.getNames().add("domena2.hr");
+				rw.getAnies().add(check);
+			}
+			cmd.setCheck(rw);
+		}
+		request.setCommand(cmd);
+
+		new SocketEppEndpoint() {{
+			setupJaxb();
+
+			XMLOutputFactory xof = XMLOutputFactory.newFactory();
+			XMLStreamWriter xsw = xof.createXMLStreamWriter(System.out);
+			xsw = new EppXMLStreamWriter(xsw);
+
+			marshaller.marshal(request, xsw);
+
+		}};
+
+	}
+
+	protected static void checkDomain(EppEndpoint see) throws Exception {
+		Epp request = new Epp();
+		CommandType cmd = new CommandType();
+		{
+			ReadWriteType rw = new ReadWriteType();
+			{
+				Check check = new Check();
+				check.getNames().add("domena1.hr");
+				check.getNames().add("domena2.hr");
+				rw.getAnies().add(check);
+			}
+			cmd.setCheck(rw);
+		}
+		request.setCommand(cmd);
+		see.send(request);
+	}
+
+	protected static void infoDomain(EppEndpoint see) throws Exception {
+		Epp request = new Epp();
+		CommandType cmd = new CommandType();
+		{
+			ReadWriteType rw = new ReadWriteType();
+			{
+				Info info = new Info();
+				{
+					InfoNameType infoName = new InfoNameType();
+					infoName.setValue("dns.hr");
+					info.setName(infoName);
+				}
+				rw.getAnies().add(info);
+			}
+			cmd.setInfo(rw);
+		}
+		request.setCommand(cmd);
+		see.send(request);
 	}
 
 	protected static SocketFactory createSocketFactory() throws GeneralSecurityException, IOException {
@@ -68,5 +116,11 @@ public class SampleEPPClient {
 
 		SocketFactory socketFactory = ctx.getSocketFactory();
 		return socketFactory;
+	}
+
+	protected static void hello(EppEndpoint see) throws Exception {
+		Epp request = new Epp();
+		request.setHello("");
+		see.send(request);
 	}
 }

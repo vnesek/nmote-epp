@@ -25,15 +25,22 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractEppEndpoint implements EppEndpoint {
 
-	private static String newClientTransactionID() {
-		return UUID.randomUUID().toString();
+	public interface Settings {
+		String FIX_BROKEN_NAMESPACE_SCOPING = "fixBrokenNamespaceScoping";
+		String LOGIN = "login";
 	}
 
 	@SuppressWarnings("resource")
 	public static AbstractEppEndpoint create(String uri) throws URISyntaxException {
+		if (!uri.startsWith("epp://")) {
+			throw new IllegalArgumentException("Unsupported protocol " + uri);
+		}
 		return new SocketEppEndpoint().uri(uri);
 	}
 
+	private static String newClientTransactionID() {
+		return UUID.randomUUID().toString();
+	}
 
 	protected AbstractEppEndpoint() {
 		service("org.ietf.epp.epp");
@@ -62,6 +69,20 @@ public abstract class AbstractEppEndpoint implements EppEndpoint {
 		return this;
 	}
 
+	@Override
+	public void close() throws IOException {
+		marshaller = null;
+		unmarshaller = null;
+	}
+
+	public AbstractEppEndpoint disable(String key, Object value) {
+		return set(key, Boolean.FALSE);
+	}
+
+	public AbstractEppEndpoint enable(String key, Object value) {
+		return set(key, Boolean.TRUE);
+	}
+
 	public String getClientID() {
 		return clientID;
 	}
@@ -78,8 +99,16 @@ public abstract class AbstractEppEndpoint implements EppEndpoint {
 		return password;
 	}
 
+	public Set<EppService> getServices() {
+		return services;
+	}
+
 	public SocketFactory getSocketFactory() {
 		return socketFactory;
+	}
+
+	public URI getURI() {
+		return uri;
 	}
 
 	public AbstractEppEndpoint jaxbContext(JAXBContext jaxbContext) {
@@ -136,8 +165,49 @@ public abstract class AbstractEppEndpoint implements EppEndpoint {
 		return this;
 	}
 
+	public AbstractEppEndpoint service(String packageName) {
+		services.add(new EppService(packageName));
+		return this;
+	}
+
+	public AbstractEppEndpoint service(String packageName, String namespaceURI) {
+		services.add(new EppService(packageName, namespaceURI));
+		return this;
+	}
+
+	@SuppressWarnings("unchecked")
+	public AbstractEppEndpoint set(String key, Object value) {
+		try {
+			switch (key) {
+			case Settings.LOGIN:
+				login = (Supplier<LoginType>) value;
+				break;
+			case Settings.FIX_BROKEN_NAMESPACE_SCOPING:
+				fixBrokenNamespaceScoping = (Boolean) value;
+				break;
+			}
+		} catch (Exception e) {
+			throw new IllegalArgumentException("failed to set " + key + " to " + value, e);
+		}
+		return this;
+	}
+
+	public AbstractEppEndpoint set(String key, Supplier<?> supplier) {
+		return set(key, (Object) supplier);
+	}
+
 	public AbstractEppEndpoint socketFactory(SocketFactory socketFactory) {
 		this.socketFactory = socketFactory;
+		return this;
+	}
+
+	public AbstractEppEndpoint uri(String uri) throws URISyntaxException {
+		this.uri = new URI(uri);
+		return this;
+	}
+
+	public AbstractEppEndpoint uri(URI uri) {
+		this.uri = uri;
 		return this;
 	}
 
@@ -157,19 +227,16 @@ public abstract class AbstractEppEndpoint implements EppEndpoint {
 	protected void setupJaxb() throws JAXBException {
 		if (jaxbContext == null) {
 			// Build a class path
-			String classPath = getServices().stream().map(EppService::getPackageName).sorted().collect(Collectors.joining(":"));
+			String classPath = getServices().stream().map(EppService::getPackageName).sorted()
+					.collect(Collectors.joining(":"));
 			jaxbContext = JAXBContext.newInstance(classPath);
 		}
 
 		marshaller = jaxbContext.createMarshaller();
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+		// marshaller.setProperty("com.sun.xml.internal.bind.namespacePrefixMapper",
+		// new EppNamespacePrefixMapper());
 		unmarshaller = jaxbContext.createUnmarshaller();
-	}
-
-	@Override
-	public void close() throws IOException {
-		marshaller = null;
-		unmarshaller = null;
 	}
 
 	/**
@@ -181,44 +248,17 @@ public abstract class AbstractEppEndpoint implements EppEndpoint {
 		}
 	}
 
-	public AbstractEppEndpoint service(String packageName) {
-		services.add(new EppService(packageName));
-		return this;
-	}
-
-	public AbstractEppEndpoint service(String packageName, String namespaceURI) {
-		services.add(new EppService(packageName, namespaceURI));
-		return this;
-	}
-
-	public URI getURI() {
-		return uri;
-	}
-
-	public AbstractEppEndpoint uri(String uri) throws URISyntaxException {
-		this.uri = new URI(uri);
-		return this;
-	}
-
-	public AbstractEppEndpoint uri(URI uri) {
-		this.uri = uri;
-		return this;
-	}
-
-	public Set<EppService> getServices() {
-		return services;
-	}
-
-	protected URI uri;
-	private Set<EppService> services = new HashSet<>();
 	protected Supplier<String> clientTransactionID = AbstractEppEndpoint::newClientTransactionID;
+	protected boolean fixBrokenNamespaceScoping = true;
 	protected JAXBContext jaxbContext;
 	protected Logger log = LoggerFactory.getLogger(getClass());
 	protected Supplier<LoginType> login = this::newLogin;
 	protected Marshaller marshaller;
 	protected SocketFactory socketFactory;
 	protected Unmarshaller unmarshaller;
+	protected URI uri;
 	private String clientID;
 	private int maxResponse = 64 * 1024;
 	private String password;
+	private Set<EppService> services = new HashSet<>();
 }

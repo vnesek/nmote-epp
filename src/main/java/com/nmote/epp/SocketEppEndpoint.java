@@ -12,6 +12,9 @@ import java.net.Socket;
 
 import javax.net.SocketFactory;
 import javax.xml.bind.JAXBException;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 
 import org.ietf.epp.epp.CommandType;
 import org.ietf.epp.epp.Epp;
@@ -41,6 +44,10 @@ public class SocketEppEndpoint extends AbstractEppEndpoint {
 		}
 	}
 
+	public boolean isConnected() {
+		return socket != null && socket.isConnected();
+	}
+
 	@Override
 	public Epp send(Epp request) throws IOException, JAXBException, EppException {
 		autoConnect();
@@ -50,7 +57,16 @@ public class SocketEppEndpoint extends AbstractEppEndpoint {
 		try {
 			// Write request
 			synchronized (out) {
-				marshaller.marshal(request, buffer);
+				if (fixBrokenNamespaceScoping) {
+					// Fix for broken handling of namespaces on .hr EPP registry
+					XMLStreamWriter writer = new EppXMLStreamWriter(xmlOutputFactory.createXMLStreamWriter(buffer));
+					marshaller.marshal(request, writer);
+					writer.close();
+				} else {
+					// Optimal method, doesn't because of broken servers.
+					marshaller.marshal(request, buffer);
+				}
+
 				out.writeInt(buffer.size() + 4);
 				buffer.writeTo(out);
 
@@ -82,24 +98,15 @@ public class SocketEppEndpoint extends AbstractEppEndpoint {
 			}
 
 			return (Epp) response;
+		} catch (XMLStreamException xse) {
+			log.error("Marshaling problem", xse);
+			close();
+			throw new IOException("XML marshaling failed", xse);
 		} catch (IOException ioe) {
 			log.error("IO error, closing socket", ioe);
 			close();
 			throw ioe;
 		}
-	}
-
-	protected String getHost() {
-		String host = uri.getHost();
-		return host;
-	}
-
-	protected int getPort() {
-		int port = uri.getPort();
-		if (port == -1) {
-			port = 700;
-		}
-		return port;
 	}
 
 	protected synchronized void autoConnect() throws IOException, JAXBException, EppException {
@@ -141,12 +148,22 @@ public class SocketEppEndpoint extends AbstractEppEndpoint {
 		return socket;
 	}
 
-	public boolean isConnected() {
-		return socket != null && socket.isConnected();
+	protected String getHost() {
+		String host = uri.getHost();
+		return host;
+	}
+
+	protected int getPort() {
+		int port = uri.getPort();
+		if (port == -1) {
+			port = 700;
+		}
+		return port;
 	}
 
 	private ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 	private DataInputStream in;
 	private DataOutputStream out;
 	private Socket socket;
+	private XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newFactory();
 }
