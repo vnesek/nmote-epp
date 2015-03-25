@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+	<response>
+		<result code="1000">
+			<msg lang="en">Command completed successfully</msg>
+		</result>
+		<resData>
+			<contact:infData xmlns:contact="urn:ietf:params:xml:ns:contact-1.0">
+				<contact:id>131888</contact:id>
+				<contact:roid>C131888-HR</contact:roid>
+				<contact:status s="ok"></contact:status>
+				<contact:postalInfo type="int">
+					<contact:name>Ime Prezime</contact:name>
+					<contact:addr>
+						<contact:street>Ulica br. 5</contact:street>
+						<contact:city>Zagreb</contact:city>
+						<contact:pc>10000</contact:pc>
+						<contact:cc>HR</contact:cc>
+					</contact:addr>
+				</contact:postalInfo>
+				<contact:fax>+385.56444</contact:fax>
+				<contact:email>info@email.com</contact:email>
+				<contact:clID>363</contact:clID>
+				<contact:crID>363</contact:crID>
+				<contact:crDate>2015-03-06T14:02:42Z</contact:crDate>
+			</contact:infData>
+		</resData>
+		<extension>
+			<hr:info xmlns:hr="http://www.dns.hr/epp/hr-1.0">
+				<hr:contact>
+					<hr:type>person</hr:type>
+					<hr:in>12345678910</hr:in>
+				</hr:contact>
+			</hr:info>
+		</extension>
+		<trID>
+			<clTRID>89845498-45440972</clTRID>
+			<svTRID>b9c7a25b3c3b5d4d36dc0885ab9d4808e8053b9f-HR</svTRID>
+		</trID>
+	</response>
+</epp> 

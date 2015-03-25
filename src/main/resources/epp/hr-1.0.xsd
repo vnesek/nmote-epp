@@ -1,0 +1,80 @@
+<schema xmlns:hr="http://www.dns.hr/epp/hr-1.0" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.dns.hr/epp/hr-1.0"
+	elementFormDefault="qualified" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.1">
+	<annotation>
+		<documentation>
+			Extensible Provisioning Protocol .HR specific extensions.
+		</documentation>
+		<appinfo>
+			<jaxb:schemaBindings>
+				<jaxb:package name="hr.dns.epp.contact" />
+			</jaxb:schemaBindings>
+		</appinfo>
+	</annotation>
+<!--  Import needed schemas  -->
+	<import namespace="urn:ietf:params:xml:ns:contact-1.0" schemaLocation="contact-1.0.xsd" />
+<!--  Child elements in <extension> element  -->
+	<element name="info" type="hr:info" />
+	<element name="create" type="hr:create" />
+	<element name="update" type="hr:update" />
+	<element name="messageData" type="hr:messageData" />
+	<element name="registrar" />
+	<complexType name="info">
+		<sequence>
+			<element name="contact" type="hr:contactData" minOccurs="0" />
+			<element name="registrar" type="hr:registrarData" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="update">
+		<sequence>
+			<element name="contact" type="hr:contactData" minOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="create">
+		<sequence>
+			<element name="contact" type="hr:contactDataCreate" minOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="messageData">
+		<all>
+			<element name="id" type="nonNegativeInteger" />
+			<element name="type" />
+			<element name="subject" />
+			<element name="body" />
+			<element name="sentTo" />
+			<element name="domainID" />
+			<element name="domainName" />
+		</all>
+	</complexType>
+	<complexType name="contactData">
+		<sequence>
+			<element name="type" type="hr:contactType" minOccurs="0" />
+			<element name="in" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="registrarData">
+		<all>
+			<element name="name" type="string"/>
+			<element name="email" type="string" />
+			<element name="in" type="string" />
+			<element name="voice" minOccurs="0" />
+			<element name="fax" minOccurs="0" />
+			<element name="registryMails" />
+			<element name="account" />
+			<element name="postalInfo" />
+			<element name="eppAccess" minOccurs="0" />
+			<element name="domainNum" />
+		</all>
+	</complexType>
+	<complexType name="contactDataCreate">
+		<sequence>
+			<element name="type" type="hr:contactType" />
+			<element name="in" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<simpleType name="contactType">
+		<restriction base="token">
+			<enumeration value="org" />
+			<enumeration value="person" />
+		</restriction>
+	</simpleType>
+</schema>

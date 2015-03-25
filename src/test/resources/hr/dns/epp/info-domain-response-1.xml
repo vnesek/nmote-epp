@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+	<response>
+		<result code="1000">
+			<msg lang="en">Command completed successfully</msg>
+		</result>
+		<resData>
+			<domain:infData xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
+				<domain:name>domena1.hr</domain:name>
+				<domain:roid>91eb289fe4ca19348c8c29def85a377bb0103e3f-HR</domain:roid>
+				<domain:status s="ok"></domain:status>
+				<domain:registrant>131889</domain:registrant>
+				<domain:contact type="admin">131890</domain:contact>
+				<domain:contact type="tech">131891</domain:contact>
+				<domain:ns>
+					<domain:hostAttr>
+						<domain:hostName>ns1.domena1.hr</domain:hostName>
+						<domain:hostAddr ip="v4">10.10.248.8</domain:hostAddr>
+						<domain:hostAddr ip="v6">2001:b68:ff:2::2</domain:hostAddr>
+					</domain:hostAttr>
+					<domain:hostAttr>
+						<domain:hostName>ns2.domena1.hr</domain:hostName>
+						<domain:hostAddr ip="v4">10.10.158.20</domain:hostAddr>
+						<domain:hostAddr ip="v6">2001:b68:ff:2::2</domain:hostAddr>
+					</domain:hostAttr>
+				</domain:ns>
+				<domain:clID>363</domain:clID>
+				<domain:crDate>2015-03-05T23:00:00Z</domain:crDate>
+				<domain:exDate>2016-03-05T23:00:00Z</domain:exDate>
+			</domain:infData>
+		</resData>
+		<extension>
+			<secDNS:infData xmlns:secDNS="urn:ietf:params:xml:ns:secDNS-1.1">
+				<secDNS:dsData>
+					<secDNS:keyTag>25596</secDNS:keyTag>
+					<secDNS:alg>3</secDNS:alg>
+					<secDNS:digestType>2</secDNS:digestType>
+					<secDNS:digest>E7DE0B5B896EB7490EC31C423D070719F0CB776B</secDNS:digest>
+				</secDNS:dsData>
+			</secDNS:infData>
+		</extension>
+		<trID>
+			<clTRID>05106558-94309643</clTRID>
+			<svTRID>1a47597413b00fff9f91560bb41e9532ca11162e-HR</svTRID>
+		</trID>
+	</response>
+</epp>
