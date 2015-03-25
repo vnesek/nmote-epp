@@ -2,29 +2,28 @@ package com.nmote.epp;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.Closeable;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.Socket;
 
 import javax.net.SocketFactory;
 import javax.xml.bind.JAXBException;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ietf.epp.epp.CommandType;
 import org.ietf.epp.epp.Epp;
 
-public class SocketEppEndpoint extends AbstractEppEndpoint implements Closeable {
+public class SocketEppEndpoint extends AbstractEppEndpoint {
 
 	public SocketEppEndpoint() {
 	}
 
 	@Override
 	public synchronized void close() throws IOException {
-		marshaller = null;
-		unmarshaller = null;
+		super.close();
 		try {
 			if (in != null) {
 				in.close();
@@ -42,67 +41,63 @@ public class SocketEppEndpoint extends AbstractEppEndpoint implements Closeable 
 		}
 	}
 
-	public String getHostPort() {
-		return hostPort;
-	}
-
 	@Override
 	public Epp send(Epp request) throws IOException, JAXBException, EppException {
 		autoConnect();
 
 		assignClientTransactionID(request);
 
-		// Write request
-		synchronized (out) {
-			marshaller.marshal(request, buffer);
-			out.writeInt(buffer.size() + 4);
-			buffer.writeTo(out);
-			buffer.reset();
-			out.flush();
+		try {
+			// Write request
+			synchronized (out) {
+				marshaller.marshal(request, buffer);
+				out.writeInt(buffer.size() + 4);
+				buffer.writeTo(out);
+
+				if (log.isTraceEnabled()) {
+					log.trace("Sent {}", buffer.toString("UTF-8"));
+				}
+
+				buffer.reset();
+				out.flush();
+			}
+
+			// Read response
+			Object response;
+			synchronized (in) {
+				int length = in.readInt() - 4;
+				if (length <= 0 || length > getMaxResponse()) {
+					throw new IOException("invalid EPP response size: " + length);
+				}
+				InputStream responseIn;
+				if (log.isTraceEnabled()) {
+					byte[] responseBuffer = new byte[length];
+					in.readFully(responseBuffer);
+					log.trace("Received {}", new String(responseBuffer, "UTF-8"));
+					responseIn = new ByteArrayInputStream(responseBuffer);
+				} else {
+					responseIn = new LengthLimitedInputStream(in, length);
+				}
+				response = unmarshaller.unmarshal(responseIn);
+			}
+
+			return (Epp) response;
+		} catch (IOException ioe) {
+			log.error("IO error, closing socket", ioe);
+			close();
+			throw ioe;
 		}
-
-		if (log.isDebugEnabled()) {
-			log.debug("Sent {}", ToStringBuilder.reflectionToString(request, eppStringStyle));
-		}
-
-		// Read response
-		Object response;
-		synchronized (in) {
-			int length = in.readInt() - 4;
-			LengthLimitedInputStream lin = new LengthLimitedInputStream(in, length);
-			response = unmarshaller.unmarshal(lin);
-		}
-
-		if (log.isDebugEnabled()) {
-			log.debug("Received {}", ToStringBuilder.reflectionToString(response, eppStringStyle));
-		}
-
-		return (Epp) response;
-	}
-
-	public SocketEppEndpoint hostPort(String hostPort) {
-		this.hostPort = hostPort;
-		return this;
 	}
 
 	protected String getHost() {
-		int colon = hostPort.indexOf(':');
-		String host;
-		if (colon == -1) {
-			host = hostPort;
-		} else {
-			host = hostPort.substring(0, colon);
-		}
+		String host = uri.getHost();
 		return host;
 	}
 
 	protected int getPort() {
-		int colon = hostPort.indexOf(':');
-		int port;
-		if (colon == -1) {
+		int port = uri.getPort();
+		if (port == -1) {
 			port = 700;
-		} else {
-			port = Integer.parseInt(hostPort.substring(colon + 1));
 		}
 		return port;
 	}
@@ -151,7 +146,6 @@ public class SocketEppEndpoint extends AbstractEppEndpoint implements Closeable 
 	}
 
 	private ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-	private String hostPort;
 	private DataInputStream in;
 	private DataOutputStream out;
 	private Socket socket;

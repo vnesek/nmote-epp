@@ -1,7 +1,13 @@
 package com.nmote.epp;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import javax.net.SocketFactory;
 import javax.xml.bind.JAXBContext;
@@ -9,8 +15,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import org.apache.commons.lang3.builder.RecursiveToStringStyle;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.ietf.epp.epp.CredsOptionsType;
 import org.ietf.epp.epp.Epp;
 import org.ietf.epp.epp.ExtURIType;
@@ -21,23 +25,23 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractEppEndpoint implements EppEndpoint {
 
-	/**
-	 * {@link ToStringStyle} used to log EPP messages.
-	 */
-	public static ToStringStyle eppStringStyle = new RecursiveToStringStyle() {
-		private static final long serialVersionUID = 1L;
-
-		{
-			setUseShortClassName(true);
-			setUseIdentityHashCode(false);
-		}
-	};
-
 	private static String newClientTransactionID() {
 		return UUID.randomUUID().toString();
 	}
 
-	public AbstractEppEndpoint() {
+	@SuppressWarnings("resource")
+	public static AbstractEppEndpoint create(String uri) throws URISyntaxException {
+		return new SocketEppEndpoint().uri(uri);
+	}
+
+
+	protected AbstractEppEndpoint() {
+		service("org.ietf.epp.epp");
+		service("org.ietf.epp.contact");
+		service("org.ietf.epp.domain");
+		service("org.ietf.epp.eppcom");
+		service("org.ietf.epp.host");
+		service("org.ietf.epp.secdns");
 	}
 
 	public AbstractEppEndpoint clientID(String clientID) {
@@ -66,6 +70,10 @@ public abstract class AbstractEppEndpoint implements EppEndpoint {
 		return jaxbContext;
 	}
 
+	public int getMaxResponse() {
+		return maxResponse;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -90,6 +98,13 @@ public abstract class AbstractEppEndpoint implements EppEndpoint {
 	public AbstractEppEndpoint login(Supplier<LoginType> login) {
 		this.login = login;
 		return this;
+	}
+
+	public void maxResponse(int maxResponse) {
+		if (maxResponse < 4096) {
+			throw new IllegalArgumentException("maxResponse < 4096: " + maxResponse);
+		}
+		this.maxResponse = maxResponse;
 	}
 
 	public LoginType newLogin() {
@@ -141,12 +156,20 @@ public abstract class AbstractEppEndpoint implements EppEndpoint {
 	 */
 	protected void setupJaxb() throws JAXBException {
 		if (jaxbContext == null) {
-			String classPath = "org.ietf.epp.epp:org.ietf.epp.contact:org.ietf.epp.domain:org.ietf.epp.eppcom:org.ietf.epp.host:org.ietf.epp.secdns:hr.dns.epp.contact";
+			// Build a class path
+			String classPath = getServices().stream().map(EppService::getPackageName).sorted().collect(Collectors.joining(":"));
 			jaxbContext = JAXBContext.newInstance(classPath);
 		}
 
 		marshaller = jaxbContext.createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		unmarshaller = jaxbContext.createUnmarshaller();
+	}
+
+	@Override
+	public void close() throws IOException {
+		marshaller = null;
+		unmarshaller = null;
 	}
 
 	/**
@@ -158,6 +181,36 @@ public abstract class AbstractEppEndpoint implements EppEndpoint {
 		}
 	}
 
+	public AbstractEppEndpoint service(String packageName) {
+		services.add(new EppService(packageName));
+		return this;
+	}
+
+	public AbstractEppEndpoint service(String packageName, String namespaceURI) {
+		services.add(new EppService(packageName, namespaceURI));
+		return this;
+	}
+
+	public URI getURI() {
+		return uri;
+	}
+
+	public AbstractEppEndpoint uri(String uri) throws URISyntaxException {
+		this.uri = new URI(uri);
+		return this;
+	}
+
+	public AbstractEppEndpoint uri(URI uri) {
+		this.uri = uri;
+		return this;
+	}
+
+	public Set<EppService> getServices() {
+		return services;
+	}
+
+	protected URI uri;
+	private Set<EppService> services = new HashSet<>();
 	protected Supplier<String> clientTransactionID = AbstractEppEndpoint::newClientTransactionID;
 	protected JAXBContext jaxbContext;
 	protected Logger log = LoggerFactory.getLogger(getClass());
@@ -166,6 +219,6 @@ public abstract class AbstractEppEndpoint implements EppEndpoint {
 	protected SocketFactory socketFactory;
 	protected Unmarshaller unmarshaller;
 	private String clientID;
+	private int maxResponse = 64 * 1024;
 	private String password;
-
 }

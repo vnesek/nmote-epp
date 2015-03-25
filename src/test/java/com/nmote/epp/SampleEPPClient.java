@@ -11,21 +11,43 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
+import org.ietf.epp.domain.Check;
+import org.ietf.epp.epp.CommandType;
 import org.ietf.epp.epp.Epp;
+import org.ietf.epp.epp.ReadWriteType;
 
 public class SampleEPPClient {
 
 	public static void main(String[] args) throws Exception {
-		SocketEppEndpoint see = new SocketEppEndpoint();
-		see.socketFactory(createSocketFactory());
-		// see.hostPort("registrar-test2.carnet.hr:700");
-		see.hostPort("localhost:700");
-		see.clientID("Regica2-EPP");
-		see.password("hC8oQV951");
+		EppEndpoint see = AbstractEppEndpoint.create("epp://localhost:700") //
+				.service("hr.dns.epp.contact") //
+				.socketFactory(createSocketFactory()) //
+				.clientID("Regica2-EPP") //
+				.password("hC8oQV951");
 
-		Epp request = new Epp();
-		request.setHello("");
-		see.send(request);
+		if (true) {
+			Epp request = new Epp();
+			request.setHello("");
+			see.send(request);
+		}
+
+		if (true) {
+			Epp request = new Epp();
+			CommandType cmd = new CommandType();
+			{
+				ReadWriteType rw = new ReadWriteType();
+				{
+					Check check = new Check();
+					check.getNames().add("domena1.hr");
+					check.getNames().add("domena2.hr");
+					rw.getAnies().add(check);
+				}
+				cmd.setCheck(rw);
+			}
+			request.setCommand(cmd);
+			see.send(request);
+		}
+
 		see.close();
 
 		// byte[] hello =
@@ -34,7 +56,7 @@ public class SampleEPPClient {
 
 	protected static SocketFactory createSocketFactory() throws GeneralSecurityException, IOException {
 		KeyStore ks = KeyStore.getInstance("JKS");
-		try (InputStream in = new FileInputStream("jssecacerts")) {
+		try (InputStream in = new FileInputStream("data/jssecacerts")) {
 			ks.load(in, "changeit".toCharArray());
 		}
 		TrustManagerFactory tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
