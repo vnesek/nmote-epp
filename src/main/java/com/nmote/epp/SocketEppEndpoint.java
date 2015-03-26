@@ -12,35 +12,34 @@ import java.net.Socket;
 
 import javax.net.SocketFactory;
 import javax.xml.bind.JAXBException;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamWriter;
 
 import org.ietf.epp.epp.CommandType;
 import org.ietf.epp.epp.Epp;
 
-public class SocketEppEndpoint extends AbstractEppEndpoint {
+public class SocketEppEndpoint extends EppEndpoint {
 
 	public SocketEppEndpoint() {
 	}
 
 	@Override
 	public synchronized void close() throws IOException {
+		log.debug("Closing connection to {}", getURI());
 		super.close();
 		try {
-			if (in != null) {
-				in.close();
+			if (input != null) {
+				input.close();
 			}
-			if (out != null) {
-				out.close();
+			if (output != null) {
+				output.close();
 			}
 			if (socket != null) {
 				socket.close();
 			}
 		} finally {
 			socket = null;
-			in = null;
-			out = null;
+			input = null;
+			output = null;
+			outBuffer = null;
 		}
 	}
 
@@ -52,56 +51,41 @@ public class SocketEppEndpoint extends AbstractEppEndpoint {
 	public Epp send(Epp request) throws IOException, JAXBException, EppException {
 		autoConnect();
 
-		assignClientTransactionID(request);
-
 		try {
 			// Write request
-			synchronized (out) {
-				if (fixBrokenNamespaceScoping) {
-					// Fix for broken handling of namespaces on .hr EPP registry
-					XMLStreamWriter writer = new EppXMLStreamWriter(xmlOutputFactory.createXMLStreamWriter(buffer));
-					marshaller.marshal(request, writer);
-					writer.close();
-				} else {
-					// Optimal method, doesn't because of broken servers.
-					marshaller.marshal(request, buffer);
-				}
-
-				out.writeInt(buffer.size() + 4);
-				buffer.writeTo(out);
+			synchronized (output) {
+				outBuffer.reset();
+				writeEpp(request, outBuffer);
+				output.writeInt(outBuffer.size() + 4);
+				outBuffer.writeTo(output);
 
 				if (log.isTraceEnabled()) {
-					log.trace("Sent {}", buffer.toString("UTF-8"));
+					log.trace("Sent {}", outBuffer.toString("UTF-8"));
 				}
-
-				buffer.reset();
-				out.flush();
+				output.flush();
 			}
 
 			// Read response
-			Object response;
-			synchronized (in) {
-				int length = in.readInt() - 4;
-				if (length <= 0 || length > getMaxResponse()) {
+			synchronized (input) {
+				final int length = input.readInt() - 4;
+				if (length <= 0 || length > getMaxResponseSize()) {
 					throw new IOException("invalid EPP response size: " + length);
 				}
-				InputStream responseIn;
+				InputStream rin;
 				if (log.isTraceEnabled()) {
-					byte[] responseBuffer = new byte[length];
-					in.readFully(responseBuffer);
-					log.trace("Received {}", new String(responseBuffer, "UTF-8"));
-					responseIn = new ByteArrayInputStream(responseBuffer);
+					if (inBuffer == null || inBuffer.length < length) {
+						inBuffer = new byte[length + 4000];
+					}
+					input.readFully(inBuffer, 0, length);
+					log.trace("Received {}", new String(inBuffer, 0, length, "UTF-8"));
+					rin = new ByteArrayInputStream(inBuffer, 0, length);
 				} else {
-					responseIn = new LengthLimitedInputStream(in, length);
+					rin = new LengthLimitedInputStream(input, length);
 				}
-				response = unmarshaller.unmarshal(responseIn);
+				Epp response = (Epp) readEpp(rin);
+				EppException.throwOnError(response);
+				return response;
 			}
-
-			return (Epp) response;
-		} catch (XMLStreamException xse) {
-			log.error("Marshaling problem", xse);
-			close();
-			throw new IOException("XML marshaling failed", xse);
 		} catch (IOException ioe) {
 			log.error("IO error, closing socket", ioe);
 			close();
@@ -111,18 +95,18 @@ public class SocketEppEndpoint extends AbstractEppEndpoint {
 
 	protected synchronized void autoConnect() throws IOException, JAXBException, EppException {
 		if (!isConnected()) {
-			setupJaxb();
-			setupSocketFactory();
+			outBuffer = new ByteArrayOutputStream();
 
 			// Open socket to EPP server
+			log.debug("Connecting to {}", getURI());
 			socket = createSocket();
-			in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-			out = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+			input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+			output = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
 
 			// Send login command
 			Epp request = new Epp();
 			CommandType cmd = new CommandType();
-			cmd.setLogin(login.get());
+			cmd.setLogin(newLogin());
 			request.setCommand(cmd);
 			Epp response = send(request);
 
@@ -135,7 +119,6 @@ public class SocketEppEndpoint extends AbstractEppEndpoint {
 			}
 		}
 	}
-
 	/**
 	 * Creates a socket through {@link SocketFactory}. Override to set
 	 * additional socket options.
@@ -144,26 +127,26 @@ public class SocketEppEndpoint extends AbstractEppEndpoint {
 	 * @throws IOException
 	 */
 	protected Socket createSocket() throws IOException {
-		socket = socketFactory.createSocket(getHost(), getPort());
+		socket = getSocketFactory().createSocket(getHost(), getPort());
 		return socket;
 	}
 
 	protected String getHost() {
-		String host = uri.getHost();
+		String host = getURI().getHost();
 		return host;
 	}
 
 	protected int getPort() {
-		int port = uri.getPort();
+		int port = getURI().getPort();
 		if (port == -1) {
 			port = 700;
 		}
 		return port;
 	}
 
-	private ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-	private DataInputStream in;
-	private DataOutputStream out;
+	private byte[] inBuffer;
+	private DataInputStream input;
+	private ByteArrayOutputStream outBuffer;
+	private DataOutputStream output;
 	private Socket socket;
-	private XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newFactory();
 }

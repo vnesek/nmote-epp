@@ -10,8 +10,6 @@ import javax.net.SocketFactory;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamWriter;
 
 import org.ietf.epp.domain.Check;
 import org.ietf.epp.domain.Info;
@@ -23,46 +21,18 @@ import org.ietf.epp.epp.ReadWriteType;
 public class SampleEPPClient {
 
 	public static void main(String[] args) throws Exception {
-		EppEndpoint see = AbstractEppEndpoint.create("epp://localhost:700") //
+		EppEndpoint see = EppEndpoint.create("epp://localhost:700") //
 				.service("hr.dns.epp.contact") //
 				.socketFactory(createSocketFactory()) //
 				.clientID("Regica2-EPP") //
 				.password("hC8oQV951");
 
 		// hello(see);
-		//checkDomain(see);
-		infoDomain(see);
+		checkDomain(see);
+		logout(see);
+		// infoDomain(see);
 
 		see.close();
-	}
-
-	@SuppressWarnings("resource")
-	public static void main2(String[] args) throws Exception {
-		final Epp request = new Epp();
-		CommandType cmd = new CommandType();
-		{
-			ReadWriteType rw = new ReadWriteType();
-			{
-				Check check = new Check();
-				check.getNames().add("domena1.hr");
-				check.getNames().add("domena2.hr");
-				rw.getAnies().add(check);
-			}
-			cmd.setCheck(rw);
-		}
-		request.setCommand(cmd);
-
-		new SocketEppEndpoint() {{
-			setupJaxb();
-
-			XMLOutputFactory xof = XMLOutputFactory.newFactory();
-			XMLStreamWriter xsw = xof.createXMLStreamWriter(System.out);
-			xsw = new EppXMLStreamWriter(xsw);
-
-			marshaller.marshal(request, xsw);
-
-		}};
-
 	}
 
 	protected static void checkDomain(EppEndpoint see) throws Exception {
@@ -77,26 +47,6 @@ public class SampleEPPClient {
 				rw.getAnies().add(check);
 			}
 			cmd.setCheck(rw);
-		}
-		request.setCommand(cmd);
-		see.send(request);
-	}
-
-	protected static void infoDomain(EppEndpoint see) throws Exception {
-		Epp request = new Epp();
-		CommandType cmd = new CommandType();
-		{
-			ReadWriteType rw = new ReadWriteType();
-			{
-				Info info = new Info();
-				{
-					InfoNameType infoName = new InfoNameType();
-					infoName.setValue("dns.hr");
-					info.setName(infoName);
-				}
-				rw.getAnies().add(info);
-			}
-			cmd.setInfo(rw);
 		}
 		request.setCommand(cmd);
 		see.send(request);
@@ -121,6 +71,34 @@ public class SampleEPPClient {
 	protected static void hello(EppEndpoint see) throws Exception {
 		Epp request = new Epp();
 		request.setHello("");
+		see.send(request);
+	}
+
+	protected static void logout(EppEndpoint see) throws Exception {
+		Epp request = new Epp();
+		CommandType command = new CommandType();
+		command.setLogout(new Object());
+		request.setCommand(command);
+		see.send(request);
+	}
+
+	protected static void infoDomain(EppEndpoint see) throws Exception {
+		Epp request = new Epp();
+		CommandType cmd = new CommandType();
+		{
+			ReadWriteType rw = new ReadWriteType();
+			{
+				Info info = new Info();
+				{
+					InfoNameType infoName = new InfoNameType();
+					infoName.setValue("dns.hr");
+					info.setName(infoName);
+				}
+				rw.getAnies().add(info);
+			}
+			cmd.setInfo(rw);
+		}
+		request.setCommand(cmd);
 		see.send(request);
 	}
 }
