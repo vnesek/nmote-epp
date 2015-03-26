@@ -53,14 +53,14 @@
 	</complexType>
 	<complexType name="registrarData">
 		<all>
-			<element name="name" type="string"/>
+			<element name="name" type="string" />
 			<element name="email" type="string" />
 			<element name="in" type="string" />
-			<element name="voice" minOccurs="0" />
-			<element name="fax" minOccurs="0" />
-			<element name="registryMails" />
-			<element name="account" />
-			<element name="postalInfo" />
+			<element name="voice" minOccurs="0" type="string" />
+			<element name="fax" minOccurs="0" type="string" />
+			<element name="registryMails" type="string" />
+			<element name="account" type="string" />
+			<element name="postalInfo" type="string" />
 			<element name="eppAccess" minOccurs="0" />
 			<element name="domainNum" />
 		</all>

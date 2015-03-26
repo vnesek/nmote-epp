@@ -33,7 +33,8 @@ response, or extension.
 	<complexType name="eppType">
 		<choice>
 			<element name="greeting" type="epp:greetingType" />
-			<element name="hello" />
+			<!-- NMOTE, set type to 'string' -->
+			<element name="hello" type="string" />
 			<element name="command" type="epp:commandType" />
 			<element name="response" type="epp:responseType" />
 			<element name="extension" type="epp:extAnyType" />
@@ -190,7 +191,8 @@ Command types.
 				<element name="delete" type="epp:readWriteType" />
 				<element name="info" type="epp:readWriteType" />
 				<element name="login" type="epp:loginType" />
-				<element name="logout" />
+				<!-- NMOTE, set type to 'string' -->
+				<element name="logout" type="string" />
 				<element name="poll" type="epp:pollType" />
 				<element name="renew" type="epp:readWriteType" />
 				<element name="transfer" type="epp:transferType" />

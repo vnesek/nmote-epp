@@ -18,7 +18,9 @@ public class EppException extends Exception {
 			if (!results.isEmpty()) {
 				Map<Integer, String> m = new LinkedHashMap<>();
 				for (ResultType result : results) {
-					if (result.getCode() != 1000) {
+					int code = result.getCode();
+					// Success codes are [1000, 2000)
+					if (code < 1000 || code >= 2000) {
 						MsgType msg = result.getMsg();
 						m.put(result.getCode(), msg != null ? msg.getValue() : "");
 					}

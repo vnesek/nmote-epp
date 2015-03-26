@@ -27,8 +27,8 @@ public class SampleEPPClient {
 				.clientID("Regica2-EPP") //
 				.password("hC8oQV951");
 
-		// hello(see);
-		checkDomain(see);
+		hello(see);
+		//checkDomain(see);
 		logout(see);
 		// infoDomain(see);
 
@@ -77,7 +77,7 @@ public class SampleEPPClient {
 	protected static void logout(EppEndpoint see) throws Exception {
 		Epp request = new Epp();
 		CommandType command = new CommandType();
-		command.setLogout(new Object());
+		command.setLogout("");
 		request.setCommand(command);
 		see.send(request);
 	}
