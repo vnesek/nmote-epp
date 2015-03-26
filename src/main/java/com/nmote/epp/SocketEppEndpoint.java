@@ -48,12 +48,21 @@ public class SocketEppEndpoint extends EppEndpoint {
 	}
 
 	@Override
+	public void logout() throws EppException, IOException, JAXBException {
+		super.logout();
+		close();
+	}
+
+	@Override
 	public Epp send(Epp request) throws IOException, JAXBException, EppException {
 		autoConnect();
 
 		try {
 			// Write request
 			synchronized (output) {
+				if (outBuffer == null) {
+					outBuffer = new ByteArrayOutputStream(4096);
+				}
 				outBuffer.reset();
 				writeEpp(request, outBuffer);
 				output.writeInt(outBuffer.size() + 4);
@@ -95,8 +104,6 @@ public class SocketEppEndpoint extends EppEndpoint {
 
 	protected synchronized void autoConnect() throws IOException, JAXBException, EppException {
 		if (!isConnected()) {
-			outBuffer = new ByteArrayOutputStream();
-
 			// Open socket to EPP server
 			log.debug("Connecting to {}", getURI());
 			socket = createSocket();
@@ -119,6 +126,7 @@ public class SocketEppEndpoint extends EppEndpoint {
 			}
 		}
 	}
+
 	/**
 	 * Creates a socket through {@link SocketFactory}. Override to set
 	 * additional socket options.

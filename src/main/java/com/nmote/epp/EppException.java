@@ -26,14 +26,15 @@ public class EppException extends Exception {
 					}
 				}
 				if (!m.isEmpty()) {
-					throw new EppException(m);
+					throw new EppException(m, response);
 				}
 			}
 		}
 	}
 
-	public EppException(Map<Integer, String> results) {
+	public EppException(Map<Integer, String> results, Epp response) {
 		this.results = results;
+		this.response = response;
 	}
 
 	@Override
@@ -45,6 +46,10 @@ public class EppException extends Exception {
 		return results;
 	}
 
-	private final Map<Integer, String> results;
+	public Epp getResponse() {
+		return response;
+	}
 
+	private final Map<Integer, String> results;
+	private final Epp response;
 }

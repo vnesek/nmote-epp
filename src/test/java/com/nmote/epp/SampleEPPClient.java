@@ -10,48 +10,46 @@ import javax.net.SocketFactory;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
+import javax.xml.bind.JAXBException;
 
 import org.ietf.epp.domain.Check;
 import org.ietf.epp.domain.Info;
 import org.ietf.epp.domain.InfoNameType;
-import org.ietf.epp.epp.CommandType;
-import org.ietf.epp.epp.Epp;
-import org.ietf.epp.epp.ReadWriteType;
 
 public class SampleEPPClient {
 
 	public static void main(String[] args) throws Exception {
 		EppEndpoint see = EppEndpoint.create("epp://localhost:700") //
 				.contactService() //
-				.domainService()
+				.domainService() //
 				.service("hr.dns.epp.contact") //
 				.socketFactory(createSocketFactory()) //
 				.clientID("Regica2-EPP") //
 				.password("hC8oQV951");
 
-		hello(see);
-		// checkDomain(see);
-		logout(see);
-		// infoDomain(see);
-
-		see.close();
+		see.hello();
+		// check(see);
+		// info(see);
+		see.logout();
 	}
 
-	protected static void checkDomain(EppEndpoint see) throws Exception {
-		Epp request = new Epp();
-		CommandType cmd = new CommandType();
-		{
-			ReadWriteType rw = new ReadWriteType();
+	protected static void check(EppEndpoint see) throws EppException, IOException, JAXBException {
+		see.check(new Check() {
 			{
-				Check check = new Check();
-				check.getNames().add("domena1.hr");
-				check.getNames().add("domena2.hr");
-				rw.getAnies().add(check);
+				getNames().add("domena1.hr");
+				getNames().add("domena2.hr");
 			}
-			cmd.setCheck(rw);
-		}
-		request.setCommand(cmd);
-		see.send(request);
+		});
+	}
+
+	protected static void info(EppEndpoint see) throws EppException, IOException, JAXBException {
+		see.info(new Info() {
+			{
+				InfoNameType infoName = new InfoNameType();
+				infoName.setValue("dns.hr");
+				setName(infoName);
+			}
+		});
 	}
 
 	protected static SocketFactory createSocketFactory() throws GeneralSecurityException, IOException {
@@ -68,39 +66,5 @@ public class SampleEPPClient {
 
 		SocketFactory socketFactory = ctx.getSocketFactory();
 		return socketFactory;
-	}
-
-	protected static void hello(EppEndpoint see) throws Exception {
-		Epp request = new Epp();
-		request.setHello("");
-		see.send(request);
-	}
-
-	protected static void logout(EppEndpoint see) throws Exception {
-		Epp request = new Epp();
-		CommandType command = new CommandType();
-		command.setLogout("");
-		request.setCommand(command);
-		see.send(request);
-	}
-
-	protected static void infoDomain(EppEndpoint see) throws Exception {
-		Epp request = new Epp();
-		CommandType cmd = new CommandType();
-		{
-			ReadWriteType rw = new ReadWriteType();
-			{
-				Info info = new Info();
-				{
-					InfoNameType infoName = new InfoNameType();
-					infoName.setValue("dns.hr");
-					info.setName(infoName);
-				}
-				rw.getAnies().add(info);
-			}
-			cmd.setInfo(rw);
-		}
-		request.setCommand(cmd);
-		see.send(request);
 	}
 }
