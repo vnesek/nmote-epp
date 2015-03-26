@@ -22,13 +22,15 @@ public class SampleEPPClient {
 
 	public static void main(String[] args) throws Exception {
 		EppEndpoint see = EppEndpoint.create("epp://localhost:700") //
+				.contactService() //
+				.domainService()
 				.service("hr.dns.epp.contact") //
 				.socketFactory(createSocketFactory()) //
 				.clientID("Regica2-EPP") //
 				.password("hC8oQV951");
 
 		hello(see);
-		//checkDomain(see);
+		// checkDomain(see);
 		logout(see);
 		// infoDomain(see);
 

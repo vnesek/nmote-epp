@@ -40,12 +40,19 @@ public abstract class EppEndpoint implements Closeable {
 	}
 
 	protected EppEndpoint() {
-		service("org.ietf.epp.epp");
-		service("org.ietf.epp.contact");
-		service("org.ietf.epp.domain");
-		service("org.ietf.epp.eppcom");
-		service("org.ietf.epp.host");
-		service("org.ietf.epp.secdns");
+		jaxbContext("org.ietf.epp.epp:org.ietf.epp.eppcom:org.ietf.epp.secdns");
+	}
+
+	public EppEndpoint contactService() {
+		return service("org.ietf.epp.contact");
+	}
+
+	public EppEndpoint domainService() {
+		return service("org.ietf.epp.domain");
+	}
+
+	public EppEndpoint hostService() {
+		return service("org.ietf.epp.host");
 	}
 
 	public EppEndpoint clientID(String clientID) {
@@ -84,8 +91,8 @@ public abstract class EppEndpoint implements Closeable {
 	public JAXBContext getJAXBContext() throws JAXBException {
 		if (jaxbContext == null) {
 			// Build a class path
-			String classPath = getServices().stream().map(EppService::getPackageName).sorted()
-					.collect(Collectors.joining(":"));
+			String classPath = jaxbClassPath + ':' + //
+					getServices().stream().map(EppService::getPackageName).sorted().collect(Collectors.joining(":"));
 			jaxbContext = JAXBContext.newInstance(classPath);
 		}
 
@@ -134,6 +141,16 @@ public abstract class EppEndpoint implements Closeable {
 		this.jaxbContext = jaxbContext;
 		return this;
 	}
+
+	public EppEndpoint jaxbContext(String classPath) {
+		if (classPath == null) {
+			throw new NullPointerException("jaxbClassPath is null");
+		}
+		this.jaxbClassPath = classPath;
+		return this;
+	}
+
+	private String jaxbClassPath;
 
 	/**
 	 * Sets a function reference, called when endpoint needs to perform a login.
@@ -238,11 +255,17 @@ public abstract class EppEndpoint implements Closeable {
 		}
 		{
 			LoginSvcType svcs = new LoginSvcType();
-			svcs.getObjURIs().add("urn:ietf:params:xml:ns:domain-1.0");
-			svcs.getObjURIs().add("urn:ietf:params:xml:ns:contact-1.0");
-			{
-				ExtURIType ext = new ExtURIType();
-				ext.getExtURIs().add("http://www.dns.hr/epp/hr-1.0");
+			ExtURIType ext = new ExtURIType();
+			for (EppService service : getServices()) {
+				if (service.getPackageName().startsWith("org.ietf.epp")) {
+					// Standard service
+					svcs.getObjURIs().add(service.getNamespaceURI());
+				} else {
+					// Extension service
+					ext.getExtURIs().add(service.getNamespaceURI());
+				}
+			}
+			if (!ext.getExtURIs().isEmpty()) {
 				svcs.setSvcExtension(ext);
 			}
 			login.setSvcs(svcs);
