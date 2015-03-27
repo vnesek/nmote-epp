@@ -37,18 +37,18 @@
 	<complexType name="messageData">
 		<all>
 			<element name="id" type="nonNegativeInteger" />
-			<element name="type" />
-			<element name="subject" />
-			<element name="body" />
-			<element name="sentTo" />
-			<element name="domainID" />
-			<element name="domainName" />
+			<element name="type" type="string" />
+			<element name="subject" type="string" />
+			<element name="body" type="string" />
+			<element name="sentTo" type="string" />
+			<element name="domainID" type="string" />
+			<element name="domainName" type="string" />
 		</all>
 	</complexType>
 	<complexType name="contactData">
 		<sequence>
 			<element name="type" type="hr:contactType" minOccurs="0" />
-			<element name="in" minOccurs="0" />
+			<element name="in" minOccurs="0" type="string" />
 		</sequence>
 	</complexType>
 	<complexType name="registrarData">
@@ -62,13 +62,13 @@
 			<element name="account" type="string" />
 			<element name="postalInfo" type="string" />
 			<element name="eppAccess" minOccurs="0" />
-			<element name="domainNum" />
+			<element name="domainNum" type="string" />
 		</all>
 	</complexType>
 	<complexType name="contactDataCreate">
 		<sequence>
 			<element name="type" type="hr:contactType" />
-			<element name="in" minOccurs="0" />
+			<element name="in" minOccurs="0" type="string" />
 		</sequence>
 	</complexType>
 	<simpleType name="contactType">

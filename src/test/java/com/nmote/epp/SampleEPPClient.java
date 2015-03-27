@@ -15,14 +15,19 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.ietf.epp.domain.ContactAttrType;
+import org.ietf.epp.domain.HostAttrType;
+import org.ietf.epp.domain.NsType;
+import org.ietf.epp.domain.PUnitType;
+import org.ietf.epp.domain.PeriodType;
 import org.ietf.epp.epp.ResponseType;
 import org.ietf.epp.eppcom.PwAuthInfoType;
+import org.ietf.epp.host.IpType;
 
 public class SampleEPPClient {
 
 	public static void main(String[] args) throws Exception {
 		EppEndpoint epp = EppEndpoint.create("epp://localhost:700") //
-				//.fixBrokenNamespaceScoping(true)
 				.contactService() // Enable EPP contact service
 				.domainService() // Enable EPP domain service
 				.service("hr.dns.epp.contact") // Enable custom extension
@@ -30,14 +35,14 @@ public class SampleEPPClient {
 				.clientID("Regica2-EPP") // Set username
 				.password("hC8oQV951"); // Set password
 
-		epp.hello();
-		createContact(epp);
-		//String checkDomainXml;
-		//checkDomainXml = "<?xml version=\"1.0\" encoding=\"utf-8\"?> <epp xmlns=\"urn:ietf:params:xml:ns:epp-1.0\" xmlns:domain=\"urn:ietf:params:xml:ns:domain-1.0\"> <command> <check> <domain:check> <domain:name>domena1.hr</domain:name> <domain:name>domena2.hr</domain:name> </domain:check> </check> <clTRID>05106558-94309643</clTRID> </command> </epp> ";
-		//checkDomainXml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?> <epp xmlns:domain=\"urn:ietf:params:xml:ns:domain-1.0\" xmlns=\"urn:ietf:params:xml:ns:epp-1.0\" xmlns:host=\"urn:ietf:params:xml:ns:host-1.0\"> <command><check><domain:check><domain:name>domena1.hr</domain:name><domain:name>domena2.hr</domain:name></domain:check></check><clTRID>9c8e3d84-360f-4edc-9bff-472bd007e2e4</clTRID></command></epp>";
-		//checkDomain(epp.sendInstead(checkDomainXml.getBytes("UTF-8")));
-		checkDomain(epp);
-		//infoDomain(epp);
+		//epp.hello();
+		// ResponseType response = createContact(epp);
+		// String contactId = ((org.ietf.epp.contact.CreData)
+		// response.getResData().getAnies().get(0)).getId();
+		// System.err.println(contactId);
+		// checkDomain(epp);
+		infoDomain(epp);
+		//createDomain(epp);
 
 		epp.logout();
 	}
@@ -54,9 +59,50 @@ public class SampleEPPClient {
 	protected static ResponseType createDomain(EppEndpoint epp) throws EppException, IOException, JAXBException {
 		return epp.create(new org.ietf.epp.domain.Create() {
 			{
-				setName("test-regica-" + RandomStringUtils.randomNumeric(4) + ".hr");
-				// setPeriod(value);
-				// getNames().add("domena2.hr");
+				setName("test-regica-" + RandomStringUtils.randomNumeric(4) + ".com.hr");
+				{
+					PeriodType pt = new PeriodType();
+					pt.setUnit(PUnitType.Y);
+					pt.setValue(1);
+					setPeriod(pt);
+				}
+				{
+					NsType ns = new NsType();
+					for (int i = 1; i < 3; ++i) {
+						HostAttrType ha = new HostAttrType();
+						ha.setHostName("ns" + i + "." + getName());
+						{
+							org.ietf.epp.host.AddrType a = new org.ietf.epp.host.AddrType();
+							a.setIp(IpType.V_4);
+							a.setValue("1.2.3." + i);
+							ha.getHostAddrs().add(a);
+						}
+						ns.getHostAttrs().add(ha);
+					}
+					setNs(ns);
+					setRegistrant("43703");
+					{
+						org.ietf.epp.domain.ContactType ct = new org.ietf.epp.domain.ContactType();
+						ct.setType(ContactAttrType.ADMIN);
+						ct.setValue("43703");
+						getContacts().add(ct);
+					}
+					{
+						org.ietf.epp.domain.ContactType ct = new org.ietf.epp.domain.ContactType();
+						ct.setType(ContactAttrType.TECH);
+						ct.setValue("43703");
+						getContacts().add(ct);
+					}
+					{
+						org.ietf.epp.domain.AuthInfoType auth = new org.ietf.epp.domain.AuthInfoType();
+						{
+							PwAuthInfoType pw = new PwAuthInfoType();
+							pw.setValue("ignored");
+							auth.setPw(pw);
+						}
+						setAuthInfo(auth);
+					}
+				}
 			}
 		});
 	}
@@ -109,7 +155,7 @@ public class SampleEPPClient {
 		return epp.info(new org.ietf.epp.domain.Info() {
 			{
 				org.ietf.epp.domain.InfoNameType infoName = new org.ietf.epp.domain.InfoNameType();
-				infoName.setValue("dns.hr");
+				infoName.setValue("test-regica-8307.com.hr");
 				setName(infoName);
 			}
 		});
