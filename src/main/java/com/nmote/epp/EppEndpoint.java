@@ -139,6 +139,7 @@ public abstract class EppEndpoint implements Closeable {
 			// Build a class path
 			String classPath = jaxbClassPath + ':' + //
 					getServices().stream().map(EppService::getPackageName).sorted().collect(Collectors.joining(":"));
+			log.debug("Using JAXB class path {}", classPath);
 			jaxbContext = JAXBContext.newInstance(classPath);
 		}
 
@@ -148,7 +149,7 @@ public abstract class EppEndpoint implements Closeable {
 	public Marshaller getMarshaller() throws JAXBException {
 		if (marshaller == null) {
 			marshaller = getJAXBContext().createMarshaller();
-			// marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		}
 		return marshaller;
 	}
@@ -214,9 +215,6 @@ public abstract class EppEndpoint implements Closeable {
 		this.jaxbClassPath = classPath;
 		return this;
 	}
-
-
-
 
 	/**
 	 * Sets a function reference, called when endpoint needs to perform a login.
@@ -301,6 +299,13 @@ public abstract class EppEndpoint implements Closeable {
 	}
 
 	public void writeEpp(Epp request, OutputStream out) throws IOException, JAXBException {
+		// If client called send instead to work around EPP marshaling issues
+		byte[] sendInstead = getSendInstead();
+		if (sendInstead != null) {
+			out.write(sendInstead);
+			return;
+		}
+
 		assignClientTransactionID(request);
 
 		if (fixBrokenNamespaceScoping) {
@@ -365,8 +370,20 @@ public abstract class EppEndpoint implements Closeable {
 		return login;
 	}
 
+	public EppEndpoint sendInstead(byte[] request) {
+		sendInstead.set(request);
+		return this;
+	}
+
+	private byte[] getSendInstead() {
+		byte[] result = sendInstead.get();
+		sendInstead.remove();
+		return result;
+	}
+
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 
+	private ThreadLocal<byte[]> sendInstead = new ThreadLocal<>();
 	private String clientID;
 	private Supplier<String> clientTransactionID = () -> UUID.randomUUID().toString();
 	private boolean fixBrokenNamespaceScoping = true;

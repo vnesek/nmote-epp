@@ -1,5 +1,8 @@
 package com.nmote.epp;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -142,7 +145,7 @@ class EppXMLStreamWriter implements XMLStreamWriter {
 
 	@Override
 	public void writeStartDocument() throws XMLStreamException {
-		delegate.writeStartDocument();
+		delegate.writeStartDocument("UTF-8", "1.0");
 	}
 
 	@Override
@@ -169,14 +172,21 @@ class EppXMLStreamWriter implements XMLStreamWriter {
 	public void writeStartElement(String prefix, String localName, String ns) throws XMLStreamException {
 		if (EPP_NS.equals(ns)) {
 			delegate.writeStartElement("", localName, ns);
-			if ("epp".equals(localName)) {
-				delegate.writeDefaultNamespace(ns);
+			if (!seenNs.contains(ns)) {
+				if ("epp".equals(localName)) {
+					delegate.writeDefaultNamespace(ns);
+					seenNs.add(ns);
+				}
 			}
 		} else {
 			delegate.writeStartElement(prefix, localName, ns);
-			delegate.writeNamespace(prefix, ns);
+			if (!seenNs.contains(ns)) {
+				delegate.writeNamespace(prefix, ns);
+				seenNs.add(ns);
+			}
 		}
 	}
 
+	private Set<String> seenNs = new HashSet<>();
 	private final XMLStreamWriter delegate;
 }
