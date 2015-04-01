@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -22,11 +23,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 import org.ietf.epp.epp.CommandType;
-import org.ietf.epp.epp.CredsOptionsType;
 import org.ietf.epp.epp.Epp;
 import org.ietf.epp.epp.ExtAnyType;
-import org.ietf.epp.epp.ExtURIType;
-import org.ietf.epp.epp.LoginSvcType;
 import org.ietf.epp.epp.LoginType;
 import org.ietf.epp.epp.ReadWriteType;
 import org.ietf.epp.epp.ResponseType;
@@ -43,6 +41,18 @@ public abstract class EppEndpoint implements Closeable {
 		return new SocketEppEndpoint().uri(uri);
 	}
 
+	private ExtAnyType newExtAnyType(EppCommand<?, ?, ?> command) {
+		ExtAnyType result;
+		List<Object> exts = command.getExtensions(this);
+		if (exts != null && exts.size() > 0) {
+			result = new ExtAnyType();
+			result.getAnies().addAll(exts);
+		} else {
+			result = null;
+		}
+		return result;
+	}
+
 	private static ExtAnyType newExtAnyType(Object... exts) {
 		ExtAnyType result;
 		if (exts.length > 0) {
@@ -56,6 +66,12 @@ public abstract class EppEndpoint implements Closeable {
 		return result;
 	}
 
+	private ReadWriteType newReadWriteType(EppCommand<?, ?, ?> command) {
+		ReadWriteType rw = new ReadWriteType();
+		rw.getAnies().addAll(command.getCommands(this));
+		return rw;
+	}
+
 	private static ReadWriteType newReadWriteType(Object command) {
 		ReadWriteType rw = new ReadWriteType();
 		rw.getAnies().add(command);
@@ -66,6 +82,12 @@ public abstract class EppEndpoint implements Closeable {
 		jaxbContext("org.ietf.epp.epp:org.ietf.epp.eppcom:org.ietf.epp.secdns");
 	}
 
+	public <R> EppResponse<R> check(EppCheckCommand<?, R, ?> command) throws EppException, IOException, JAXBException {
+		CommandType cmd = new CommandType();
+		cmd.setCheck(newReadWriteType(command));
+		return sendInternal(command, cmd);
+	}
+
 	public ResponseType check(Object command, Object... exts) throws EppException, IOException, JAXBException {
 		Epp request = new Epp();
 		CommandType cmd = new CommandType();
@@ -73,11 +95,6 @@ public abstract class EppEndpoint implements Closeable {
 		cmd.setExtension(newExtAnyType(exts));
 		request.setCommand(cmd);
 		return send(request).getResponse();
-	}
-
-	public EppEndpoint clientID(String clientID) {
-		this.clientID = clientID;
-		return this;
 	}
 
 	/**
@@ -130,10 +147,6 @@ public abstract class EppEndpoint implements Closeable {
 		return this;
 	}
 
-	public String getClientID() {
-		return clientID;
-	}
-
 	public JAXBContext getJAXBContext() throws JAXBException {
 		if (jaxbContext == null) {
 			// Build a class path
@@ -156,10 +169,6 @@ public abstract class EppEndpoint implements Closeable {
 
 	public int getMaxResponseSize() {
 		return maxResponseSize;
-	}
-
-	public String getPassword() {
-		return password;
 	}
 
 	public Set<EppService> getServices() {
@@ -216,17 +225,13 @@ public abstract class EppEndpoint implements Closeable {
 		return this;
 	}
 
-	/**
-	 * Sets a function reference, called when endpoint needs to perform a login.
-	 * If not set, newLogin() is called to prepare a login command.
-	 *
-	 * @param login
-	 *            supplier of EPP Login commands
-	 * @return this
-	 */
-	public EppEndpoint login(Supplier<LoginType> login) {
-		this.login = login;
-		return this;
+	public EppResponse<Void> login(LoginCommand command) throws EppException, IOException, JAXBException {
+		Epp request = new Epp();
+		CommandType cmd = new CommandType();
+		cmd.setLogin((LoginType) command.getCommands(this).get(0));
+		request.setCommand(cmd);
+		Epp response = send(request);
+		return new EppResponse<Void>(response.getResponse());
 	}
 
 	public void logout() throws EppException, IOException, JAXBException {
@@ -244,11 +249,6 @@ public abstract class EppEndpoint implements Closeable {
 		this.maxResponseSize = size;
 	}
 
-	public EppEndpoint password(String password) {
-		this.password = password;
-		return this;
-	}
-
 	public Epp readEpp(InputStream in) throws IOException, JAXBException {
 		return (Epp) getUnmarshaller().unmarshal(in);
 	}
@@ -263,6 +263,11 @@ public abstract class EppEndpoint implements Closeable {
 	}
 
 	public abstract Epp send(Epp request) throws EppException, IOException, JAXBException;
+
+	public EppEndpoint sendInstead(byte[] request) {
+		sendInstead.set(request);
+		return this;
+	}
 
 	public EppEndpoint service(String packageName) {
 		services.add(new EppService(packageName));
@@ -328,10 +333,6 @@ public abstract class EppEndpoint implements Closeable {
 		return clientTransactionID.get();
 	}
 
-	protected LoginType newLogin() {
-		return login.get();
-	}
-
 	private void assignClientTransactionID(Epp request) {
 		if (clientTransactionID != null && //
 				request.getCommand() != null && //
@@ -340,59 +341,30 @@ public abstract class EppEndpoint implements Closeable {
 		}
 	}
 
-	private LoginType newLoginImpl() {
-		LoginType login = new LoginType();
-		login.setClID(getClientID());
-		login.setPw(getPassword());
-		{
-			CredsOptionsType credOpts = new CredsOptionsType();
-			credOpts.setLang("en");
-			credOpts.setVersion("1.0");
-			login.setOptions(credOpts);
-		}
-		{
-			LoginSvcType svcs = new LoginSvcType();
-			ExtURIType ext = new ExtURIType();
-			for (EppService service : getServices()) {
-				if (service.getPackageName().startsWith("org.ietf.epp")) {
-					// Standard service
-					svcs.getObjURIs().add(service.getNamespaceURI());
-				} else {
-					// Extension service
-					ext.getExtURIs().add(service.getNamespaceURI());
-				}
-			}
-			if (!ext.getExtURIs().isEmpty()) {
-				svcs.setSvcExtension(ext);
-			}
-			login.setSvcs(svcs);
-		}
-		return login;
-	}
-
-	public EppEndpoint sendInstead(byte[] request) {
-		sendInstead.set(request);
-		return this;
-	}
-
 	private byte[] getSendInstead() {
 		byte[] result = sendInstead.get();
 		sendInstead.remove();
 		return result;
 	}
 
+	private <R> EppResponse<R> sendInternal(EppCommand<?, R, ?> command, CommandType cmd) throws EppException,
+			IOException, JAXBException {
+		Epp request = new Epp();
+		cmd.setExtension(newExtAnyType(command));
+		request.setCommand(cmd);
+		ResponseType response = send(request).getResponse();
+		return new EppResponse<R>(response);
+	}
+
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 
-	private ThreadLocal<byte[]> sendInstead = new ThreadLocal<>();
-	private String clientID;
 	private Supplier<String> clientTransactionID = () -> UUID.randomUUID().toString();
-	private boolean fixBrokenNamespaceScoping = true;
+	private boolean fixBrokenNamespaceScoping;
 	private String jaxbClassPath;
 	private JAXBContext jaxbContext;
-	private Supplier<LoginType> login = this::newLoginImpl;
 	private Marshaller marshaller;
 	private int maxResponseSize = 64 * 1024;
-	private String password;
+	private ThreadLocal<byte[]> sendInstead = new ThreadLocal<>();
 	private Set<EppService> services = new HashSet<>();
 	private SocketFactory socketFactory;
 	private Unmarshaller unmarshaller;

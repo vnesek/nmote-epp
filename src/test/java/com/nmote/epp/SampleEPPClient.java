@@ -15,6 +15,8 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.xml.bind.JAXBException;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.ietf.epp.domain.CheckType;
+import org.ietf.epp.domain.ChkData;
 import org.ietf.epp.domain.ContactAttrType;
 import org.ietf.epp.domain.HostAttrType;
 import org.ietf.epp.domain.NsType;
@@ -31,29 +33,23 @@ public class SampleEPPClient {
 				.contactService() // Enable EPP contact service
 				.domainService() // Enable EPP domain service
 				.service("hr.dns.epp.contact") // Enable custom extension
-				.socketFactory(createSocketFactory()) //
-				.clientID("Regica2-EPP") // Set username
-				.password("hC8oQV951"); // Set password
+				.socketFactory(createSocketFactory());
 
-		//epp.hello();
+		epp.login(new LoginCommand().clientID("Regica2-EPP").password("hC8oQV951"));
+		epp.hello();
+
 		// ResponseType response = createContact(epp);
 		// String contactId = ((org.ietf.epp.contact.CreData)
 		// response.getResData().getAnies().get(0)).getId();
 		// System.err.println(contactId);
-		// checkDomain(epp);
-		infoDomain(epp);
+		EppResponse<ChkData> response = epp.check(new CheckDomainCommand().domain("domena1.hr","domena2.hr"));
+		for (CheckType cd : response.getSingleResponse().getCds()) {
+			System.out.println(cd.getName().getValue() + " " + cd.getName().isAvail());
+		}
+		//infoDomain(epp);
 		//createDomain(epp);
 
 		epp.logout();
-	}
-
-	protected static ResponseType checkDomain(EppEndpoint epp) throws EppException, IOException, JAXBException {
-		return epp.check(new org.ietf.epp.domain.Check() {
-			{
-				getNames().add("domena1.hr");
-				getNames().add("domena2.hr");
-			}
-		});
 	}
 
 	protected static ResponseType createDomain(EppEndpoint epp) throws EppException, IOException, JAXBException {

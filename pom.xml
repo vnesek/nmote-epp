@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nmote.epp</groupId>
 	<artifactId>nmote-epp</artifactId>
-	<version>2.2.0</version>
+	<version>0.9</version>
 	<packaging>jar</packaging>
 	<name>nmote-EPP</name>
 	<description>EPP client server library</description>
@@ -63,6 +63,7 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.1.2</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

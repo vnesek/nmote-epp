@@ -13,7 +13,6 @@ import java.net.Socket;
 import javax.net.SocketFactory;
 import javax.xml.bind.JAXBException;
 
-import org.ietf.epp.epp.CommandType;
 import org.ietf.epp.epp.Epp;
 
 public class SocketEppEndpoint extends EppEndpoint {
@@ -92,7 +91,9 @@ public class SocketEppEndpoint extends EppEndpoint {
 					rin = new LengthLimitedInputStream(input, length);
 				}
 				Epp response = (Epp) readEpp(rin);
-				EppException.throwOnError(response);
+				if (response.getResponse() != null && response.getResponse().getResults() != null) {
+					EppException.throwOnError(response.getResponse().getResults());
+				}
 				return response;
 			}
 		} catch (IOException ioe) {
@@ -102,6 +103,26 @@ public class SocketEppEndpoint extends EppEndpoint {
 		}
 	}
 
+	@Override
+	public synchronized EppResponse<Void> login(LoginCommand command) throws EppException, IOException, JAXBException {
+		lastLoginCommand = null;
+
+		// Check if login was successful, close on error
+		try {
+			EppResponse<Void> response = super.login(command);
+
+			// We'll remember successful login command to use it for autoConnect
+			lastLoginCommand = command;
+
+			return response;
+		} catch (EppException e) {
+			close();
+			throw e;
+		}
+	}
+
+	private LoginCommand lastLoginCommand;
+
 	protected synchronized void autoConnect() throws IOException, JAXBException, EppException {
 		if (!isConnected()) {
 			// Open socket to EPP server
@@ -110,19 +131,8 @@ public class SocketEppEndpoint extends EppEndpoint {
 			input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 			output = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
 
-			// Send login command
-			Epp request = new Epp();
-			CommandType cmd = new CommandType();
-			cmd.setLogin(newLogin());
-			request.setCommand(cmd);
-			Epp response = send(request);
-
-			// Check if login was successful, close on error
-			try {
-				EppException.throwOnError(response);
-			} catch (EppException e) {
-				close();
-				throw e;
+			if (lastLoginCommand != null) {
+				login(lastLoginCommand);
 			}
 		}
 	}
