@@ -1,5 +1,8 @@
-<schema xmlns:hr="http://www.dns.hr/epp/hr-1.0" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.dns.hr/epp/hr-1.0"
-	elementFormDefault="qualified" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.1">
+<schema xmlns:hr="http://www.dns.hr/epp/hr-1.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:contact="urn:ietf:params:xml:ns:contact-1.0"
+	xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0" xmlns:epp="urn:ietf:params:xml:ns:epp-1.0" xmlns:domain="urn:ietf:params:xml:ns:domain-1.0"
+	xmlns:secDNS="urn:ietf:params:xml:ns:secDNS-1.1" targetNamespace="http://www.dns.hr/epp/hr-1.0" elementFormDefault="qualified"
+
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.1">
 	<annotation>
 		<documentation>
 			Extensible Provisioning Protocol .HR specific extensions.
@@ -12,6 +15,10 @@
 	</annotation>
 <!--  Import needed schemas  -->
 	<import namespace="urn:ietf:params:xml:ns:contact-1.0" schemaLocation="contact-1.0.xsd" />
+	<import namespace="urn:ietf:params:xml:ns:secDNS-1.1" schemaLocation="secDNS-1.1.xsd" />
+	<import namespace="urn:ietf:params:xml:ns:domain-1.0" schemaLocation="domain-1.0.xsd" />
+	<import namespace="urn:ietf:params:xml:ns:eppcom-1.0" schemaLocation="eppcom-1.0.xsd" />
+	<import namespace="urn:ietf:params:xml:ns:epp-1.0" schemaLocation="epp-1.0.xsd" />
 <!--  Child elements in <extension> element  -->
 	<element name="info" type="hr:info" />
 	<element name="create" type="hr:create" />
@@ -37,33 +44,85 @@
 	<complexType name="messageData">
 		<all>
 			<element name="id" type="nonNegativeInteger" />
-			<element name="type" type="string" />
-			<element name="subject" type="string" />
+			<element name="type" type="normalizedString" />
+			<element name="subject" type="normalizedString" />
 			<element name="body" type="string" />
-			<element name="sentTo" type="string" />
-			<element name="domainID" type="string" />
-			<element name="domainName" type="string" />
+			<element name="sentTo" type="normalizedString" />
+			<element name="domainID" type="normalizedString" />
+			<element name="domainName" type="normalizedString" />
 		</all>
 	</complexType>
 	<complexType name="contactData">
 		<sequence>
-			<element name="type" type="hr:contactType" minOccurs="0" />
-			<element name="in" minOccurs="0" type="string" />
+			<element name="type" minOccurs="0" type="hr:contactType" />
+			<element name="in" minOccurs="0" type="normalizedString" />
 		</sequence>
 	</complexType>
 	<complexType name="registrarData">
 		<all>
-			<element name="name" type="string" />
-			<element name="email" type="string" />
-			<element name="in" type="string" />
-			<element name="voice" minOccurs="0" type="string" />
-			<element name="fax" minOccurs="0" type="string" />
-			<element name="registryMails" type="string" />
-			<element name="account" type="string" />
-			<element name="postalInfo" type="string" />
-			<element name="eppAccess" minOccurs="0" />
-			<element name="domainNum" type="string" />
+			<element name="name" type="normalizedString" />
+			<element name="email" type="normalizedString" />
+			<element name="in" type="normalizedString" />
+			<element name="voice" minOccurs="0" type="normalizedString" />
+			<element name="fax" minOccurs="0" type="normalizedString" />
+			<element name="registryMails" type="unsignedShort" />
+			<element name="account" type="hr:registrarAccount" />
+			<element name="postalInfo" type="hr:registrarPostalInfo" />
+			<element name="eppAccess" minOccurs="0" type="hr:eppAccess" />
+			<element name="domainNum" type="hr:domainNum" />
 		</all>
+	</complexType>
+	<complexType name="domainNum">
+		<sequence>
+			<element name="total" type="unsignedInt" />
+			<element name="inZone" type="unsignedInt" />
+			<element name="notInZone" type="unsignedInt" />
+			<element name="inGrace" type="unsignedInt" />
+		</sequence>
+	</complexType>
+	<complexType name="eppAccess">
+		<sequence>
+			<element name="addr" type="hr:accessIp" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="accessIp">
+		<simpleContent>
+			<extension base="normalizedString">
+				<attribute name="ip" type="hr:accessIpType" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+	<simpleType name="accessIpType">
+		<restriction base="token">
+			<enumeration value="v4" />
+			<enumeration value="v6" />
+		</restriction>
+	</simpleType>
+	<complexType name="registrarAccount">
+		<sequence>
+			<element name="balance" type="hr:registrarAccountAmount" />
+			<element name="allowance" type="hr:registrarAccountAmount" />
+		</sequence>
+	</complexType>
+	<complexType name="registrarAccountAmount">
+		<simpleContent>
+			<extension base="decimal">
+				<attribute name="currency" type="hr:currencyName" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+	<simpleType name="currencyName">
+		<restriction base="token">
+			<enumeration value="hrk" />
+		</restriction>
+	</simpleType>
+	<complexType name="registrarPostalInfo">
+		<sequence>
+			<element name="street" type="normalizedString" />
+			<element name="city" type="normalizedString" />
+			<element name="cc" type="contact:ccType" />
+			<element name="pc" type="string" />
+		</sequence>
 	</complexType>
 	<complexType name="contactDataCreate">
 		<sequence>

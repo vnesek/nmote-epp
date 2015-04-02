@@ -11,22 +11,21 @@ package hr.dns.epp.contact;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for contactDataCreate complex type.
+ * <p>Java class for registrarAccount complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="contactDataCreate">
+ * &lt;complexType name="registrarAccount">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="type" type="{http://www.dns.hr/epp/hr-1.0}contactType"/>
- *         &lt;element name="in" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="balance" type="{http://www.dns.hr/epp/hr-1.0}registrarAccountAmount"/>
+ *         &lt;element name="allowance" type="{http://www.dns.hr/epp/hr-1.0}registrarAccountAmount"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,64 +35,63 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "contactDataCreate", namespace = "http://www.dns.hr/epp/hr-1.0", propOrder = {
-    "type",
-    "in"
+@XmlType(name = "registrarAccount", namespace = "http://www.dns.hr/epp/hr-1.0", propOrder = {
+    "balance",
+    "allowance"
 })
-public class ContactDataCreate {
+public class RegistrarAccount {
 
     @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlSchemaType(name = "token")
-    protected ContactType type;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
-    protected String in;
+    protected RegistrarAccountAmount balance;
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    protected RegistrarAccountAmount allowance;
 
     /**
-     * Gets the value of the type property.
+     * Gets the value of the balance property.
      * 
      * @return
      *     possible object is
-     *     {@link ContactType }
+     *     {@link RegistrarAccountAmount }
      *     
      */
-    public ContactType getType() {
-        return type;
+    public RegistrarAccountAmount getBalance() {
+        return balance;
     }
 
     /**
-     * Sets the value of the type property.
+     * Sets the value of the balance property.
      * 
      * @param value
      *     allowed object is
-     *     {@link ContactType }
+     *     {@link RegistrarAccountAmount }
      *     
      */
-    public void setType(ContactType value) {
-        this.type = value;
+    public void setBalance(RegistrarAccountAmount value) {
+        this.balance = value;
     }
 
     /**
-     * Gets the value of the in property.
+     * Gets the value of the allowance property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link RegistrarAccountAmount }
      *     
      */
-    public String getIn() {
-        return in;
+    public RegistrarAccountAmount getAllowance() {
+        return allowance;
     }
 
     /**
-     * Sets the value of the in property.
+     * Sets the value of the allowance property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link RegistrarAccountAmount }
      *     
      */
-    public void setIn(String value) {
-        this.in = value;
+    public void setAllowance(RegistrarAccountAmount value) {
+        this.allowance = value;
     }
 
 }

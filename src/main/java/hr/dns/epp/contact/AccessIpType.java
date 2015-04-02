@@ -14,31 +14,31 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for contactType.
+ * <p>Java class for accessIpType.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="contactType">
+ * &lt;simpleType name="accessIpType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
- *     &lt;enumeration value="org"/>
- *     &lt;enumeration value="person"/>
+ *     &lt;enumeration value="v4"/>
+ *     &lt;enumeration value="v6"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "contactType", namespace = "http://www.dns.hr/epp/hr-1.0")
+@XmlType(name = "accessIpType", namespace = "http://www.dns.hr/epp/hr-1.0")
 @XmlEnum
-public enum ContactType {
+public enum AccessIpType {
 
-    @XmlEnumValue("org")
-    ORG("org"),
-    @XmlEnumValue("person")
-    PERSON("person");
+    @XmlEnumValue("v4")
+    V_4("v4"),
+    @XmlEnumValue("v6")
+    V_6("v6");
     private final String value;
 
-    ContactType(String v) {
+    AccessIpType(String v) {
         value = v;
     }
 
@@ -46,8 +46,8 @@ public enum ContactType {
         return value;
     }
 
-    public static ContactType fromValue(String v) {
-        for (ContactType c: ContactType.values()) {
+    public static AccessIpType fromValue(String v) {
+        for (AccessIpType c: AccessIpType.values()) {
             if (c.value.equals(v)) {
                 return c;
             }

@@ -14,31 +14,28 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for contactType.
+ * <p>Java class for currencyName.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="contactType">
+ * &lt;simpleType name="currencyName">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
- *     &lt;enumeration value="org"/>
- *     &lt;enumeration value="person"/>
+ *     &lt;enumeration value="hrk"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "contactType", namespace = "http://www.dns.hr/epp/hr-1.0")
+@XmlType(name = "currencyName", namespace = "http://www.dns.hr/epp/hr-1.0")
 @XmlEnum
-public enum ContactType {
+public enum CurrencyName {
 
-    @XmlEnumValue("org")
-    ORG("org"),
-    @XmlEnumValue("person")
-    PERSON("person");
+    @XmlEnumValue("hrk")
+    HRK("hrk");
     private final String value;
 
-    ContactType(String v) {
+    CurrencyName(String v) {
         value = v;
     }
 
@@ -46,8 +43,8 @@ public enum ContactType {
         return value;
     }
 
-    public static ContactType fromValue(String v) {
-        for (ContactType c: ContactType.values()) {
+    public static CurrencyName fromValue(String v) {
+        for (CurrencyName c: CurrencyName.values()) {
             if (c.value.equals(v)) {
                 return c;
             }
