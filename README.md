@@ -23,7 +23,7 @@ with java. You can find generated java sources in a repository.
 If you need to use additional XSDs or modify what's available, you'll need to
 generate sources with xjc. For example, to compile epp-1.0.xsd:
 
-> xjc -d o -npa -extension -b bindings.xml epp-1.0.xsd
+> xjc -d src-dir -npa -extension -b bindings.xml epp-1.0.xsd
 
 -npa flag tells xjs not to override package-info.java. Existing package-info.java
 contains a @XmlNs annotation customizing XML namespace prefix for EPP namespace.

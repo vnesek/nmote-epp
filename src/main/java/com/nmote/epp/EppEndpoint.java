@@ -88,6 +88,12 @@ public abstract class EppEndpoint implements Closeable {
 		return sendInternal(command, cmd);
 	}
 
+	public <R> EppResponse<R> info(EppInfoCommand<?, R, ?> command) throws EppException, IOException, JAXBException {
+		CommandType cmd = new CommandType();
+		cmd.setInfo(newReadWriteType(command));
+		return sendInternal(command, cmd);
+	}
+
 	public ResponseType check(Object command, Object... exts) throws EppException, IOException, JAXBException {
 		Epp request = new Epp();
 		CommandType cmd = new CommandType();

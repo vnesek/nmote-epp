@@ -1,6 +1,7 @@
 package com.nmote.epp;
 
 import hr.dns.epp.contact.ContactType;
+import hr.dns.epp.contact.Info;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,6 +20,7 @@ import org.ietf.epp.domain.CheckType;
 import org.ietf.epp.domain.ChkData;
 import org.ietf.epp.domain.ContactAttrType;
 import org.ietf.epp.domain.HostAttrType;
+import org.ietf.epp.domain.InfData;
 import org.ietf.epp.domain.NsType;
 import org.ietf.epp.domain.PUnitType;
 import org.ietf.epp.domain.PeriodType;
@@ -26,28 +28,46 @@ import org.ietf.epp.epp.ResponseType;
 import org.ietf.epp.eppcom.PwAuthInfoType;
 import org.ietf.epp.host.IpType;
 
+import com.nmote.epp.hr.HrEppCommands;
+
+import static com.nmote.epp.EppCommands.*;
+
 public class SampleEPPClient {
 
+
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws Exception {
 		EppEndpoint epp = EppEndpoint.create("epp://localhost:700") //
 				.contactService() // Enable EPP contact service
 				.domainService() // Enable EPP domain service
-				.service("hr.dns.epp.contact") // Enable custom extension
+				.service("hr.dns.epp.contact") // Enable custom
+												// extension/service
 				.socketFactory(createSocketFactory());
 
-		epp.login(new LoginCommand().clientID("Regica2-EPP").password("hC8oQV951"));
-		epp.hello();
+		epp.login(login("Regica2-EPP", "hC8oQV951"));
+		// epp.hello();
+		if (false) {
+			EppResponse<Void> info = epp.info(HrEppCommands.infoRegistrar());
+			System.out.println(info.getExtension(Info.class).getRegistrar().getName());
+		}
 
 		// ResponseType response = createContact(epp);
 		// String contactId = ((org.ietf.epp.contact.CreData)
 		// response.getResData().getAnies().get(0)).getId();
 		// System.err.println(contactId);
-		EppResponse<ChkData> response = epp.check(new CheckDomainCommand().domain("domena1.hr","domena2.hr"));
-		for (CheckType cd : response.getSingleResponse().getCds()) {
-			System.out.println(cd.getName().getValue() + " " + cd.getName().isAvail());
+		if (false) {
+			EppResponse<ChkData> response = epp.check(checkDomain("domena1.hr", "domena2.hr"));
+			for (CheckType cd : response.getSingleResponse().getCds()) {
+				System.out.println(cd.getName().getValue() + " " + cd.getName().isAvail());
+			}
 		}
-		//infoDomain(epp);
-		//createDomain(epp);
+
+		if (false) {
+			EppResponse<InfData> response = epp.info(infoDomain("test-regica-8307.com.hr"));
+			System.out.println(response.getSingleResponse().getRegistrant());
+		}
+		// infoDomain(epp);
+		// createDomain(epp);
 
 		epp.logout();
 	}
@@ -147,15 +167,6 @@ public class SampleEPPClient {
 		});
 	}
 
-	protected static ResponseType infoDomain(EppEndpoint epp) throws EppException, IOException, JAXBException {
-		return epp.info(new org.ietf.epp.domain.Info() {
-			{
-				org.ietf.epp.domain.InfoNameType infoName = new org.ietf.epp.domain.InfoNameType();
-				infoName.setValue("test-regica-8307.com.hr");
-				setName(infoName);
-			}
-		});
-	}
 
 	protected static SocketFactory createSocketFactory() throws GeneralSecurityException, IOException {
 		KeyStore ks = KeyStore.getInstance("JKS");
