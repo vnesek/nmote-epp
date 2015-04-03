@@ -41,18 +41,6 @@ public abstract class EppEndpoint implements Closeable {
 		return new SocketEppEndpoint().uri(uri);
 	}
 
-	private ExtAnyType newExtAnyType(EppCommand<?, ?, ?> command) {
-		ExtAnyType result;
-		List<Object> exts = command.getExtensions(this);
-		if (exts != null && exts.size() > 0) {
-			result = new ExtAnyType();
-			result.getAnies().addAll(exts);
-		} else {
-			result = null;
-		}
-		return result;
-	}
-
 	private static ExtAnyType newExtAnyType(Object... exts) {
 		ExtAnyType result;
 		if (exts.length > 0) {
@@ -64,12 +52,6 @@ public abstract class EppEndpoint implements Closeable {
 			result = null;
 		}
 		return result;
-	}
-
-	private ReadWriteType newReadWriteType(EppCommand<?, ?, ?> command) {
-		ReadWriteType rw = new ReadWriteType();
-		rw.getAnies().addAll(command.getCommands(this));
-		return rw;
 	}
 
 	private static ReadWriteType newReadWriteType(Object command) {
@@ -85,12 +67,6 @@ public abstract class EppEndpoint implements Closeable {
 	public <R> EppResponse<R> check(EppCheckCommand<?, R, ?> command) throws EppException, IOException, JAXBException {
 		CommandType cmd = new CommandType();
 		cmd.setCheck(newReadWriteType(command));
-		return sendInternal(command, cmd);
-	}
-
-	public <R> EppResponse<R> info(EppInfoCommand<?, R, ?> command) throws EppException, IOException, JAXBException {
-		CommandType cmd = new CommandType();
-		cmd.setInfo(newReadWriteType(command));
 		return sendInternal(command, cmd);
 	}
 
@@ -124,6 +100,12 @@ public abstract class EppEndpoint implements Closeable {
 
 	public EppEndpoint contactService() {
 		return service("org.ietf.epp.contact");
+	}
+
+	public <R> EppResponse<R> create(EppCreateCommand<?, R, ?> command) throws EppException, IOException, JAXBException {
+		CommandType cmd = new CommandType();
+		cmd.setCreate(newReadWriteType(command));
+		return sendInternal(command, cmd);
 	}
 
 	public ResponseType create(Object command, Object... exts) throws EppException, IOException, JAXBException {
@@ -207,6 +189,12 @@ public abstract class EppEndpoint implements Closeable {
 
 	public EppEndpoint hostService() {
 		return service("org.ietf.epp.host");
+	}
+
+	public <R> EppResponse<R> info(EppInfoCommand<?, R, ?> command) throws EppException, IOException, JAXBException {
+		CommandType cmd = new CommandType();
+		cmd.setInfo(newReadWriteType(command));
+		return sendInternal(command, cmd);
 	}
 
 	public ResponseType info(Object command, Object... exts) throws EppException, IOException, JAXBException {
@@ -351,6 +339,24 @@ public abstract class EppEndpoint implements Closeable {
 		byte[] result = sendInstead.get();
 		sendInstead.remove();
 		return result;
+	}
+
+	private ExtAnyType newExtAnyType(EppCommand<?, ?, ?> command) {
+		ExtAnyType result;
+		List<Object> exts = command.getExtensions(this);
+		if (exts != null && exts.size() > 0) {
+			result = new ExtAnyType();
+			result.getAnies().addAll(exts);
+		} else {
+			result = null;
+		}
+		return result;
+	}
+
+	private ReadWriteType newReadWriteType(EppCommand<?, ?, ?> command) {
+		ReadWriteType rw = new ReadWriteType();
+		rw.getAnies().addAll(command.getCommands(this));
+		return rw;
 	}
 
 	private <R> EppResponse<R> sendInternal(EppCommand<?, R, ?> command, CommandType cmd) throws EppException,
