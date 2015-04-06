@@ -2,12 +2,17 @@ package com.nmote.epp;
 
 import org.ietf.epp.epp.CommandType;
 
-public abstract class EppCheckCommand<C, R, T extends EppCheckCommand<C, R, T>> extends EppCommand<C, R, T> {
+public class LogoutCommand extends EppCommand<Void, Void, LogoutCommand> {
+
+	@Override
+	protected LogoutCommand getThis() {
+		return this;
+	}
 
 	@Override
 	protected CommandType newCommandType(EppEndpoint endpoint) {
 		CommandType cmd = super.newCommandType(endpoint);
-		cmd.setCheck(newReadWriteType(endpoint));
+		cmd.setLogout("");
 		return cmd;
 	}
 }

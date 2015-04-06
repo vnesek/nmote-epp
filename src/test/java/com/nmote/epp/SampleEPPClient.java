@@ -24,6 +24,7 @@ import org.ietf.epp.domain.InfData;
 import org.ietf.epp.domain.NsType;
 import org.ietf.epp.domain.PUnitType;
 import org.ietf.epp.domain.PeriodType;
+import org.ietf.epp.epp.GreetingType;
 import org.ietf.epp.epp.ResponseType;
 import org.ietf.epp.eppcom.PwAuthInfoType;
 import org.ietf.epp.host.IpType;
@@ -44,10 +45,13 @@ public class SampleEPPClient {
 												// extension/service
 				.socketFactory(createSocketFactory());
 
-		epp.login(login("Regica2-EPP", "hC8oQV951"));
-		// epp.hello();
-		if (false) {
-			EppResponse<Void> info = epp.info(HrEppCommands.infoRegistrar());
+		epp.execute(login("Regica2-EPP", "hC8oQV951"));
+		if (true) {
+		GreetingType greeting = epp.hello();
+		System.out.println(greeting.getSvID());
+		}
+		if (true) {
+			EppResponse<Void> info = epp.execute(HrEppCommands.infoRegistrar());
 			System.out.println(info.getExtension(Info.class).getRegistrar().getName());
 		}
 
@@ -55,23 +59,23 @@ public class SampleEPPClient {
 		// String contactId = ((org.ietf.epp.contact.CreData)
 		// response.getResData().getAnies().get(0)).getId();
 		// System.err.println(contactId);
-		if (false) {
-			EppResponse<ChkData> response = epp.check(checkDomain("domena1.hr", "domena2.hr"));
+		if (true) {
+			EppResponse<ChkData> response = epp.execute(checkDomain("domena1.hr", "domena2.hr"));
 			for (CheckType cd : response.getSingleResponse().getCds()) {
 				System.out.println(cd.getName().getValue() + " " + cd.getName().isAvail());
 			}
 		}
 
-		if (false) {
-			EppResponse<InfData> response = epp.info(infoDomain("test-regica-8307.com.hr"));
+		if (true) {
+			EppResponse<InfData> response = epp.execute(infoDomain("test-regica-8307.com.hr"));
 			System.out.println(response.getSingleResponse().getRegistrant());
 		}
 		// infoDomain(epp);
 		// createDomain(epp);
 
-		epp.logout();
+		epp.execute(logout());
 	}
-
+/*
 	protected static ResponseType createDomain(EppEndpoint epp) throws EppException, IOException, JAXBException {
 		return epp.create(new org.ietf.epp.domain.Create() {
 			{
@@ -167,7 +171,7 @@ public class SampleEPPClient {
 		});
 	}
 
-
+*/
 	protected static SocketFactory createSocketFactory() throws GeneralSecurityException, IOException {
 		KeyStore ks = KeyStore.getInstance("JKS");
 		try (InputStream in = new FileInputStream("data/jssecacerts")) {

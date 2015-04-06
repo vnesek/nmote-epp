@@ -1,8 +1,6 @@
 package com.nmote.epp;
 
-import java.util.Collections;
-import java.util.List;
-
+import org.ietf.epp.epp.CommandType;
 import org.ietf.epp.epp.CredsOptionsType;
 import org.ietf.epp.epp.ExtURIType;
 import org.ietf.epp.epp.LoginSvcType;
@@ -16,7 +14,13 @@ public class LoginCommand extends EppCommand<LoginType, Void, LoginCommand> {
 	}
 
 	@Override
-	public List<Object> getCommands(EppEndpoint endpoint) {
+	protected CommandType newCommandType(EppEndpoint endpoint) {
+		CommandType cmd = super.newCommandType(endpoint);
+		cmd.setLogin(newLoginType(endpoint));
+		return cmd;
+	}
+
+	protected LoginType newLoginType(EppEndpoint endpoint) {
 		LoginType login = new LoginType();
 		login.setClID(clientID);
 		login.setPw(password);
@@ -43,7 +47,7 @@ public class LoginCommand extends EppCommand<LoginType, Void, LoginCommand> {
 			}
 			login.setSvcs(svcs);
 		}
-		return Collections.singletonList(login);
+		return login;
 	}
 
 	public LoginCommand clientID(String clientID) {

@@ -42,14 +42,32 @@ public class SocketEppEndpoint extends EppEndpoint {
 		}
 	}
 
-	public boolean isConnected() {
-		return socket != null && socket.isConnected();
+	@Override
+	public <R> EppResponse<R> execute(EppCommand<?, R, ?> command) throws EppException, IOException, JAXBException {
+		EppResponse<R> response;
+		if (command instanceof LoginCommand) {
+			lastLoginCommand = null;
+
+			// Check if login was successful, close on error
+			try {
+				response = super.execute(command);
+
+				// We'll remember successful login command to use it for
+				// autoConnect
+				lastLoginCommand = command;
+
+			} catch (EppException e) {
+				close();
+				throw e;
+			}
+		} else {
+			response = super.execute(command);
+		}
+		return response;
 	}
 
-	@Override
-	public void logout() throws EppException, IOException, JAXBException {
-		super.logout();
-		close();
+	public boolean isConnected() {
+		return socket != null && socket.isConnected();
 	}
 
 	@Override
@@ -103,26 +121,6 @@ public class SocketEppEndpoint extends EppEndpoint {
 		}
 	}
 
-	@Override
-	public synchronized EppResponse<Void> login(LoginCommand command) throws EppException, IOException, JAXBException {
-		lastLoginCommand = null;
-
-		// Check if login was successful, close on error
-		try {
-			EppResponse<Void> response = super.login(command);
-
-			// We'll remember successful login command to use it for autoConnect
-			lastLoginCommand = command;
-
-			return response;
-		} catch (EppException e) {
-			close();
-			throw e;
-		}
-	}
-
-	private LoginCommand lastLoginCommand;
-
 	protected synchronized void autoConnect() throws IOException, JAXBException, EppException {
 		if (!isConnected()) {
 			// Open socket to EPP server
@@ -132,8 +130,9 @@ public class SocketEppEndpoint extends EppEndpoint {
 			output = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
 
 			if (lastLoginCommand != null) {
-				login(lastLoginCommand);
+				execute(lastLoginCommand);
 			}
+
 		}
 	}
 
@@ -164,6 +163,7 @@ public class SocketEppEndpoint extends EppEndpoint {
 
 	private byte[] inBuffer;
 	private DataInputStream input;
+	private EppCommand<?, ?, ?> lastLoginCommand;
 	private ByteArrayOutputStream outBuffer;
 	private DataOutputStream output;
 	private Socket socket;
