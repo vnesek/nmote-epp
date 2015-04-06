@@ -168,6 +168,11 @@ public abstract class EppEndpoint implements Closeable {
 		return this;
 	}
 
+	public EppEndpoint service(EppService service) {
+		services.add(service);
+		return this;
+	}
+
 	public EppEndpoint service(String packageName) {
 		services.add(new EppService(packageName));
 		return this;

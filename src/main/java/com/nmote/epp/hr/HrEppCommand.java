@@ -6,7 +6,7 @@ import javax.xml.bind.JAXBElement;
 
 import com.nmote.epp.EppInfoCommand;
 
-public class HrEppCommands {
+public class HrEppCommand {
 
 	private static class HrRegistrar extends EppInfoCommand<JAXBElement<Object>, Void, HrRegistrar> {
 
@@ -20,7 +20,12 @@ public class HrEppCommands {
 		}
 	}
 
+	public static HrCreateContactCommand createContact() {
+		return new HrCreateContactCommand();
+	}
+
 	public static EppInfoCommand<?, Void, ?> infoRegistrar() {
 		return new HrRegistrar();
 	}
+
 }

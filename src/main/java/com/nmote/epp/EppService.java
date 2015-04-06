@@ -58,6 +58,5 @@ public class EppService {
 	}
 
 	private final String namespaceURI;
-
 	private final String packageName;
 }
