@@ -64,8 +64,18 @@ public abstract class EppEndpoint implements Closeable {
 		return service("org.ietf.epp.contact");
 	}
 
+	public EppEndpoint disable(String key) {
+		options.remove(key);
+		return this;
+	}
+
 	public EppEndpoint domainService() {
 		return service("org.ietf.epp.domain");
+	}
+
+	public EppEndpoint enable(String key) {
+		options.add(key);
+		return this;
 	}
 
 	public <R> EppResponse<R> execute(EppCommand<?, R, ?> command) throws EppException, IOException, JAXBException {
@@ -73,11 +83,6 @@ public abstract class EppEndpoint implements Closeable {
 		request.setCommand(command.newCommandType(this));
 		ResponseType response = send(request).getResponse();
 		return new EppResponse<R>(response);
-	}
-
-	public EppEndpoint fixBrokenNamespaceScoping(boolean fixBrokenNamespaceScoping) {
-		this.fixBrokenNamespaceScoping = fixBrokenNamespaceScoping;
-		return this;
 	}
 
 	public JAXBContext getJAXBContext() throws JAXBException {
@@ -135,6 +140,10 @@ public abstract class EppEndpoint implements Closeable {
 
 	public EppEndpoint hostService() {
 		return service("org.ietf.epp.host");
+	}
+
+	public boolean isEnabled(String key) {
+		return options.contains(key);
 	}
 
 	public EppEndpoint jaxbContext(JAXBContext jaxbContext) {
@@ -208,7 +217,7 @@ public abstract class EppEndpoint implements Closeable {
 
 		assignClientTransactionID(request);
 
-		if (fixBrokenNamespaceScoping) {
+		if (isEnabled("fixBrokenNamespaceScoping")) {
 			try {
 				// Fix for broken handling of namespaces on .hr EPP registry
 				XMLStreamWriter writer = new EppXMLStreamWriter(xmlOutputFactory.createXMLStreamWriter(out));
@@ -241,11 +250,11 @@ public abstract class EppEndpoint implements Closeable {
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 
 	private Supplier<String> clientTransactionID = () -> UUID.randomUUID().toString();
-	private boolean fixBrokenNamespaceScoping;
 	private String jaxbClassPath;
 	private JAXBContext jaxbContext;
 	private Marshaller marshaller;
 	private int maxResponseSize = 64 * 1024;
+	private Set<String> options = new HashSet<>();
 	private ThreadLocal<byte[]> sendInstead = new ThreadLocal<>();
 	private Set<EppService> services = new HashSet<>();
 	private SocketFactory socketFactory;

@@ -76,7 +76,7 @@ public class SampleEPPClient {
 		}
 
 		if (false) {
-			EppResponse<org.ietf.epp.domain.RenData> response = epp.execute(renewDomain("test-22831-regica.com.hr").period(1).currentExpire("2016-04-07T22:00:00Z"));
+			EppResponse<org.ietf.epp.domain.RenData> response = epp.execute(renewDomain("test-22831-regica.com.hr").period(1).currentExpire("2018-04-07"));
 			System.out.println(response.getSingleResponse().getExDate());
 		}
 
@@ -87,7 +87,7 @@ public class SampleEPPClient {
 			System.out.println(info.getContact().getIn());
 		}
 
-		if (true) {
+		if (false) {
 			epp.execute(updateDomain("test-22831-regica.com.hr").registrant("43732").addNs("ns1.foo.hr").addStatus(StatusValueType.CLIENT_TRANSFER_PROHIBITED));
 			EppResponse<org.ietf.epp.domain.InfData> response = epp.execute(infoDomain("test-22831-regica.com.hr"));
 		}
