@@ -17,6 +17,7 @@ import com.nmote.epp.domain.CreateDomainCommand;
 import com.nmote.epp.domain.InfoDomainCommand;
 import com.nmote.epp.domain.RenewDomainCommand;
 import com.nmote.epp.domain.TransferDomainCommand;
+import com.nmote.epp.domain.UpdateDomainCommand;
 
 public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 
@@ -82,6 +83,14 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 
 	public static TransferDomainCommand transferDomain(String name) {
 		return transferDomain().name(name);
+	}
+
+	public static UpdateDomainCommand updateDomain() {
+		return new UpdateDomainCommand();
+	}
+
+	public static UpdateDomainCommand updateDomain(String name) {
+		return updateDomain().name(name);
 	}
 
 

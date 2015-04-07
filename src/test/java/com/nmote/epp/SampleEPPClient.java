@@ -17,6 +17,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.ietf.epp.domain.CheckType;
 import org.ietf.epp.domain.ChkData;
 import org.ietf.epp.domain.InfData;
+import org.ietf.epp.domain.StatusValueType;
 import org.ietf.epp.epp.GreetingType;
 
 import com.nmote.epp.hr.HrEppCommand;
@@ -79,11 +80,16 @@ public class SampleEPPClient {
 			System.out.println(response.getSingleResponse().getExDate());
 		}
 
-		if (true) {
+		if (false) {
 			EppResponse<org.ietf.epp.contact.InfData> response = epp.execute(infoContact("43732"));
 			System.out.println(response.getSingleResponse().getVoice().getValue());
 			hr.dns.epp.contact.Info info = response.getExtension(hr.dns.epp.contact.Info.class);
 			System.out.println(info.getContact().getIn());
+		}
+
+		if (true) {
+			epp.execute(updateDomain("test-22831-regica.com.hr").registrant("43732").addNs("ns1.foo.hr").addStatus(StatusValueType.CLIENT_TRANSFER_PROHIBITED));
+			EppResponse<org.ietf.epp.domain.InfData> response = epp.execute(infoDomain("test-22831-regica.com.hr"));
 		}
 
 		epp.execute(logout());
