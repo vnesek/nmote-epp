@@ -11,6 +11,7 @@ import org.ietf.epp.epp.ReadWriteType;
 import com.nmote.epp.command.LoginCommand;
 import com.nmote.epp.command.LogoutCommand;
 import com.nmote.epp.contact.CreateContactCommand;
+import com.nmote.epp.contact.InfoContactCommand;
 import com.nmote.epp.domain.CheckDomainCommand;
 import com.nmote.epp.domain.CreateDomainCommand;
 import com.nmote.epp.domain.InfoDomainCommand;
@@ -37,6 +38,14 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 
 	public static CreateDomainCommand<?> createDomain(String name) {
 		return createDomain().name(name);
+	}
+
+	public static InfoContactCommand infoContact() {
+		return new InfoContactCommand();
+	}
+
+	public static InfoContactCommand infoContact(String id) {
+		return infoContact().id(id);
 	}
 
 	public static InfoDomainCommand infoDomain() {

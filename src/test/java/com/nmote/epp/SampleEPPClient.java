@@ -79,6 +79,13 @@ public class SampleEPPClient {
 			System.out.println(response.getSingleResponse().getExDate());
 		}
 
+		if (true) {
+			EppResponse<org.ietf.epp.contact.InfData> response = epp.execute(infoContact("43732"));
+			System.out.println(response.getSingleResponse().getVoice().getValue());
+			hr.dns.epp.contact.Info info = response.getExtension(hr.dns.epp.contact.Info.class);
+			System.out.println(info.getContact().getIn());
+		}
+
 		epp.execute(logout());
 	}
 
