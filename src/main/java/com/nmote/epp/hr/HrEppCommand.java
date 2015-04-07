@@ -23,4 +23,12 @@ public class HrEppCommand {
 		return new HrRegistrar();
 	}
 
+	public static HrUpdateContactCommand updateContact() {
+		return new HrUpdateContactCommand();
+	}
+
+	public static HrUpdateContactCommand updateContact(String id) {
+		return updateContact().id(id);
+	}
+
 }

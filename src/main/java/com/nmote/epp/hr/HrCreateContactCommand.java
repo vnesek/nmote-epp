@@ -8,18 +8,14 @@ import com.nmote.epp.contact.CreateContactCommand;
 
 public class HrCreateContactCommand extends CreateContactCommand<HrCreateContactCommand> {
 
-	public HrCreateContactCommand() {
-		Create create = new Create();
-		create.setContact(contact);
-		extension(create);
-	}
-
 	public HrCreateContactCommand in(String in) {
+		addExtension();
 		contact.setIn(in);
 		return getThis();
 	}
 
 	public HrCreateContactCommand type(ContactType type) {
+		addExtension();
 		contact.setType(type);
 		return getThis();
 	}
@@ -32,5 +28,14 @@ public class HrCreateContactCommand extends CreateContactCommand<HrCreateContact
 		return type(ContactType.PERSON);
 	}
 
-	private ContactDataCreate contact = new ContactDataCreate();
+	private void addExtension() {
+		if (contact == null) {
+			contact = new ContactDataCreate();
+			Create create = new Create();
+			create.setContact(contact);
+			extension(create);
+		}
+	}
+
+	private ContactDataCreate contact;
 }

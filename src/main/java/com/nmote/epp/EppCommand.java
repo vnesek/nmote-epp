@@ -12,6 +12,7 @@ import com.nmote.epp.command.LoginCommand;
 import com.nmote.epp.command.LogoutCommand;
 import com.nmote.epp.contact.CreateContactCommand;
 import com.nmote.epp.contact.InfoContactCommand;
+import com.nmote.epp.contact.UpdateContactCommand;
 import com.nmote.epp.domain.CheckDomainCommand;
 import com.nmote.epp.domain.CreateDomainCommand;
 import com.nmote.epp.domain.InfoDomainCommand;
@@ -62,7 +63,7 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 	}
 
 	public static LoginCommand login(String clientID, String password) {
-		return  login().clientID(clientID).password(password);
+		return login().clientID(clientID).password(password);
 	}
 
 	public static LogoutCommand logout() {
@@ -85,6 +86,14 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 		return transferDomain().name(name);
 	}
 
+	public static UpdateContactCommand<?> updateContact() {
+		return new UpdateContactCommand<>();
+	}
+
+	public static UpdateContactCommand<?> updateContact(String id) {
+		return updateContact().id(id);
+	}
+
 	public static UpdateDomainCommand updateDomain() {
 		return new UpdateDomainCommand();
 	}
@@ -92,7 +101,6 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 	public static UpdateDomainCommand updateDomain(String name) {
 		return updateDomain().name(name);
 	}
-
 
 	public T command(C command) {
 		this.commands.add(command);
