@@ -15,6 +15,8 @@ import javax.xml.bind.JAXBException;
 
 import org.ietf.epp.epp.Epp;
 
+import com.nmote.epp.command.LoginCommand;
+
 public class SocketEppEndpoint extends EppEndpoint {
 
 	public SocketEppEndpoint() {

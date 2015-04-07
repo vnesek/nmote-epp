@@ -8,6 +8,15 @@ import org.ietf.epp.epp.CommandType;
 import org.ietf.epp.epp.ExtAnyType;
 import org.ietf.epp.epp.ReadWriteType;
 
+import com.nmote.epp.command.LoginCommand;
+import com.nmote.epp.command.LogoutCommand;
+import com.nmote.epp.contact.CreateContactCommand;
+import com.nmote.epp.domain.CheckDomainCommand;
+import com.nmote.epp.domain.CreateDomainCommand;
+import com.nmote.epp.domain.InfoDomainCommand;
+import com.nmote.epp.domain.RenewDomainCommand;
+import com.nmote.epp.domain.TransferDomainCommand;
+
 public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 
 	public static CheckDomainCommand checkDomain() {
@@ -15,11 +24,19 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 	}
 
 	public static CheckDomainCommand checkDomain(String... domains) {
-		return new CheckDomainCommand().domain(domains);
+		return new CheckDomainCommand().name(domains);
 	}
 
 	public static CreateContactCommand<?> createContact() {
 		return new CreateContactCommand<>();
+	}
+
+	public static CreateDomainCommand<?> createDomain() {
+		return new CreateDomainCommand<>();
+	}
+
+	public static CreateDomainCommand<?> createDomain(String name) {
+		return createDomain().name(name);
 	}
 
 	public static InfoDomainCommand infoDomain() {
@@ -27,7 +44,7 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 	}
 
 	public static InfoDomainCommand infoDomain(String name) {
-		return new InfoDomainCommand().name(name);
+		return infoDomain().name(name);
 	}
 
 	public static LoginCommand login() {
@@ -35,12 +52,29 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 	}
 
 	public static LoginCommand login(String clientID, String password) {
-		return new LoginCommand().clientID(clientID).password(password);
+		return  login().clientID(clientID).password(password);
 	}
 
 	public static LogoutCommand logout() {
 		return new LogoutCommand();
 	}
+
+	public static RenewDomainCommand renewDomain() {
+		return new RenewDomainCommand();
+	}
+
+	public static RenewDomainCommand renewDomain(String name) {
+		return renewDomain().name(name);
+	}
+
+	public static TransferDomainCommand transferDomain() {
+		return new TransferDomainCommand();
+	}
+
+	public static TransferDomainCommand transferDomain(String name) {
+		return transferDomain().name(name);
+	}
+
 
 	public T command(C command) {
 		this.commands.add(command);
@@ -59,7 +93,10 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 		return ToStringBuilder.reflectionToString(this);
 	}
 
-	protected abstract T getThis();
+	@SuppressWarnings("unchecked")
+	protected T getThis() {
+		return (T) this;
+	}
 
 	protected CommandType newCommandType(EppEndpoint endpoint) {
 		CommandType cmd = new CommandType();

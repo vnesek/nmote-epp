@@ -1,9 +1,11 @@
-package com.nmote.epp;
+package com.nmote.epp.domain;
 
 import org.ietf.epp.domain.InfData;
 import org.ietf.epp.domain.Info;
 
-public class InfoDomainCommand extends EppInfoCommand<Info, InfData, InfoDomainCommand> {
+import com.nmote.epp.command.InfoCommand;
+
+public class InfoDomainCommand extends InfoCommand<Info, InfData, InfoDomainCommand> {
 
 	public InfoDomainCommand() {
 		command(info);
@@ -11,16 +13,10 @@ public class InfoDomainCommand extends EppInfoCommand<Info, InfData, InfoDomainC
 
 	public InfoDomainCommand name(String name) {
 		org.ietf.epp.domain.InfoNameType infoName = new org.ietf.epp.domain.InfoNameType();
-		infoName.setValue("test-regica-8307.com.hr");
+		infoName.setValue(name);
 		info.setName(infoName);
-		return this;
-	}
-
-	@Override
-	protected InfoDomainCommand getThis() {
-		return this;
+		return getThis();
 	}
 
 	private final Info info = new Info();
-
 }

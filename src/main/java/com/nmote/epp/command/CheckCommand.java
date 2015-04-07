@@ -1,8 +1,11 @@
-package com.nmote.epp;
+package com.nmote.epp.command;
 
 import org.ietf.epp.epp.CommandType;
 
-public abstract class EppCheckCommand<C, R, T extends EppCheckCommand<C, R, T>> extends EppCommand<C, R, T> {
+import com.nmote.epp.EppCommand;
+import com.nmote.epp.EppEndpoint;
+
+public abstract class CheckCommand<C, R, T extends CheckCommand<C, R, T>> extends EppCommand<C, R, T> {
 
 	@Override
 	protected CommandType newCommandType(EppEndpoint endpoint) {

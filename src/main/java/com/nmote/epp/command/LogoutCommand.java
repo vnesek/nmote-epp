@@ -1,13 +1,11 @@
-package com.nmote.epp;
+package com.nmote.epp.command;
 
 import org.ietf.epp.epp.CommandType;
 
-public class LogoutCommand extends EppCommand<Void, Void, LogoutCommand> {
+import com.nmote.epp.EppCommand;
+import com.nmote.epp.EppEndpoint;
 
-	@Override
-	protected LogoutCommand getThis() {
-		return this;
-	}
+public class LogoutCommand extends EppCommand<Void, Void, LogoutCommand> {
 
 	@Override
 	protected CommandType newCommandType(EppEndpoint endpoint) {

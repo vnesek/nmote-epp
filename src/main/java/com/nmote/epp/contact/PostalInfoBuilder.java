@@ -1,4 +1,4 @@
-package com.nmote.epp;
+package com.nmote.epp.contact;
 
 import org.ietf.epp.contact.AddrType;
 import org.ietf.epp.contact.PostalInfoEnumType;

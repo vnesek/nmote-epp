@@ -9,6 +9,18 @@ import org.ietf.epp.epp.ResultType;
 
 public class EppResponse<R> {
 
+	@SuppressWarnings("unchecked")
+	private static <E> E getFirstOfType(List<Object> objects, Class<E> type) {
+		if (objects != null) {
+			for (Object e : objects) {
+				if (type.isInstance(e)) {
+					return (E) e;
+				}
+			}
+		}
+		return null;
+	}
+
 	public EppResponse(ResponseType response) {
 		this.results = response.getResults();
 		ExtAnyType resData = response.getResData();
@@ -22,14 +34,8 @@ public class EppResponse<R> {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	public <E> E getExtension(Class<E> extensionType) {
-		for (Object e : getExtensions()) {
-			if (extensionType.isInstance(e)) {
-				return (E) e;
-			}
-		}
-		return null;
+		return getFirstOfType(getExtensions(), extensionType);
 	}
 
 	public List<Object> getExtensions() {
@@ -37,6 +43,10 @@ public class EppResponse<R> {
 			extensions = new ArrayList<>();
 		}
 		return extensions;
+	}
+
+	public <E> E getResponse(Class<E> responseType) {
+		return getFirstOfType(getResponses(), responseType);
 	}
 
 	public List<Object> getResponses() {

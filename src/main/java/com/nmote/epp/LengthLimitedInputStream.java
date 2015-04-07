@@ -16,7 +16,7 @@ import java.io.InputStream;
  *
  * @author Vjekoslav Nesek vnesek@nmote.com
  */
-public class LengthLimitedInputStream extends FilterInputStream {
+class LengthLimitedInputStream extends FilterInputStream {
 
 	public LengthLimitedInputStream(InputStream in, int length) {
 		super(in);

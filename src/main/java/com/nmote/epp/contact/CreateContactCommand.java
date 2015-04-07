@@ -1,4 +1,4 @@
-package com.nmote.epp;
+package com.nmote.epp.contact;
 
 import org.ietf.epp.contact.AuthInfoType;
 import org.ietf.epp.contact.CreData;
@@ -7,7 +7,9 @@ import org.ietf.epp.contact.E164Type;
 import org.ietf.epp.contact.PostalInfoType;
 import org.ietf.epp.eppcom.PwAuthInfoType;
 
-public class CreateContactCommand<T extends CreateContactCommand<T>> extends EppCreateCommand<Create, CreData, T> {
+import com.nmote.epp.command.CreateCommand;
+
+public class CreateContactCommand<T extends CreateContactCommand<T>> extends CreateCommand<Create, CreData, T> {
 
 	public CreateContactCommand() {
 		command(create);
@@ -70,12 +72,6 @@ public class CreateContactCommand<T extends CreateContactCommand<T>> extends Epp
 		number.setX(x);
 		create.setVoice(number);
 		return getThis();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	protected T getThis() {
-		return (T) this;
 	}
 
 	private final Create create = new Create();

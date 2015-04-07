@@ -1,4 +1,4 @@
-package com.nmote.epp;
+package com.nmote.epp.command;
 
 import org.ietf.epp.epp.CommandType;
 import org.ietf.epp.epp.CredsOptionsType;
@@ -6,12 +6,11 @@ import org.ietf.epp.epp.ExtURIType;
 import org.ietf.epp.epp.LoginSvcType;
 import org.ietf.epp.epp.LoginType;
 
-public class LoginCommand extends EppCommand<LoginType, Void, LoginCommand> {
+import com.nmote.epp.EppCommand;
+import com.nmote.epp.EppEndpoint;
+import com.nmote.epp.EppService;
 
-	@Override
-	protected LoginCommand getThis() {
-		return this;
-	}
+public class LoginCommand extends EppCommand<LoginType, Void, LoginCommand> {
 
 	@Override
 	protected CommandType newCommandType(EppEndpoint endpoint) {

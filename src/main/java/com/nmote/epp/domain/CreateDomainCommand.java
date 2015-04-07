@@ -1,4 +1,4 @@
-package com.nmote.epp;
+package com.nmote.epp.domain;
 
 import org.ietf.epp.domain.AuthInfoType;
 import org.ietf.epp.domain.ContactAttrType;
@@ -13,26 +13,28 @@ import org.ietf.epp.eppcom.PwAuthInfoType;
 import org.ietf.epp.host.AddrType;
 import org.ietf.epp.host.IpType;
 
-public class CreateDomainCommand extends EppCreateCommand<Create, CreData, CreateDomainCommand> {
+import com.nmote.epp.command.CreateCommand;
+
+public class CreateDomainCommand<T extends CreateDomainCommand<T>> extends CreateCommand<Create, CreData, T> {
 
 	public CreateDomainCommand() {
 		command(create);
 	}
 
-	public CreateDomainCommand name(String name) {
+	public T name(String name) {
 		create.setName(name);
-		return this;
+		return getThis();
 	}
 
-	public CreateDomainCommand period(int period) {
+	public T period(int period) {
 		PeriodType pt = new PeriodType();
 		pt.setUnit(PUnitType.Y);
 		pt.setValue(1);
 		create.setPeriod(pt);
-		return this;
+		return getThis();
 	}
 
-	public CreateDomainCommand ns(String name, String... address) {
+	public T ns(String name, String... address) {
 		NsType ns = create.getNs();
 		if (ns == null) {
 			ns = new NsType();
@@ -49,48 +51,43 @@ public class CreateDomainCommand extends EppCreateCommand<Create, CreData, Creat
 			ha.getHostAddrs().add(a);
 		}
 		ns.getHostAttrs().add(ha);
-		return this;
+		return getThis();
 	}
 
-	@Override
-	protected CreateDomainCommand getThis() {
-		return this;
-	}
-
-	public CreateDomainCommand registrant(String id) {
+	public T registrant(String id) {
 		create.setRegistrant(id);
-		return this;
+		return getThis();
 	}
 
-	public CreateDomainCommand admin(String id) {
+	public T admin(String id) {
 		org.ietf.epp.domain.ContactType ct = new org.ietf.epp.domain.ContactType();
 		ct.setType(ContactAttrType.ADMIN);
 		ct.setValue(id);
 		create.getContacts().add(ct);
-		return this;
+		return getThis();
 	}
 
-	public CreateDomainCommand tech(String id) {
+	public T tech(String id) {
 		org.ietf.epp.domain.ContactType ct = new org.ietf.epp.domain.ContactType();
 		ct.setType(ContactAttrType.TECH);
 		ct.setValue(id);
 		create.getContacts().add(ct);
-		return this;
+		return getThis();
 	}
 
-	public CreateDomainCommand billing(String id) {
+	public T billing(String id) {
 		ContactType ct = new ContactType();
 		ct.setType(ContactAttrType.BILLING);
 		ct.setValue(id);
 		create.getContacts().add(ct);
-		return this;
+		return getThis();
 	}
 
-	public CreateDomainCommand auth(String authInfo) {
+	public T auth(String authInfo) {
 		return auth(authInfo, null);
 	}
 
-	public CreateDomainCommand auth(String authInfo, String roid) {
+	public T auth(String authInfo, String roid) {
 		AuthInfoType auth = new AuthInfoType();
 		{
 			PwAuthInfoType pw = new PwAuthInfoType();
@@ -99,7 +96,7 @@ public class CreateDomainCommand extends EppCreateCommand<Create, CreData, Creat
 			auth.setPw(pw);
 		}
 		create.setAuthInfo(auth);
-		return this;
+		return getThis();
 	}
 
 	private final Create create = new Create();

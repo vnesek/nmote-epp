@@ -4,19 +4,14 @@ import hr.dns.epp.contact.ObjectFactory;
 
 import javax.xml.bind.JAXBElement;
 
-import com.nmote.epp.EppInfoCommand;
+import com.nmote.epp.command.InfoCommand;
 
 public class HrEppCommand {
 
-	private static class HrRegistrar extends EppInfoCommand<JAXBElement<Object>, Void, HrRegistrar> {
+	private static class HrRegistrar extends InfoCommand<JAXBElement<Object>, Void, HrRegistrar> {
 
 		public HrRegistrar() {
 			command(new ObjectFactory().createRegistrar(""));
-		}
-
-		@Override
-		protected HrRegistrar getThis() {
-			return this;
 		}
 	}
 
@@ -24,7 +19,7 @@ public class HrEppCommand {
 		return new HrCreateContactCommand();
 	}
 
-	public static EppInfoCommand<?, Void, ?> infoRegistrar() {
+	public static InfoCommand<?, Void, ?> infoRegistrar() {
 		return new HrRegistrar();
 	}
 

@@ -4,7 +4,7 @@ import hr.dns.epp.contact.ContactDataCreate;
 import hr.dns.epp.contact.ContactType;
 import hr.dns.epp.contact.Create;
 
-import com.nmote.epp.CreateContactCommand;
+import com.nmote.epp.contact.CreateContactCommand;
 
 public class HrCreateContactCommand extends CreateContactCommand<HrCreateContactCommand> {
 
