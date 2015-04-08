@@ -52,7 +52,9 @@ public class PostalInfoBuilder {
 	}
 
 	public PostalInfoBuilder street(String street) {
-		addr().getStreets().add(street);
+		if (street != null) {
+			addr().getStreets().add(street);
+		}
 		return this;
 	}
 

@@ -52,7 +52,7 @@ public class SampleEPPClient {
 		}
 
 		// Check domain
-		if (false) {
+		if (true) {
 			EppResponse<ChkData> response = epp.execute(checkDomain("domena1.hr", "domena2.hr"));
 			for (CheckType cd : response.getSingleResponse().getCds()) {
 				System.out.println(cd.getName().getValue() + " " + cd.getName().isAvail());
@@ -95,7 +95,7 @@ public class SampleEPPClient {
 		}
 
 		// Delete contact
-		if (true) {
+		if (false) {
 			// Create dummy contact
 			EppResponse<org.ietf.epp.contact.CreData> response = epp.execute(HrEppCommand.createContact()
 					.id(RandomStringUtils.randomNumeric(6)).auth("ignored").email("pero@foo.bar")

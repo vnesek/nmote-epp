@@ -122,7 +122,7 @@ public abstract class EppEndpoint implements Closeable {
 
 	public Unmarshaller getUnmarshaller() throws JAXBException {
 		if (unmarshaller == null) {
-			unmarshaller = jaxbContext.createUnmarshaller();
+			unmarshaller = getJAXBContext().createUnmarshaller();
 		}
 		return unmarshaller;
 	}

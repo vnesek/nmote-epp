@@ -78,44 +78,9 @@ public class SocketEppEndpoint extends EppEndpoint {
 
 		try {
 			// Write request
-			synchronized (output) {
-				if (outBuffer == null) {
-					outBuffer = new ByteArrayOutputStream(4096);
-				}
-				outBuffer.reset();
-				writeEpp(request, outBuffer);
-				output.writeInt(outBuffer.size() + 4);
-				outBuffer.writeTo(output);
+			sendEpp(request);
 
-				if (log.isTraceEnabled()) {
-					log.trace("Sent {}", outBuffer.toString("UTF-8"));
-				}
-				output.flush();
-			}
-
-			// Read response
-			synchronized (input) {
-				final int length = input.readInt() - 4;
-				if (length <= 0 || length > getMaxResponseSize()) {
-					throw new IOException("invalid EPP response size: " + length);
-				}
-				InputStream rin;
-				if (log.isTraceEnabled()) {
-					if (inBuffer == null || inBuffer.length < length) {
-						inBuffer = new byte[length + 4000];
-					}
-					input.readFully(inBuffer, 0, length);
-					log.trace("Received {}", new String(inBuffer, 0, length, "UTF-8"));
-					rin = new ByteArrayInputStream(inBuffer, 0, length);
-				} else {
-					rin = new LengthLimitedInputStream(input, length);
-				}
-				Epp response = (Epp) readEpp(rin);
-				if (response.getResponse() != null && response.getResponse().getResults() != null) {
-					EppException.throwOnError(response.getResponse().getResults());
-				}
-				return response;
-			}
+			return receiveEpp();
 		} catch (IOException ioe) {
 			log.error("IO error, closing socket", ioe);
 			close();
@@ -130,6 +95,9 @@ public class SocketEppEndpoint extends EppEndpoint {
 			socket = createSocket();
 			input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 			output = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+
+			// Read greeting
+			receiveEpp();
 
 			if (lastLoginCommand != null) {
 				execute(lastLoginCommand);
@@ -161,6 +129,49 @@ public class SocketEppEndpoint extends EppEndpoint {
 			port = 700;
 		}
 		return port;
+	}
+
+	private Epp receiveEpp() throws IOException, JAXBException, EppException {
+		// Read response (or greeting)
+		synchronized (input) {
+			final int length = input.readInt() - 4;
+			if (length <= 0 || length > getMaxResponseSize()) {
+				throw new IOException("invalid EPP response size: " + length);
+			}
+			InputStream rin;
+			if (log.isTraceEnabled()) {
+				if (inBuffer == null || inBuffer.length < length) {
+					inBuffer = new byte[length + 4000];
+				}
+				input.readFully(inBuffer, 0, length);
+				log.trace("Received {}", new String(inBuffer, 0, length, "UTF-8"));
+				rin = new ByteArrayInputStream(inBuffer, 0, length);
+			} else {
+				rin = new LengthLimitedInputStream(input, length);
+			}
+			Epp response = (Epp) readEpp(rin);
+			if (response.getResponse() != null && response.getResponse().getResults() != null) {
+				EppException.throwOnError(response.getResponse().getResults());
+			}
+			return response;
+		}
+	}
+
+	private void sendEpp(Epp request) throws IOException, JAXBException, EppException {
+		synchronized (output) {
+			if (outBuffer == null) {
+				outBuffer = new ByteArrayOutputStream(4096);
+			}
+			outBuffer.reset();
+			writeEpp(request, outBuffer);
+			output.writeInt(outBuffer.size() + 4);
+			outBuffer.writeTo(output);
+
+			if (log.isTraceEnabled()) {
+				log.trace("Sent {}", outBuffer.toString("UTF-8"));
+			}
+			output.flush();
+		}
 	}
 
 	private byte[] inBuffer;
