@@ -3,6 +3,8 @@ package com.nmote.epp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.RecursiveToStringStyle;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ietf.epp.epp.ExtAnyType;
 import org.ietf.epp.epp.ResponseType;
 import org.ietf.epp.epp.ResultType;
@@ -25,13 +27,15 @@ public class EppResponse<R> {
 		this.results = response.getResults();
 		ExtAnyType resData = response.getResData();
 		if (resData != null) {
-			responses = resData.getAnies();
+			this.responses = resData.getAnies();
 		}
 		ExtAnyType extension = response.getExtension();
 		if (extension != null) {
-			extensions = extension.getAnies();
+			this.extensions = extension.getAnies();
 		}
-
+		if (response.getMsgQ() != null) {
+			this.queuedMessage = new EppQueuedMessage(response.getMsgQ());
+		}
 	}
 
 	public <E> E getExtension(Class<E> extensionType) {
@@ -43,6 +47,10 @@ public class EppResponse<R> {
 			extensions = new ArrayList<>();
 		}
 		return extensions;
+	}
+
+	public EppQueuedMessage getQueuedMessage() {
+		return queuedMessage;
 	}
 
 	public <E> E getResponse(Class<E> responseType) {
@@ -72,7 +80,14 @@ public class EppResponse<R> {
 		return getExtension(extensionType) != null;
 	}
 
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, new RecursiveToStringStyle());
+	}
+
 	private List<Object> extensions;
+
+	private EppQueuedMessage queuedMessage;
 	private List<Object> responses;
 	private List<ResultType> results;
 }

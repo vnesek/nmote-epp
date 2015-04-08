@@ -39,16 +39,19 @@ public class SampleEPPClient {
 
 		epp.execute(login("Regica2-EPP", "hC8oQV951"));
 
+		// Hello -> Greeting
 		if (false) {
 			GreetingType greeting = epp.hello();
 			System.out.println(greeting.getSvID());
 		}
 
+		// Info registrar (.hr extension)
 		if (false) {
 			EppResponse<Void> info = epp.execute(infoRegistrar());
 			System.out.println(info.getExtension(Info.class).getRegistrar().getName());
 		}
 
+		// Check domain
 		if (false) {
 			EppResponse<ChkData> response = epp.execute(checkDomain("domena1.hr", "domena2.hr"));
 			for (CheckType cd : response.getSingleResponse().getCds()) {
@@ -56,11 +59,13 @@ public class SampleEPPClient {
 			}
 		}
 
+		// Info domain
 		if (false) {
 			EppResponse<InfData> response = epp.execute(infoDomain("test-regica-8307.com.hr"));
 			System.out.println(response.getSingleResponse().getRegistrant());
 		}
 
+		// Create contact
 		if (false) {
 			EppResponse<org.ietf.epp.contact.CreData> response = epp.execute(HrEppCommand.createContact()
 					.id(RandomStringUtils.randomNumeric(6)).auth("ignored").email("pero@foo.bar")
@@ -69,6 +74,7 @@ public class SampleEPPClient {
 			System.out.println(response.getSingleResponse().getId());
 		}
 
+		// Update contact
 		if (false) {
 			epp.execute(HrEppCommand
 					.updateContact("43732")
@@ -79,6 +85,7 @@ public class SampleEPPClient {
 			epp.execute(infoContact(("43732")));
 		}
 
+		// Create domain
 		if (false) {
 			EppResponse<org.ietf.epp.domain.CreData> response = epp.execute(createDomain(
 					"test-" + RandomStringUtils.randomNumeric(5) + "-regica.com.hr").auth("ignored")
@@ -87,12 +94,14 @@ public class SampleEPPClient {
 			System.out.println(response.getSingleResponse().getExDate());
 		}
 
+		// Renew domain
 		if (false) {
 			EppResponse<org.ietf.epp.domain.RenData> response = epp.execute(renewDomain("test-22831-regica.com.hr")
 					.period(1).currentExpire("2018-04-07"));
 			System.out.println(response.getSingleResponse().getExDate());
 		}
 
+		// Info contact
 		if (false) {
 			EppResponse<org.ietf.epp.contact.InfData> response = epp.execute(infoContact("43732"));
 			System.out.println(response.getSingleResponse().getVoice().getValue());
@@ -100,10 +109,16 @@ public class SampleEPPClient {
 			System.out.println(info.getContact().getIn());
 		}
 
+		// Update domain
 		if (false) {
 			epp.execute(updateDomain("test-22831-regica.com.hr").registrant("43732").addNs("ns1.foo.hr")
 					.addStatus(StatusValueType.CLIENT_TRANSFER_PROHIBITED));
 			EppResponse<org.ietf.epp.domain.InfData> response = epp.execute(infoDomain("test-22831-regica.com.hr"));
+		}
+
+		if (true) {
+			EppResponse<Object> response = epp.execute(poll());
+			System.out.println(response);
 		}
 
 		epp.execute(logout());

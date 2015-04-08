@@ -10,6 +10,7 @@ import org.ietf.epp.epp.ReadWriteType;
 
 import com.nmote.epp.command.LoginCommand;
 import com.nmote.epp.command.LogoutCommand;
+import com.nmote.epp.command.PollCommand;
 import com.nmote.epp.contact.CreateContactCommand;
 import com.nmote.epp.contact.InfoContactCommand;
 import com.nmote.epp.contact.UpdateContactCommand;
@@ -60,6 +61,10 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 
 	public static LoginCommand login() {
 		return new LoginCommand();
+	}
+
+	public static PollCommand poll() {
+		return new PollCommand();
 	}
 
 	public static LoginCommand login(String clientID, String password) {
