@@ -12,10 +12,12 @@ import com.nmote.epp.command.LoginCommand;
 import com.nmote.epp.command.LogoutCommand;
 import com.nmote.epp.command.PollCommand;
 import com.nmote.epp.contact.CreateContactCommand;
+import com.nmote.epp.contact.DeleteContactCommand;
 import com.nmote.epp.contact.InfoContactCommand;
 import com.nmote.epp.contact.UpdateContactCommand;
 import com.nmote.epp.domain.CheckDomainCommand;
 import com.nmote.epp.domain.CreateDomainCommand;
+import com.nmote.epp.domain.DeleteDomainCommand;
 import com.nmote.epp.domain.InfoDomainCommand;
 import com.nmote.epp.domain.RenewDomainCommand;
 import com.nmote.epp.domain.TransferDomainCommand;
@@ -43,68 +45,48 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 		return createDomain().name(name);
 	}
 
-	public static InfoContactCommand infoContact() {
-		return new InfoContactCommand();
+	public static DeleteContactCommand deleteContact(String id) {
+		return new DeleteContactCommand().id(id);
+	}
+
+	public static DeleteDomainCommand deleteDomain(String name) {
+		return new DeleteDomainCommand().name(name);
 	}
 
 	public static InfoContactCommand infoContact(String id) {
-		return infoContact().id(id);
-	}
-
-	public static InfoDomainCommand infoDomain() {
-		return new InfoDomainCommand();
+		return new InfoContactCommand().id(id);
 	}
 
 	public static InfoDomainCommand infoDomain(String name) {
-		return infoDomain().name(name);
-	}
-
-	public static LoginCommand login() {
-		return new LoginCommand();
-	}
-
-	public static PollCommand poll() {
-		return new PollCommand();
+		return new InfoDomainCommand().name(name);
 	}
 
 	public static LoginCommand login(String clientID, String password) {
-		return login().clientID(clientID).password(password);
+		return new LoginCommand().clientID(clientID).password(password);
 	}
 
 	public static LogoutCommand logout() {
 		return new LogoutCommand();
 	}
 
-	public static RenewDomainCommand renewDomain() {
-		return new RenewDomainCommand();
+	public static PollCommand poll() {
+		return new PollCommand();
 	}
 
 	public static RenewDomainCommand renewDomain(String name) {
-		return renewDomain().name(name);
-	}
-
-	public static TransferDomainCommand transferDomain() {
-		return new TransferDomainCommand();
+		return new RenewDomainCommand().name(name);
 	}
 
 	public static TransferDomainCommand transferDomain(String name) {
-		return transferDomain().name(name);
-	}
-
-	public static UpdateContactCommand<?> updateContact() {
-		return new UpdateContactCommand<>();
+		return new TransferDomainCommand().name(name);
 	}
 
 	public static UpdateContactCommand<?> updateContact(String id) {
-		return updateContact().id(id);
-	}
-
-	public static UpdateDomainCommand updateDomain() {
-		return new UpdateDomainCommand();
+		return new UpdateContactCommand<>().id(id);
 	}
 
 	public static UpdateDomainCommand updateDomain(String name) {
-		return updateDomain().name(name);
+		return new UpdateDomainCommand().name(name);
 	}
 
 	public T command(C command) {

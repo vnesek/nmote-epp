@@ -11,7 +11,7 @@ import com.nmote.epp.command.InfoCommand;
 public class InfoContactCommand extends InfoCommand<JAXBElement<AuthIDType>, InfData, InfoContactCommand> {
 
 	public InfoContactCommand() {
-		command( new ObjectFactory().createInfo(info));
+		command(new ObjectFactory().createInfo(info));
 	}
 
 	public InfoContactCommand id(String id) {

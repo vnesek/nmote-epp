@@ -94,6 +94,20 @@ public class SampleEPPClient {
 			System.out.println(response.getSingleResponse().getExDate());
 		}
 
+		// Delete contact
+		if (true) {
+			// Create dummy contact
+			EppResponse<org.ietf.epp.contact.CreData> response = epp.execute(HrEppCommand.createContact()
+					.id(RandomStringUtils.randomNumeric(6)).auth("ignored").email("pero@foo.bar")
+					.postalInfo(name("Pero Perić").city("Zagreb").pc("10000").street("Bez broja").cc("HR")) //
+					.voice("+385.123456789").fax("+385.123456789").in("1234567809992").person());
+			String contactId =  response.getSingleResponse().getId();
+
+			// Now, delete it
+			EppResponse<Void> response2 = epp.execute(deleteContact(contactId));
+			System.out.println(response2);
+		}
+
 		// Renew domain
 		if (false) {
 			EppResponse<org.ietf.epp.domain.RenData> response = epp.execute(renewDomain("test-22831-regica.com.hr")
@@ -116,7 +130,7 @@ public class SampleEPPClient {
 			EppResponse<org.ietf.epp.domain.InfData> response = epp.execute(infoDomain("test-22831-regica.com.hr"));
 		}
 
-		if (true) {
+		if (false) {
 			EppResponse<Object> response = epp.execute(poll());
 			System.out.println(response);
 		}
