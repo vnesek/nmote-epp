@@ -87,12 +87,16 @@ public class SampleEPPClient {
 		}
 
 		// Create domain
-		if (false) {
+		if (true) {
+			String name = "test-" + RandomStringUtils.randomNumeric(5) + "-regica.com.hr";
 			EppResponse<org.ietf.epp.domain.CreData> response = epp.execute(createDomain(
-					"test-" + RandomStringUtils.randomNumeric(5) + "-regica.com.hr").auth("ignored")
+					name).auth("ignored")
 					.registrant("43732").admin("43732").billing("43732").period(1));
 			// test-76045-regica.com.hr 2016-04-06T22:00:00Z
-			System.out.println(response.getSingleResponse().getExDate());
+			System.err.println(response.getSingleResponse().getExDate());
+
+			EppResponse<InfData> response2 = epp.execute(infoDomain(name));
+			System.err.println(response2.getSingleResponse().getRoid());
 		}
 
 		// Delete contact
