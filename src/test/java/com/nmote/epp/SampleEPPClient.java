@@ -1,6 +1,7 @@
 package com.nmote.epp;
 
 import hr.dns.epp.contact.Info;
+import hr.dns.epp.contact.MessageData;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -52,7 +53,7 @@ public class SampleEPPClient {
 		}
 
 		// Check domain
-		if (true) {
+		if (false) {
 			EppResponse<ChkData> response = epp.execute(checkDomain("domena1.hr", "domena2.hr"));
 			for (CheckType cd : response.getSingleResponse().getCds()) {
 				System.out.println(cd.getName().getValue() + " " + cd.getName().isAvail());
@@ -101,7 +102,7 @@ public class SampleEPPClient {
 					.id(RandomStringUtils.randomNumeric(6)).auth("ignored").email("pero@foo.bar")
 					.postalInfo(name("Pero Perić").city("Zagreb").pc("10000").street("Bez broja").cc("HR")) //
 					.voice("+385.123456789").fax("+385.123456789").in("1234567809992").person());
-			String contactId =  response.getSingleResponse().getId();
+			String contactId = response.getSingleResponse().getId();
 
 			// Now, delete it
 			EppResponse<Void> response2 = epp.execute(deleteContact(contactId));
@@ -130,9 +131,66 @@ public class SampleEPPClient {
 			EppResponse<org.ietf.epp.domain.InfData> response = epp.execute(infoDomain("test-22831-regica.com.hr"));
 		}
 
+		// Poll 1
 		if (false) {
 			EppResponse<Object> response = epp.execute(poll());
 			System.out.println(response);
+
+			EppQueuedMessage msg = response.getQueuedMessage();
+			if (msg != null) {
+				MessageData data = response.getResponse(MessageData.class);
+				System.out.println(data.getType());
+
+				// Acknowledge
+				epp.execute(poll().acknowledge(msg));
+			}
+		}
+
+		// Poll 2
+		if (false) {
+			EppEndpoint epp2 = EppEndpoint.create("epp://localhost:700").contactService().domainService()
+					.service("hr.dns.epp.contact").socketFactory(createSocketFactory());
+			epp2.execute(login("Regica1-EPP", "8E5Q8519F"));
+
+			EppResponse<Object> response = epp2.execute(poll());
+			System.err.println(response);
+
+			epp2.execute(logout());
+		}
+
+		// Transfer domain
+		if (false) {
+			EppEndpoint epp2 = EppEndpoint.create("epp://localhost:700").contactService().domainService()
+					.service("hr.dns.epp.contact").socketFactory(createSocketFactory());
+			epp2.execute(login("Regica1-EPP", "8E5Q8519F"));
+
+			// Create dummy contact
+			EppResponse<org.ietf.epp.contact.CreData> response1 = epp2.execute(HrEppCommand.createContact()
+					.id(RandomStringUtils.randomNumeric(6)).auth("ignored").email("vnesek@nmote.com")
+					.postalInfo(name("Vjeko Nesek").city("Zagreb").pc("10000").street("Bez broja").cc("HR")) //
+					.voice("+385.123456789").fax("+385.123456789").in("1234567809992").person());
+			String contactId = response1.getSingleResponse().getId();
+			System.err.println("Contact " + contactId);
+
+			// Create dummy domain
+			String name = "test-" + RandomStringUtils.randomNumeric(5) + "-dummy.com.hr";
+			EppResponse<org.ietf.epp.domain.CreData> response2 = epp2.execute(createDomain(name).auth("ignored")
+					.registrant(contactId).admin(contactId).billing(contactId).period(1));
+			System.err.println("Domain " + name);
+			System.err.println("Expires " + response2.getSingleResponse().getExDate());
+
+			// Transfer
+			EppResponse<org.ietf.epp.domain.TrnData> response3 = epp.execute(transferDomain(name).request());
+			System.err.println("Transfer " + response3);
+
+			epp2.execute(logout());
+		}
+
+		// Transfer query
+		if (false) {
+			String name = "test-64271-dummy.com.hr";
+			EppResponse<org.ietf.epp.domain.TrnData> response3 = epp.execute(transferDomain(name).query());
+			System.err.println("Transfer " + response3);
 		}
 
 		epp.execute(logout());
