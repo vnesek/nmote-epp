@@ -26,7 +26,6 @@ public class SocketEppEndpoint extends EppEndpoint {
 	@Override
 	public synchronized void close() throws IOException {
 		log.debug("Closing connection to {}", getURI());
-		super.close();
 		try {
 			if (input != null) {
 				input.close();
@@ -38,10 +37,7 @@ public class SocketEppEndpoint extends EppEndpoint {
 				socket.close();
 			}
 		} finally {
-			socket = null;
-			input = null;
-			output = null;
-			outBuffer = null;
+			closeInternal();
 		}
 	}
 
@@ -49,7 +45,7 @@ public class SocketEppEndpoint extends EppEndpoint {
 	public <R> EppResponse<R> execute(EppCommand<?, R, ?> command) throws EppException, IOException, JAXBException {
 		EppResponse<R> response;
 		if (command instanceof LoginCommand) {
-			lastLoginCommand = null;
+			// lastLoginCommand = null;
 
 			// Check if login was successful, close on error
 			try {
@@ -84,11 +80,7 @@ public class SocketEppEndpoint extends EppEndpoint {
 			return receiveEpp();
 		} catch (EOFException eof) {
 			log.error("EOF socket closed unexpectedly");
-			input = null;
-			output = null;
-			socket = null;
-			outBuffer = null;
-			super.close();
+			closeInternal();
 			throw eof;
 		} catch (IOException ioe) {
 			log.error("IO error, closing socket", ioe);
@@ -98,20 +90,39 @@ public class SocketEppEndpoint extends EppEndpoint {
 	}
 
 	protected synchronized void autoConnect() throws IOException, JAXBException, EppException {
-		if (!isConnected()) {
-			// Open socket to EPP server
-			log.debug("Connecting to {}", getURI());
-			socket = createSocket();
-			input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-			output = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+		if (!connecting) {
+			connecting = true;
 
-			// Read greeting
-			receiveEpp();
+			try {
+				if (isConnected() && isEnabled("keepAlive")) {
+					try {
+						Epp request = new Epp();
+						request.setHello("");
+						sendEpp(request);
+						receiveEpp();
+					} catch (IOException ignored) {
+						closeInternal();
+						log.debug("Hello failed, reconnecting... " + ignored);
+					}
+				}
 
-			if (lastLoginCommand != null) {
-				execute(lastLoginCommand);
+				if (!isConnected()) {
+					// Open socket to EPP server
+					log.debug("Connecting to {}", getURI());
+					socket = createSocket();
+					input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+					output = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+
+					// Read greeting
+					receiveEpp();
+
+					if (lastLoginCommand != null) {
+						execute(lastLoginCommand);
+					}
+				}
+			} finally {
+				connecting = false;
 			}
-
 		}
 	}
 
@@ -138,6 +149,14 @@ public class SocketEppEndpoint extends EppEndpoint {
 			port = 700;
 		}
 		return port;
+	}
+
+	private void closeInternal() throws IOException {
+		input = null;
+		output = null;
+		socket = null;
+		outBuffer = null;
+		super.close();
 	}
 
 	private Epp receiveEpp() throws IOException, JAXBException, EppException {
@@ -183,6 +202,7 @@ public class SocketEppEndpoint extends EppEndpoint {
 		}
 	}
 
+	private boolean connecting;
 	private byte[] inBuffer;
 	private DataInputStream input;
 	private EppCommand<?, ?, ?> lastLoginCommand;
