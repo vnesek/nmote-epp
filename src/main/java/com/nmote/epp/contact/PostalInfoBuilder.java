@@ -18,6 +18,13 @@ public class PostalInfoBuilder {
 		return result;
 	}
 
+	public static PostalInfoBuilder org(String org, String name) {
+		PostalInfoBuilder result = new PostalInfoBuilder();
+		result.postalInfoType.setOrg(org);
+		result.postalInfoType.setName(name);
+		return result;
+	}
+
 	protected PostalInfoBuilder() {
 		this(new PostalInfoType());
 	}

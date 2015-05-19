@@ -1,5 +1,6 @@
 package com.nmote.epp;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,14 @@ public class EppException extends Exception {
 	}
 
 	public EppException(Map<Integer, String> results) {
+		if (results == null) {
+			results = Collections.emptyMap();
+		}
 		this.results = results;
+	}
+
+	public boolean hasErrorCode(int code) {
+		return results.containsKey(code);
 	}
 
 	@Override

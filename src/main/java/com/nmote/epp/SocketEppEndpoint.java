@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
@@ -81,6 +82,14 @@ public class SocketEppEndpoint extends EppEndpoint {
 			sendEpp(request);
 
 			return receiveEpp();
+		} catch (EOFException eof) {
+			log.error("EOF socket closed unexpectedly");
+			input = null;
+			output = null;
+			socket = null;
+			outBuffer = null;
+			super.close();
+			throw eof;
 		} catch (IOException ioe) {
 			log.error("IO error, closing socket", ioe);
 			close();

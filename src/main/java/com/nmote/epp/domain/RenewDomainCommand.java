@@ -43,8 +43,12 @@ public class RenewDomainCommand extends RenewCommand<Renew, RenData, RenewDomain
 	public RenewDomainCommand currentExpire(Date date) {
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(date);
+		return this.currentExpire(gc.getTime());
+	}
+
+	public RenewDomainCommand currentExpire(GregorianCalendar date) {
 		try {
-			XMLGregorianCalendar xgc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
+			XMLGregorianCalendar xgc = DatatypeFactory.newInstance().newXMLGregorianCalendar(date);
 			renew.setCurExpDate(xgc);
 			return getThis();
 		} catch (DatatypeConfigurationException e) {
@@ -63,9 +67,12 @@ public class RenewDomainCommand extends RenewCommand<Renew, RenData, RenewDomain
 	}
 
 	public RenewDomainCommand period(int period) {
+		if (period < 1) {
+			throw new IllegalArgumentException("period < 1: " + period);
+		}
 		PeriodType pt = new PeriodType();
 		pt.setUnit(PUnitType.Y);
-		pt.setValue(1);
+		pt.setValue(period);
 		renew.setPeriod(pt);
 		return getThis();
 	}
