@@ -43,26 +43,12 @@ public class SocketEppEndpoint extends EppEndpoint {
 
 	@Override
 	public <R> EppResponse<R> execute(EppCommand<?, R, ?> command) throws EppException, IOException, JAXBException {
-		EppResponse<R> response;
 		if (command instanceof LoginCommand) {
-			// lastLoginCommand = null;
-
-			// Check if login was successful, close on error
-			try {
-				response = super.execute(command);
-
-				// We'll remember successful login command to use it for
-				// autoConnect
-				lastLoginCommand = command;
-
-			} catch (EppException e) {
-				close();
-				throw e;
-			}
-		} else {
-			response = super.execute(command);
+			// We'll remember (successful?) login command to use it for
+			// next autoConnect
+			lastLoginCommand = command;
 		}
-		return response;
+		return super.execute(command);
 	}
 
 	public boolean isConnected() {
