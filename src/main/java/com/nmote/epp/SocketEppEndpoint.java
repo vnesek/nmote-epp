@@ -81,14 +81,17 @@ public class SocketEppEndpoint extends EppEndpoint {
 
 			try {
 				if (isConnected() && isEnabled("keepAlive")) {
-					try {
-						Epp request = new Epp();
-						request.setHello("");
-						sendEpp(request);
-						receiveEpp();
-					} catch (IOException ignored) {
-						closeInternal();
-						log.debug("Hello failed, reconnecting... " + ignored);
+					long sinceLastActivity = System.currentTimeMillis() - lastActivity;
+					if (sinceLastActivity / 1000 >= keepAliveInterval) {
+						try {
+							Epp request = new Epp();
+							request.setHello("");
+							sendEpp(request);
+							receiveEpp();
+						} catch (IOException ignored) {
+							closeInternal();
+							log.debug("Hello failed, reconnecting... " + ignored);
+						}
 					}
 				}
 
@@ -121,6 +124,8 @@ public class SocketEppEndpoint extends EppEndpoint {
 	 */
 	protected Socket createSocket() throws IOException {
 		socket = getSocketFactory().createSocket(getHost(), getPort());
+		socket.setSoTimeout(30 * 1000);
+		socket.setKeepAlive(true);
 		return socket;
 	}
 
@@ -163,6 +168,7 @@ public class SocketEppEndpoint extends EppEndpoint {
 			} else {
 				rin = new LengthLimitedInputStream(input, length);
 			}
+			lastActivity = System.currentTimeMillis();
 			Epp response = (Epp) readEpp(rin);
 			if (response.getResponse() != null && response.getResponse().getResults() != null) {
 				EppException.throwOnError(response.getResponse().getResults());
@@ -188,6 +194,8 @@ public class SocketEppEndpoint extends EppEndpoint {
 		}
 	}
 
+	private int keepAliveInterval = 30;
+	private long lastActivity;
 	private boolean connecting;
 	private byte[] inBuffer;
 	private DataInputStream input;
