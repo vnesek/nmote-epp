@@ -10,11 +10,13 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
+import java.util.List;
 
 import javax.net.SocketFactory;
 import javax.xml.bind.JAXBException;
 
 import org.ietf.epp.epp.Epp;
+import org.ietf.epp.epp.ResultType;
 
 import com.nmote.epp.command.LoginCommand;
 
@@ -170,8 +172,20 @@ public class SocketEppEndpoint extends EppEndpoint {
 			}
 			lastActivity = System.currentTimeMillis();
 			Epp response = (Epp) readEpp(rin);
-			if (response.getResponse() != null && response.getResponse().getResults() != null) {
-				EppException.throwOnError(response.getResponse().getResults());
+			if (response.getResponse() != null) {
+				List<ResultType> results = response.getResponse().getResults();
+				if (results != null) {
+					// Check if we should close connection
+					for (ResultType result : results) {
+						// Results [2500,+] make server close a connection, so
+						// we close a client socket as well
+						if (result.getCode() >= 2500 && result.getCode() < 2600) {
+							close();
+							break;
+						}
+					}
+					EppException.throwOnError(response.getResponse().getResults());
+				}
 			}
 			return response;
 		}
