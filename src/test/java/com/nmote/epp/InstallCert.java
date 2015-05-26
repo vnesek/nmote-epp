@@ -54,6 +54,7 @@ import javax.net.ssl.X509TrustManager;
 public class InstallCert {
 
 	public static void main(String[] args) throws Exception {
+		args = new String[]  { "localhost:700" };
 		String host;
 		int port;
 		char[] passphrase;

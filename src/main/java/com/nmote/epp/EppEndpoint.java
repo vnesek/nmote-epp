@@ -82,6 +82,14 @@ public abstract class EppEndpoint implements Closeable {
 		Epp request = new Epp();
 		request.setCommand(command.newCommandType(this));
 		ResponseType response = send(request).getResponse();
+
+		// Check client transaction id
+		if (request.getCommand() != null && response.getTrID() != null) {
+			if (!request.getCommand().getClTRID().equals(response.getTrID().getClTRID())) {
+				throw new EppException("expected " + request.getCommand().getClTRID() + " client trid but got "
+						+ response.getTrID().getClTRID());
+			}
+		}
 		return new EppResponse<R>(response);
 	}
 

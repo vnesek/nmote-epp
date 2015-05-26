@@ -36,8 +36,9 @@ public class EppException extends Exception {
 		this.results = results;
 	}
 
-	public boolean hasErrorCode(int code) {
-		return results.containsKey(code);
+	public EppException(String message) {
+		super(message);
+		this.results = Collections.emptyMap();
 	}
 
 	@Override
@@ -47,6 +48,10 @@ public class EppException extends Exception {
 
 	public Map<Integer, String> getResults() {
 		return results;
+	}
+
+	public boolean hasErrorCode(int code) {
+		return results.containsKey(code);
 	}
 
 	private final Map<Integer, String> results;

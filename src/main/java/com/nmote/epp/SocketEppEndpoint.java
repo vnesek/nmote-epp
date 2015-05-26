@@ -58,7 +58,7 @@ public class SocketEppEndpoint extends EppEndpoint {
 	}
 
 	@Override
-	public Epp send(Epp request) throws IOException, JAXBException, EppException {
+	public synchronized Epp send(Epp request) throws IOException, JAXBException, EppException {
 		autoConnect();
 
 		try {
@@ -126,7 +126,7 @@ public class SocketEppEndpoint extends EppEndpoint {
 	 */
 	protected Socket createSocket() throws IOException {
 		socket = getSocketFactory().createSocket(getHost(), getPort());
-		socket.setSoTimeout(30 * 1000);
+		socket.setSoTimeout(180 * 1000);
 		socket.setKeepAlive(true);
 		return socket;
 	}
