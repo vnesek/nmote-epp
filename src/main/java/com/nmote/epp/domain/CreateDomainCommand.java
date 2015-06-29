@@ -29,7 +29,7 @@ public class CreateDomainCommand<T extends CreateDomainCommand<T>> extends Creat
 	public T period(int period) {
 		PeriodType pt = new PeriodType();
 		pt.setUnit(PUnitType.Y);
-		pt.setValue(1);
+		pt.setValue(period);
 		create.setPeriod(pt);
 		return getThis();
 	}
