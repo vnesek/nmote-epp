@@ -43,7 +43,7 @@ public class CreateDomainCommand<T extends CreateDomainCommand<T>> extends Creat
 
 		HostAttrType ha = new HostAttrType();
 		ha.setHostName(name);
-		for (String ip : address){
+		for (String ip : address) {
 			AddrType a = new AddrType();
 			// TODO auto detect IP address type
 			a.setIp(IpType.V_4);
@@ -60,26 +60,32 @@ public class CreateDomainCommand<T extends CreateDomainCommand<T>> extends Creat
 	}
 
 	public T admin(String id) {
-		org.ietf.epp.domain.ContactType ct = new org.ietf.epp.domain.ContactType();
-		ct.setType(ContactAttrType.ADMIN);
-		ct.setValue(id);
-		create.getContacts().add(ct);
+		if (id != null) {
+			org.ietf.epp.domain.ContactType ct = new org.ietf.epp.domain.ContactType();
+			ct.setType(ContactAttrType.ADMIN);
+			ct.setValue(id);
+			create.getContacts().add(ct);
+		}
 		return getThis();
 	}
 
 	public T tech(String id) {
-		org.ietf.epp.domain.ContactType ct = new org.ietf.epp.domain.ContactType();
-		ct.setType(ContactAttrType.TECH);
-		ct.setValue(id);
-		create.getContacts().add(ct);
+		if (id != null) {
+			org.ietf.epp.domain.ContactType ct = new org.ietf.epp.domain.ContactType();
+			ct.setType(ContactAttrType.TECH);
+			ct.setValue(id);
+			create.getContacts().add(ct);
+		}
 		return getThis();
 	}
 
 	public T billing(String id) {
-		ContactType ct = new ContactType();
-		ct.setType(ContactAttrType.BILLING);
-		ct.setValue(id);
-		create.getContacts().add(ct);
+		if (id != null) {
+			ContactType ct = new ContactType();
+			ct.setType(ContactAttrType.BILLING);
+			ct.setValue(id);
+			create.getContacts().add(ct);
+		}
 		return getThis();
 	}
 
