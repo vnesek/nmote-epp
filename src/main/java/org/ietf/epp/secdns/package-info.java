@@ -6,7 +6,7 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "urn:ietf:params:xml:ns:secDNS-1.1", //
-		elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED, //
-		xmlns = @javax.xml.bind.annotation.XmlNs(prefix = "secdns", namespaceURI = "urn:ietf:params:xml:ns:secDNS-1.1"))
+        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED, //
+        xmlns = @javax.xml.bind.annotation.XmlNs(prefix = "secdns", namespaceURI = "urn:ietf:params:xml:ns:secDNS-1.1"))
 package org.ietf.epp.secdns;
 

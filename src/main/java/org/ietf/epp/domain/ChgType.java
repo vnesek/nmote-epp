@@ -18,43 +18,34 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for chgType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="chgType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="registrant" type="{urn:ietf:params:xml:ns:domain-1.0}clIDChgType" minOccurs="0"/>
- *         &lt;element name="authInfo" type="{urn:ietf:params:xml:ns:domain-1.0}authInfoChgType" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="chgType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="registrant" type="{urn:ietf:params:xml:ns:domain-1.0}clIDChgType" minOccurs="0"/&gt;
+ *         &lt;element name="authInfo" type="{urn:ietf:params:xml:ns:domain-1.0}authInfoChgType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "chgType", propOrder = {
-    "registrant",
-    "authInfo"
+        "registrant",
+        "authInfo"
 })
 public class ChgType {
 
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String registrant;
-    protected AuthInfoChgType authInfo;
-
     /**
      * Gets the value of the registrant property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getRegistrant() {
         return registrant;
@@ -62,11 +53,9 @@ public class ChgType {
 
     /**
      * Sets the value of the registrant property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setRegistrant(String value) {
         this.registrant = value;
@@ -74,11 +63,9 @@ public class ChgType {
 
     /**
      * Gets the value of the authInfo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link AuthInfoChgType }
-     *     
+     *
+     * @return possible object is
+     * {@link AuthInfoChgType }
      */
     public AuthInfoChgType getAuthInfo() {
         return authInfo;
@@ -86,14 +73,18 @@ public class ChgType {
 
     /**
      * Sets the value of the authInfo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AuthInfoChgType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link AuthInfoChgType }
      */
     public void setAuthInfo(AuthInfoChgType value) {
         this.authInfo = value;
     }
+
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String registrant;
+
+    protected AuthInfoChgType authInfo;
 
 }

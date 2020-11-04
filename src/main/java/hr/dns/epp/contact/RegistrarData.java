@@ -8,42 +8,36 @@
 
 package hr.dns.epp.contact;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Java class for registrarData complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="registrarData">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/>
- *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/>
- *         &lt;element name="in" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/>
- *         &lt;element name="voice" type="{http://www.w3.org/2001/XMLSchema}normalizedString" minOccurs="0"/>
- *         &lt;element name="fax" type="{http://www.w3.org/2001/XMLSchema}normalizedString" minOccurs="0"/>
- *         &lt;element name="registryMails" type="{http://www.w3.org/2001/XMLSchema}unsignedShort"/>
- *         &lt;element name="account" type="{http://www.dns.hr/epp/hr-1.0}registrarAccount"/>
- *         &lt;element name="postalInfo" type="{http://www.dns.hr/epp/hr-1.0}registrarPostalInfo"/>
- *         &lt;element name="eppAccess" type="{http://www.dns.hr/epp/hr-1.0}eppAccess" minOccurs="0"/>
- *         &lt;element name="domainNum" type="{http://www.dns.hr/epp/hr-1.0}domainNum"/>
- *       &lt;/all>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="registrarData"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;all&gt;
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/&gt;
+ *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/&gt;
+ *         &lt;element name="in" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/&gt;
+ *         &lt;element name="voice" type="{http://www.w3.org/2001/XMLSchema}normalizedString" minOccurs="0"/&gt;
+ *         &lt;element name="fax" type="{http://www.w3.org/2001/XMLSchema}normalizedString" minOccurs="0"/&gt;
+ *         &lt;element name="registryMails" type="{http://www.w3.org/2001/XMLSchema}unsignedShort"/&gt;
+ *         &lt;element name="account" type="{http://www.dns.hr/epp/hr-1.0}registrarAccount"/&gt;
+ *         &lt;element name="postalInfo" type="{http://www.dns.hr/epp/hr-1.0}registrarPostalInfo"/&gt;
+ *         &lt;element name="eppAccess" type="{http://www.dns.hr/epp/hr-1.0}eppAccess" minOccurs="0"/&gt;
+ *         &lt;element name="domainNum" type="{http://www.dns.hr/epp/hr-1.0}domainNum"/&gt;
+ *       &lt;/all&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "registrarData", namespace = "http://www.dns.hr/epp/hr-1.0", propOrder = {
@@ -51,45 +45,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 })
 public class RegistrarData {
 
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String name;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String email;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String in;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String voice;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String fax;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
-    @XmlSchemaType(name = "unsignedShort")
-    protected int registryMails;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    protected RegistrarAccount account;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    protected RegistrarPostalInfo postalInfo;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
-    protected EppAccess eppAccess;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    protected DomainNum domainNum;
-
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -97,11 +57,9 @@ public class RegistrarData {
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -109,11 +67,9 @@ public class RegistrarData {
 
     /**
      * Gets the value of the email property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getEmail() {
         return email;
@@ -121,11 +77,9 @@ public class RegistrarData {
 
     /**
      * Sets the value of the email property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setEmail(String value) {
         this.email = value;
@@ -133,11 +87,9 @@ public class RegistrarData {
 
     /**
      * Gets the value of the in property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getIn() {
         return in;
@@ -145,11 +97,9 @@ public class RegistrarData {
 
     /**
      * Sets the value of the in property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setIn(String value) {
         this.in = value;
@@ -157,11 +107,9 @@ public class RegistrarData {
 
     /**
      * Gets the value of the voice property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getVoice() {
         return voice;
@@ -169,11 +117,9 @@ public class RegistrarData {
 
     /**
      * Sets the value of the voice property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setVoice(String value) {
         this.voice = value;
@@ -181,11 +127,9 @@ public class RegistrarData {
 
     /**
      * Gets the value of the fax property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getFax() {
         return fax;
@@ -193,11 +137,9 @@ public class RegistrarData {
 
     /**
      * Sets the value of the fax property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setFax(String value) {
         this.fax = value;
@@ -205,7 +147,6 @@ public class RegistrarData {
 
     /**
      * Gets the value of the registryMails property.
-     * 
      */
     public int getRegistryMails() {
         return registryMails;
@@ -213,7 +154,6 @@ public class RegistrarData {
 
     /**
      * Sets the value of the registryMails property.
-     * 
      */
     public void setRegistryMails(int value) {
         this.registryMails = value;
@@ -221,11 +161,9 @@ public class RegistrarData {
 
     /**
      * Gets the value of the account property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RegistrarAccount }
-     *     
+     *
+     * @return possible object is
+     * {@link RegistrarAccount }
      */
     public RegistrarAccount getAccount() {
         return account;
@@ -233,11 +171,9 @@ public class RegistrarData {
 
     /**
      * Sets the value of the account property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RegistrarAccount }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link RegistrarAccount }
      */
     public void setAccount(RegistrarAccount value) {
         this.account = value;
@@ -245,11 +181,9 @@ public class RegistrarData {
 
     /**
      * Gets the value of the postalInfo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RegistrarPostalInfo }
-     *     
+     *
+     * @return possible object is
+     * {@link RegistrarPostalInfo }
      */
     public RegistrarPostalInfo getPostalInfo() {
         return postalInfo;
@@ -257,11 +191,9 @@ public class RegistrarData {
 
     /**
      * Sets the value of the postalInfo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RegistrarPostalInfo }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link RegistrarPostalInfo }
      */
     public void setPostalInfo(RegistrarPostalInfo value) {
         this.postalInfo = value;
@@ -269,11 +201,9 @@ public class RegistrarData {
 
     /**
      * Gets the value of the eppAccess property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EppAccess }
-     *     
+     *
+     * @return possible object is
+     * {@link EppAccess }
      */
     public EppAccess getEppAccess() {
         return eppAccess;
@@ -281,11 +211,9 @@ public class RegistrarData {
 
     /**
      * Sets the value of the eppAccess property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EppAccess }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link EppAccess }
      */
     public void setEppAccess(EppAccess value) {
         this.eppAccess = value;
@@ -293,11 +221,9 @@ public class RegistrarData {
 
     /**
      * Gets the value of the domainNum property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DomainNum }
-     *     
+     *
+     * @return possible object is
+     * {@link DomainNum }
      */
     public DomainNum getDomainNum() {
         return domainNum;
@@ -305,14 +231,53 @@ public class RegistrarData {
 
     /**
      * Sets the value of the domainNum property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DomainNum }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link DomainNum }
      */
     public void setDomainNum(DomainNum value) {
         this.domainNum = value;
     }
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String name;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String email;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String in;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String voice;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String fax;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
+    @XmlSchemaType(name = "unsignedShort")
+    protected int registryMails;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    protected RegistrarAccount account;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    protected RegistrarPostalInfo postalInfo;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
+    protected EppAccess eppAccess;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    protected DomainNum domainNum;
 
 }

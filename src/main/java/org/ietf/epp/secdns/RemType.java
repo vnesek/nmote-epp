@@ -8,70 +8,60 @@
 
 package org.ietf.epp.secdns;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * <p>Java class for remType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="remType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice>
- *         &lt;element name="all" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *         &lt;element name="dsData" type="{urn:ietf:params:xml:ns:secDNS-1.1}dsDataType" maxOccurs="unbounded"/>
- *         &lt;element name="keyData" type="{urn:ietf:params:xml:ns:secDNS-1.1}keyDataType" maxOccurs="unbounded"/>
- *       &lt;/choice>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="remType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;choice&gt;
+ *         &lt;element name="all" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
+ *         &lt;element name="dsData" type="{urn:ietf:params:xml:ns:secDNS-1.1}dsDataType" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="keyData" type="{urn:ietf:params:xml:ns:secDNS-1.1}keyDataType" maxOccurs="unbounded"/&gt;
+ *       &lt;/choice&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "remType", propOrder = {
-    "keyDatas",
-    "dsDatas",
-    "all"
+        "keyDatas",
+        "dsDatas",
+        "all"
 })
 public class RemType {
 
-    @XmlElement(name = "keyData")
-    protected List<KeyDataType> keyDatas;
-    @XmlElement(name = "dsData")
-    protected List<DsDataType> dsDatas;
-    protected Boolean all;
-
     /**
      * Gets the value of the keyDatas property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the keyDatas property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getKeyDatas().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link KeyDataType }
-     * 
-     * 
      */
     public List<KeyDataType> getKeyDatas() {
         if (keyDatas == null) {
@@ -82,25 +72,23 @@ public class RemType {
 
     /**
      * Gets the value of the dsDatas property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the dsDatas property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getDsDatas().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link DsDataType }
-     * 
-     * 
      */
     public List<DsDataType> getDsDatas() {
         if (dsDatas == null) {
@@ -111,11 +99,9 @@ public class RemType {
 
     /**
      * Gets the value of the all property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     *
+     * @return possible object is
+     * {@link Boolean }
      */
     public Boolean isAll() {
         return all;
@@ -123,14 +109,20 @@ public class RemType {
 
     /**
      * Sets the value of the all property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Boolean }
      */
     public void setAll(Boolean value) {
         this.all = value;
     }
+
+    @XmlElement(name = "keyData")
+    protected List<KeyDataType> keyDatas;
+
+    @XmlElement(name = "dsData")
+    protected List<DsDataType> dsDatas;
+
+    protected Boolean all;
 
 }

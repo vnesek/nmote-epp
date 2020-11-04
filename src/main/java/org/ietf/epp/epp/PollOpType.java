@@ -15,18 +15,17 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for pollOpType.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="pollOpType">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
- *     &lt;enumeration value="ack"/>
- *     &lt;enumeration value="req"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;simpleType name="pollOpType"&gt;
+ *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token"&gt;
+ *     &lt;enumeration value="ack"/&gt;
+ *     &lt;enumeration value="req"/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
  * </pre>
- * 
  */
 @XmlType(name = "pollOpType", namespace = "urn:ietf:params:xml:ns:epp-1.0")
 @XmlEnum
@@ -36,23 +35,24 @@ public enum PollOpType {
     ACK("ack"),
     @XmlEnumValue("req")
     REQ("req");
-    private final String value;
 
     PollOpType(String v) {
         value = v;
     }
 
-    public String value() {
-        return value;
-    }
-
     public static PollOpType fromValue(String v) {
-        for (PollOpType c: PollOpType.values()) {
+        for (PollOpType c : PollOpType.values()) {
             if (c.value.equals(v)) {
                 return c;
             }
         }
         throw new IllegalArgumentException(v);
     }
+
+    public String value() {
+        return value;
+    }
+
+    private final String value;
 
 }

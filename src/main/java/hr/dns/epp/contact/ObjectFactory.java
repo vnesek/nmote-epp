@@ -15,18 +15,17 @@ import javax.xml.namespace.QName;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the hr.dns.epp.contact package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the hr.dns.epp.contact package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -35,14 +34,12 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: hr.dns.epp.contact
-     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link Create }
-     * 
      */
     public Create createCreate() {
         return new Create();
@@ -50,7 +47,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ContactDataCreate }
-     * 
      */
     public ContactDataCreate createContactDataCreate() {
         return new ContactDataCreate();
@@ -58,7 +54,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Update }
-     * 
      */
     public Update createUpdate() {
         return new Update();
@@ -66,7 +61,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ContactData }
-     * 
      */
     public ContactData createContactData() {
         return new ContactData();
@@ -74,7 +68,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Info }
-     * 
      */
     public Info createInfo() {
         return new Info();
@@ -82,7 +75,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RegistrarData }
-     * 
      */
     public RegistrarData createRegistrarData() {
         return new RegistrarData();
@@ -90,7 +82,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MessageData }
-     * 
      */
     public MessageData createMessageData() {
         return new MessageData();
@@ -98,7 +89,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link EppAccess }
-     * 
      */
     public EppAccess createEppAccess() {
         return new EppAccess();
@@ -106,7 +96,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RegistrarAccount }
-     * 
      */
     public RegistrarAccount createRegistrarAccount() {
         return new RegistrarAccount();
@@ -114,7 +103,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AccessIp }
-     * 
      */
     public AccessIp createAccessIp() {
         return new AccessIp();
@@ -122,7 +110,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RegistrarAccountAmount }
-     * 
      */
     public RegistrarAccountAmount createRegistrarAccountAmount() {
         return new RegistrarAccountAmount();
@@ -130,7 +117,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DomainNum }
-     * 
      */
     public DomainNum createDomainNum() {
         return new DomainNum();
@@ -138,7 +124,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RegistrarPostalInfo }
-     * 
      */
     public RegistrarPostalInfo createRegistrarPostalInfo() {
         return new RegistrarPostalInfo();
@@ -146,7 +131,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "http://www.dns.hr/epp/hr-1.0", name = "registrar")
     public JAXBElement<Object> createRegistrar(Object value) {

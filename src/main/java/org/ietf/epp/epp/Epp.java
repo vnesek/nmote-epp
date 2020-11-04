@@ -8,65 +8,46 @@
 
 package org.ietf.epp.epp;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for eppType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="eppType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice>
- *         &lt;element name="greeting" type="{urn:ietf:params:xml:ns:epp-1.0}greetingType"/>
- *         &lt;element name="hello" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="command" type="{urn:ietf:params:xml:ns:epp-1.0}commandType"/>
- *         &lt;element name="response" type="{urn:ietf:params:xml:ns:epp-1.0}responseType"/>
- *         &lt;element name="extension" type="{urn:ietf:params:xml:ns:epp-1.0}extAnyType"/>
- *       &lt;/choice>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="eppType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;choice&gt;
+ *         &lt;element name="greeting" type="{urn:ietf:params:xml:ns:epp-1.0}greetingType"/&gt;
+ *         &lt;element name="hello" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="command" type="{urn:ietf:params:xml:ns:epp-1.0}commandType"/&gt;
+ *         &lt;element name="response" type="{urn:ietf:params:xml:ns:epp-1.0}responseType"/&gt;
+ *         &lt;element name="extension" type="{urn:ietf:params:xml:ns:epp-1.0}extAnyType"/&gt;
+ *       &lt;/choice&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "eppType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "extension",
-    "response",
-    "command",
-    "hello",
-    "greeting"
+        "extension",
+        "response",
+        "command",
+        "hello",
+        "greeting"
 })
 @XmlRootElement(name = "epp", namespace = "urn:ietf:params:xml:ns:epp-1.0")
 public class Epp {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected ExtAnyType extension;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected ResponseType response;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected CommandType command;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected String hello;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected GreetingType greeting;
-
     /**
      * Gets the value of the extension property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExtAnyType }
-     *     
+     *
+     * @return possible object is
+     * {@link ExtAnyType }
      */
     public ExtAnyType getExtension() {
         return extension;
@@ -74,11 +55,9 @@ public class Epp {
 
     /**
      * Sets the value of the extension property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExtAnyType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ExtAnyType }
      */
     public void setExtension(ExtAnyType value) {
         this.extension = value;
@@ -86,11 +65,9 @@ public class Epp {
 
     /**
      * Gets the value of the response property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ResponseType }
-     *     
+     *
+     * @return possible object is
+     * {@link ResponseType }
      */
     public ResponseType getResponse() {
         return response;
@@ -98,11 +75,9 @@ public class Epp {
 
     /**
      * Sets the value of the response property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ResponseType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ResponseType }
      */
     public void setResponse(ResponseType value) {
         this.response = value;
@@ -110,11 +85,9 @@ public class Epp {
 
     /**
      * Gets the value of the command property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CommandType }
-     *     
+     *
+     * @return possible object is
+     * {@link CommandType }
      */
     public CommandType getCommand() {
         return command;
@@ -122,11 +95,9 @@ public class Epp {
 
     /**
      * Sets the value of the command property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CommandType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link CommandType }
      */
     public void setCommand(CommandType value) {
         this.command = value;
@@ -134,11 +105,9 @@ public class Epp {
 
     /**
      * Gets the value of the hello property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getHello() {
         return hello;
@@ -146,11 +115,9 @@ public class Epp {
 
     /**
      * Sets the value of the hello property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setHello(String value) {
         this.hello = value;
@@ -158,11 +125,9 @@ public class Epp {
 
     /**
      * Gets the value of the greeting property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link GreetingType }
-     *     
+     *
+     * @return possible object is
+     * {@link GreetingType }
      */
     public GreetingType getGreeting() {
         return greeting;
@@ -170,14 +135,27 @@ public class Epp {
 
     /**
      * Sets the value of the greeting property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link GreetingType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link GreetingType }
      */
     public void setGreeting(GreetingType value) {
         this.greeting = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected ExtAnyType extension;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected ResponseType response;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected CommandType command;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected String hello;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected GreetingType greeting;
 
 }

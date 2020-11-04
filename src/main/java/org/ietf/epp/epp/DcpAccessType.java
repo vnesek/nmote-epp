@@ -16,59 +16,42 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for dcpAccessType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="dcpAccessType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice>
- *         &lt;element name="all" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *         &lt;element name="none" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *         &lt;element name="null" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *         &lt;element name="other" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *         &lt;element name="personal" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *         &lt;element name="personalAndOther" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *       &lt;/choice>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="dcpAccessType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;choice&gt;
+ *         &lt;element name="all" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *         &lt;element name="none" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *         &lt;element name="null" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *         &lt;element name="other" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *         &lt;element name="personal" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *         &lt;element name="personalAndOther" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *       &lt;/choice&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dcpAccessType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "personalAndOther",
-    "personal",
-    "other",
-    "_null",
-    "none",
-    "all"
+        "personalAndOther",
+        "personal",
+        "other",
+        "_null",
+        "none",
+        "all"
 })
 public class DcpAccessType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object personalAndOther;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object personal;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object other;
-    @XmlElement(name = "null", namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object _null;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object none;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object all;
-
     /**
      * Gets the value of the personalAndOther property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getPersonalAndOther() {
         return personalAndOther;
@@ -76,11 +59,9 @@ public class DcpAccessType {
 
     /**
      * Sets the value of the personalAndOther property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setPersonalAndOther(Object value) {
         this.personalAndOther = value;
@@ -88,11 +69,9 @@ public class DcpAccessType {
 
     /**
      * Gets the value of the personal property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getPersonal() {
         return personal;
@@ -100,11 +79,9 @@ public class DcpAccessType {
 
     /**
      * Sets the value of the personal property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setPersonal(Object value) {
         this.personal = value;
@@ -112,11 +89,9 @@ public class DcpAccessType {
 
     /**
      * Gets the value of the other property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getOther() {
         return other;
@@ -124,11 +99,9 @@ public class DcpAccessType {
 
     /**
      * Sets the value of the other property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setOther(Object value) {
         this.other = value;
@@ -136,11 +109,9 @@ public class DcpAccessType {
 
     /**
      * Gets the value of the null property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getNull() {
         return _null;
@@ -148,11 +119,9 @@ public class DcpAccessType {
 
     /**
      * Sets the value of the null property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setNull(Object value) {
         this._null = value;
@@ -160,11 +129,9 @@ public class DcpAccessType {
 
     /**
      * Gets the value of the none property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getNone() {
         return none;
@@ -172,11 +139,9 @@ public class DcpAccessType {
 
     /**
      * Sets the value of the none property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setNone(Object value) {
         this.none = value;
@@ -184,11 +149,9 @@ public class DcpAccessType {
 
     /**
      * Gets the value of the all property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getAll() {
         return all;
@@ -196,14 +159,30 @@ public class DcpAccessType {
 
     /**
      * Sets the value of the all property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setAll(Object value) {
         this.all = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object personalAndOther;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object personal;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object other;
+
+    @XmlElement(name = "null", namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object _null;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object none;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object all;
 
 }

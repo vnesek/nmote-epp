@@ -8,51 +8,36 @@
 
 package org.ietf.epp.epp;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Java class for pollType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="pollType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="op" use="required" type="{urn:ietf:params:xml:ns:epp-1.0}pollOpType" />
- *       &lt;attribute name="msgID" type="{http://www.w3.org/2001/XMLSchema}token" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="pollType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;attribute name="op" use="required" type="{urn:ietf:params:xml:ns:epp-1.0}pollOpType" /&gt;
+ *       &lt;attribute name="msgID" type="{http://www.w3.org/2001/XMLSchema}token" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "pollType", namespace = "urn:ietf:params:xml:ns:epp-1.0")
 public class PollType {
 
-    @XmlAttribute(name = "op", required = true)
-    protected PollOpType op;
-    @XmlAttribute(name = "msgID")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String msgID;
-
     /**
      * Gets the value of the op property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PollOpType }
-     *     
+     *
+     * @return possible object is
+     * {@link PollOpType }
      */
     public PollOpType getOp() {
         return op;
@@ -60,11 +45,9 @@ public class PollType {
 
     /**
      * Sets the value of the op property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PollOpType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link PollOpType }
      */
     public void setOp(PollOpType value) {
         this.op = value;
@@ -72,11 +55,9 @@ public class PollType {
 
     /**
      * Gets the value of the msgID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getMsgID() {
         return msgID;
@@ -84,14 +65,20 @@ public class PollType {
 
     /**
      * Sets the value of the msgID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setMsgID(String value) {
         this.msgID = value;
     }
+
+    @XmlAttribute(name = "op", required = true)
+    protected PollOpType op;
+
+    @XmlAttribute(name = "msgID")
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String msgID;
 
 }

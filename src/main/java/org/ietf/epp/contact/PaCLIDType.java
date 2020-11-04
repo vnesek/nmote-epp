@@ -8,51 +8,37 @@
 
 package org.ietf.epp.contact;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Java class for paCLIDType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="paCLIDType">
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;urn:ietf:params:xml:ns:eppcom-1.0>clIDType">
- *       &lt;attribute name="paResult" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
- * &lt;/complexType>
+ * &lt;complexType name="paCLIDType"&gt;
+ *   &lt;simpleContent&gt;
+ *     &lt;extension base="&lt;urn:ietf:params:xml:ns:eppcom-1.0&gt;clIDType"&gt;
+ *       &lt;attribute name="paResult" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/simpleContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "paCLIDType", propOrder = {
-    "value"
+        "value"
 })
 public class PaCLIDType {
 
-    @XmlValue
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String value;
-    @XmlAttribute(name = "paResult", required = true)
-    protected boolean paResult;
-
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getValue() {
         return value;
@@ -60,11 +46,9 @@ public class PaCLIDType {
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setValue(String value) {
         this.value = value;
@@ -72,7 +56,6 @@ public class PaCLIDType {
 
     /**
      * Gets the value of the paResult property.
-     * 
      */
     public boolean isPaResult() {
         return paResult;
@@ -80,10 +63,16 @@ public class PaCLIDType {
 
     /**
      * Sets the value of the paResult property.
-     * 
      */
     public void setPaResult(boolean value) {
         this.paResult = value;
     }
+
+    @XmlValue
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String value;
+
+    @XmlAttribute(name = "paResult", required = true)
+    protected boolean paResult;
 
 }

@@ -8,57 +8,41 @@
 
 package hr.dns.epp.contact;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Java class for contactData complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="contactData">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="type" type="{http://www.dns.hr/epp/hr-1.0}contactType" minOccurs="0"/>
- *         &lt;element name="in" type="{http://www.w3.org/2001/XMLSchema}normalizedString" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="contactData"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="type" type="{http://www.dns.hr/epp/hr-1.0}contactType" minOccurs="0"/&gt;
+ *         &lt;element name="in" type="{http://www.w3.org/2001/XMLSchema}normalizedString" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "contactData", namespace = "http://www.dns.hr/epp/hr-1.0", propOrder = {
-    "type",
-    "in"
+        "type",
+        "in"
 })
 public class ContactData {
 
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
-    @XmlSchemaType(name = "token")
-    protected ContactType type;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String in;
-
     /**
      * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ContactType }
-     *     
+     *
+     * @return possible object is
+     * {@link ContactType }
      */
     public ContactType getType() {
         return type;
@@ -66,11 +50,9 @@ public class ContactData {
 
     /**
      * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ContactType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ContactType }
      */
     public void setType(ContactType value) {
         this.type = value;
@@ -78,11 +60,9 @@ public class ContactData {
 
     /**
      * Gets the value of the in property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getIn() {
         return in;
@@ -90,14 +70,21 @@ public class ContactData {
 
     /**
      * Sets the value of the in property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setIn(String value) {
         this.in = value;
     }
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
+    @XmlSchemaType(name = "token")
+    protected ContactType type;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String in;
 
 }

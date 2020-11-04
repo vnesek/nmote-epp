@@ -8,51 +8,37 @@
 
 package org.ietf.epp.domain;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Java class for infoNameType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="infoNameType">
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;urn:ietf:params:xml:ns:eppcom-1.0>labelType">
- *       &lt;attribute name="hosts" type="{urn:ietf:params:xml:ns:domain-1.0}hostsType" default="all" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
- * &lt;/complexType>
+ * &lt;complexType name="infoNameType"&gt;
+ *   &lt;simpleContent&gt;
+ *     &lt;extension base="&lt;urn:ietf:params:xml:ns:eppcom-1.0&gt;labelType"&gt;
+ *       &lt;attribute name="hosts" type="{urn:ietf:params:xml:ns:domain-1.0}hostsType" default="all" /&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/simpleContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "infoNameType", propOrder = {
-    "value"
+        "value"
 })
 public class InfoNameType {
 
-    @XmlValue
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String value;
-    @XmlAttribute(name = "hosts")
-    protected HostsType hosts;
-
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getValue() {
         return value;
@@ -60,11 +46,9 @@ public class InfoNameType {
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setValue(String value) {
         this.value = value;
@@ -72,11 +56,9 @@ public class InfoNameType {
 
     /**
      * Gets the value of the hosts property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link HostsType }
-     *     
+     *
+     * @return possible object is
+     * {@link HostsType }
      */
     public HostsType getHosts() {
         if (hosts == null) {
@@ -88,14 +70,19 @@ public class InfoNameType {
 
     /**
      * Sets the value of the hosts property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link HostsType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link HostsType }
      */
     public void setHosts(HostsType value) {
         this.hosts = value;
     }
+
+    @XmlValue
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String value;
+
+    @XmlAttribute(name = "hosts")
+    protected HostsType hosts;
 
 }

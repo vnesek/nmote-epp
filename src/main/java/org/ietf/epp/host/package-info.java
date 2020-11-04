@@ -6,7 +6,7 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "urn:ietf:params:xml:ns:host-1.0", //
-		elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED,//
-		xmlns = @javax.xml.bind.annotation.XmlNs(prefix = "host", namespaceURI = "urn:ietf:params:xml:ns:host-1.0"))
+        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED,//
+        xmlns = @javax.xml.bind.annotation.XmlNs(prefix = "host", namespaceURI = "urn:ietf:params:xml:ns:host-1.0"))
 package org.ietf.epp.host;
 

@@ -8,58 +8,41 @@
 
 package org.ietf.epp.epp;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Java class for trIDType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="trIDType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="clTRID" type="{urn:ietf:params:xml:ns:epp-1.0}trIDStringType" minOccurs="0"/>
- *         &lt;element name="svTRID" type="{urn:ietf:params:xml:ns:epp-1.0}trIDStringType"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="trIDType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="clTRID" type="{urn:ietf:params:xml:ns:epp-1.0}trIDStringType" minOccurs="0"/&gt;
+ *         &lt;element name="svTRID" type="{urn:ietf:params:xml:ns:epp-1.0}trIDStringType"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "trIDType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "clTRID",
-    "svTRID"
+        "clTRID",
+        "svTRID"
 })
 public class TrIDType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String clTRID;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String svTRID;
-
     /**
      * Gets the value of the clTRID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getClTRID() {
         return clTRID;
@@ -67,11 +50,9 @@ public class TrIDType {
 
     /**
      * Sets the value of the clTRID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setClTRID(String value) {
         this.clTRID = value;
@@ -79,11 +60,9 @@ public class TrIDType {
 
     /**
      * Gets the value of the svTRID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getSvTRID() {
         return svTRID;
@@ -91,14 +70,22 @@ public class TrIDType {
 
     /**
      * Sets the value of the svTRID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setSvTRID(String value) {
         this.svTRID = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String clTRID;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String svTRID;
 
 }

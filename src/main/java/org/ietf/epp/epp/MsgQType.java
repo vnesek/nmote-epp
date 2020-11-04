@@ -8,66 +8,45 @@
 
 package org.ietf.epp.epp;
 
-import java.math.BigInteger;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.math.BigInteger;
 
 
 /**
  * <p>Java class for msgQType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="msgQType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="qDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="msg" type="{urn:ietf:params:xml:ns:epp-1.0}mixedMsgType" minOccurs="0"/>
- *       &lt;/sequence>
- *       &lt;attribute name="count" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedLong" />
- *       &lt;attribute name="id" use="required" type="{urn:ietf:params:xml:ns:eppcom-1.0}minTokenType" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="msgQType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="qDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
+ *         &lt;element name="msg" type="{urn:ietf:params:xml:ns:epp-1.0}mixedMsgType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="count" use="required" type="{http://www.w3.org/2001/XMLSchema}unsignedLong" /&gt;
+ *       &lt;attribute name="id" use="required" type="{urn:ietf:params:xml:ns:eppcom-1.0}minTokenType" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "msgQType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "qDate",
-    "msg"
+        "qDate",
+        "msg"
 })
 public class MsgQType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar qDate;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected MixedMsgType msg;
-    @XmlAttribute(name = "count", required = true)
-    @XmlSchemaType(name = "unsignedLong")
-    protected BigInteger count;
-    @XmlAttribute(name = "id", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String id;
-
     /**
      * Gets the value of the qDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getQDate() {
         return qDate;
@@ -75,11 +54,9 @@ public class MsgQType {
 
     /**
      * Sets the value of the qDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setQDate(XMLGregorianCalendar value) {
         this.qDate = value;
@@ -87,11 +64,9 @@ public class MsgQType {
 
     /**
      * Gets the value of the msg property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MixedMsgType }
-     *     
+     *
+     * @return possible object is
+     * {@link MixedMsgType }
      */
     public MixedMsgType getMsg() {
         return msg;
@@ -99,11 +74,9 @@ public class MsgQType {
 
     /**
      * Sets the value of the msg property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MixedMsgType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link MixedMsgType }
      */
     public void setMsg(MixedMsgType value) {
         this.msg = value;
@@ -111,11 +84,9 @@ public class MsgQType {
 
     /**
      * Gets the value of the count property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
+     *
+     * @return possible object is
+     * {@link BigInteger }
      */
     public BigInteger getCount() {
         return count;
@@ -123,11 +94,9 @@ public class MsgQType {
 
     /**
      * Sets the value of the count property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link BigInteger }
      */
     public void setCount(BigInteger value) {
         this.count = value;
@@ -135,11 +104,9 @@ public class MsgQType {
 
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -147,14 +114,27 @@ public class MsgQType {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar qDate;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected MixedMsgType msg;
+
+    @XmlAttribute(name = "count", required = true)
+    @XmlSchemaType(name = "unsignedLong")
+    protected BigInteger count;
+
+    @XmlAttribute(name = "id", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String id;
 
 }

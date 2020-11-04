@@ -8,11 +8,7 @@
 
 package org.ietf.epp.epp;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -20,54 +16,38 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for greetingType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="greetingType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="svID" type="{urn:ietf:params:xml:ns:epp-1.0}sIDType"/>
- *         &lt;element name="svDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="svcMenu" type="{urn:ietf:params:xml:ns:epp-1.0}svcMenuType"/>
- *         &lt;element name="dcp" type="{urn:ietf:params:xml:ns:epp-1.0}dcpType"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="greetingType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="svID" type="{urn:ietf:params:xml:ns:epp-1.0}sIDType"/&gt;
+ *         &lt;element name="svDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/&gt;
+ *         &lt;element name="svcMenu" type="{urn:ietf:params:xml:ns:epp-1.0}svcMenuType"/&gt;
+ *         &lt;element name="dcp" type="{urn:ietf:params:xml:ns:epp-1.0}dcpType"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "greetingType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "svID",
-    "svDate",
-    "svcMenu",
-    "dcp"
+        "svID",
+        "svDate",
+        "svcMenu",
+        "dcp"
 })
 public class GreetingType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String svID;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar svDate;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    protected SvcMenuType svcMenu;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    protected DcpType dcp;
-
     /**
      * Gets the value of the svID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getSvID() {
         return svID;
@@ -75,11 +55,9 @@ public class GreetingType {
 
     /**
      * Sets the value of the svID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setSvID(String value) {
         this.svID = value;
@@ -87,11 +65,9 @@ public class GreetingType {
 
     /**
      * Gets the value of the svDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getSvDate() {
         return svDate;
@@ -99,11 +75,9 @@ public class GreetingType {
 
     /**
      * Sets the value of the svDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setSvDate(XMLGregorianCalendar value) {
         this.svDate = value;
@@ -111,11 +85,9 @@ public class GreetingType {
 
     /**
      * Gets the value of the svcMenu property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link SvcMenuType }
-     *     
+     *
+     * @return possible object is
+     * {@link SvcMenuType }
      */
     public SvcMenuType getSvcMenu() {
         return svcMenu;
@@ -123,11 +95,9 @@ public class GreetingType {
 
     /**
      * Sets the value of the svcMenu property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link SvcMenuType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link SvcMenuType }
      */
     public void setSvcMenu(SvcMenuType value) {
         this.svcMenu = value;
@@ -135,11 +105,9 @@ public class GreetingType {
 
     /**
      * Gets the value of the dcp property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DcpType }
-     *     
+     *
+     * @return possible object is
+     * {@link DcpType }
      */
     public DcpType getDcp() {
         return dcp;
@@ -147,14 +115,27 @@ public class GreetingType {
 
     /**
      * Sets the value of the dcp property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DcpType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link DcpType }
      */
     public void setDcp(DcpType value) {
         this.dcp = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String svID;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar svDate;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    protected SvcMenuType svcMenu;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    protected DcpType dcp;
 
 }

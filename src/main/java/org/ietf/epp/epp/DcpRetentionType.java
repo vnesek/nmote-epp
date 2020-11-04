@@ -16,55 +16,40 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for dcpRetentionType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="dcpRetentionType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice>
- *         &lt;element name="business" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *         &lt;element name="indefinite" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *         &lt;element name="legal" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *         &lt;element name="none" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *         &lt;element name="stated" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *       &lt;/choice>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="dcpRetentionType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;choice&gt;
+ *         &lt;element name="business" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *         &lt;element name="indefinite" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *         &lt;element name="legal" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *         &lt;element name="none" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *         &lt;element name="stated" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *       &lt;/choice&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dcpRetentionType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "stated",
-    "none",
-    "legal",
-    "indefinite",
-    "business"
+        "stated",
+        "none",
+        "legal",
+        "indefinite",
+        "business"
 })
 public class DcpRetentionType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object stated;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object none;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object legal;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object indefinite;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object business;
-
     /**
      * Gets the value of the stated property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getStated() {
         return stated;
@@ -72,11 +57,9 @@ public class DcpRetentionType {
 
     /**
      * Sets the value of the stated property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setStated(Object value) {
         this.stated = value;
@@ -84,11 +67,9 @@ public class DcpRetentionType {
 
     /**
      * Gets the value of the none property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getNone() {
         return none;
@@ -96,11 +77,9 @@ public class DcpRetentionType {
 
     /**
      * Sets the value of the none property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setNone(Object value) {
         this.none = value;
@@ -108,11 +87,9 @@ public class DcpRetentionType {
 
     /**
      * Gets the value of the legal property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getLegal() {
         return legal;
@@ -120,11 +97,9 @@ public class DcpRetentionType {
 
     /**
      * Sets the value of the legal property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setLegal(Object value) {
         this.legal = value;
@@ -132,11 +107,9 @@ public class DcpRetentionType {
 
     /**
      * Gets the value of the indefinite property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getIndefinite() {
         return indefinite;
@@ -144,11 +117,9 @@ public class DcpRetentionType {
 
     /**
      * Sets the value of the indefinite property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setIndefinite(Object value) {
         this.indefinite = value;
@@ -156,11 +127,9 @@ public class DcpRetentionType {
 
     /**
      * Gets the value of the business property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getBusiness() {
         return business;
@@ -168,14 +137,27 @@ public class DcpRetentionType {
 
     /**
      * Sets the value of the business property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setBusiness(Object value) {
         this.business = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object stated;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object none;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object legal;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object indefinite;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object business;
 
 }

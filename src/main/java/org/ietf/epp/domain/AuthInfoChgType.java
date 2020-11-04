@@ -8,55 +8,47 @@
 
 package org.ietf.epp.domain;
 
+import org.ietf.epp.eppcom.ExtAuthInfoType;
+import org.ietf.epp.eppcom.PwAuthInfoType;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.ietf.epp.eppcom.ExtAuthInfoType;
-import org.ietf.epp.eppcom.PwAuthInfoType;
 
 
 /**
  * <p>Java class for authInfoChgType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="authInfoChgType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice>
- *         &lt;element name="pw" type="{urn:ietf:params:xml:ns:eppcom-1.0}pwAuthInfoType"/>
- *         &lt;element name="ext" type="{urn:ietf:params:xml:ns:eppcom-1.0}extAuthInfoType"/>
- *         &lt;element name="null" type="{http://www.w3.org/2001/XMLSchema}anyType"/>
- *       &lt;/choice>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="authInfoChgType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;choice&gt;
+ *         &lt;element name="pw" type="{urn:ietf:params:xml:ns:eppcom-1.0}pwAuthInfoType"/&gt;
+ *         &lt;element name="ext" type="{urn:ietf:params:xml:ns:eppcom-1.0}extAuthInfoType"/&gt;
+ *         &lt;element name="null" type="{http://www.w3.org/2001/XMLSchema}anyType"/&gt;
+ *       &lt;/choice&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "authInfoChgType", propOrder = {
-    "_null",
-    "ext",
-    "pw"
+        "_null",
+        "ext",
+        "pw"
 })
 public class AuthInfoChgType {
 
-    @XmlElement(name = "null")
-    protected Object _null;
-    protected ExtAuthInfoType ext;
-    protected PwAuthInfoType pw;
-
     /**
      * Gets the value of the null property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getNull() {
         return _null;
@@ -64,11 +56,9 @@ public class AuthInfoChgType {
 
     /**
      * Sets the value of the null property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setNull(Object value) {
         this._null = value;
@@ -76,11 +66,9 @@ public class AuthInfoChgType {
 
     /**
      * Gets the value of the ext property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExtAuthInfoType }
-     *     
+     *
+     * @return possible object is
+     * {@link ExtAuthInfoType }
      */
     public ExtAuthInfoType getExt() {
         return ext;
@@ -88,11 +76,9 @@ public class AuthInfoChgType {
 
     /**
      * Sets the value of the ext property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExtAuthInfoType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ExtAuthInfoType }
      */
     public void setExt(ExtAuthInfoType value) {
         this.ext = value;
@@ -100,11 +86,9 @@ public class AuthInfoChgType {
 
     /**
      * Gets the value of the pw property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PwAuthInfoType }
-     *     
+     *
+     * @return possible object is
+     * {@link PwAuthInfoType }
      */
     public PwAuthInfoType getPw() {
         return pw;
@@ -112,14 +96,19 @@ public class AuthInfoChgType {
 
     /**
      * Sets the value of the pw property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PwAuthInfoType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link PwAuthInfoType }
      */
     public void setPw(PwAuthInfoType value) {
         this.pw = value;
     }
+
+    @XmlElement(name = "null")
+    protected Object _null;
+
+    protected ExtAuthInfoType ext;
+
+    protected PwAuthInfoType pw;
 
 }

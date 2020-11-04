@@ -15,38 +15,32 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for chgType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="chgType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="maxSigLife" type="{urn:ietf:params:xml:ns:secDNS-1.1}maxSigLifeType" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="chgType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="maxSigLife" type="{urn:ietf:params:xml:ns:secDNS-1.1}maxSigLifeType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "chgType", propOrder = {
-    "maxSigLife"
+        "maxSigLife"
 })
 public class ChgType {
 
-    protected Integer maxSigLife;
-
     /**
      * Gets the value of the maxSigLife property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     *
+     * @return possible object is
+     * {@link Integer }
      */
     public Integer getMaxSigLife() {
         return maxSigLife;
@@ -54,14 +48,14 @@ public class ChgType {
 
     /**
      * Sets the value of the maxSigLife property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Integer }
      */
     public void setMaxSigLife(Integer value) {
         this.maxSigLife = value;
     }
+
+    protected Integer maxSigLife;
 
 }

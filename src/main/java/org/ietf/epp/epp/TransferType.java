@@ -8,51 +8,38 @@
 
 package org.ietf.epp.epp;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for transferType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="transferType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;any namespace='##other'/>
- *       &lt;/sequence>
- *       &lt;attribute name="op" use="required" type="{urn:ietf:params:xml:ns:epp-1.0}transferOpType" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="transferType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;any namespace='##other'/&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="op" use="required" type="{urn:ietf:params:xml:ns:epp-1.0}transferOpType" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "transferType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "any"
+        "any"
 })
 public class TransferType {
 
-    @XmlAnyElement(lax = true)
-    protected Object any;
-    @XmlAttribute(name = "op", required = true)
-    protected TransferOpType op;
-
     /**
      * Gets the value of the any property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getAny() {
         return any;
@@ -60,11 +47,9 @@ public class TransferType {
 
     /**
      * Sets the value of the any property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setAny(Object value) {
         this.any = value;
@@ -72,11 +57,9 @@ public class TransferType {
 
     /**
      * Gets the value of the op property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link TransferOpType }
-     *     
+     *
+     * @return possible object is
+     * {@link TransferOpType }
      */
     public TransferOpType getOp() {
         return op;
@@ -84,14 +67,18 @@ public class TransferType {
 
     /**
      * Sets the value of the op property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TransferOpType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link TransferOpType }
      */
     public void setOp(TransferOpType value) {
         this.op = value;
     }
+
+    @XmlAnyElement(lax = true)
+    protected Object any;
+
+    @XmlAttribute(name = "op", required = true)
+    protected TransferOpType op;
 
 }

@@ -15,18 +15,17 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for pUnitType.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="pUnitType">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
- *     &lt;enumeration value="y"/>
- *     &lt;enumeration value="m"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;simpleType name="pUnitType"&gt;
+ *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token"&gt;
+ *     &lt;enumeration value="y"/&gt;
+ *     &lt;enumeration value="m"/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
  * </pre>
- * 
  */
 @XmlType(name = "pUnitType")
 @XmlEnum
@@ -36,23 +35,24 @@ public enum PUnitType {
     Y("y"),
     @XmlEnumValue("m")
     M("m");
-    private final String value;
 
     PUnitType(String v) {
         value = v;
     }
 
-    public String value() {
-        return value;
-    }
-
     public static PUnitType fromValue(String v) {
-        for (PUnitType c: PUnitType.values()) {
+        for (PUnitType c : PUnitType.values()) {
             if (c.value.equals(v)) {
                 return c;
             }
         }
         throw new IllegalArgumentException(v);
     }
+
+    public String value() {
+        return value;
+    }
+
+    private final String value;
 
 }

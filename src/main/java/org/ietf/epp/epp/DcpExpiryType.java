@@ -8,55 +8,41 @@
 
 package org.ietf.epp.epp;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.Duration;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Java class for dcpExpiryType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="dcpExpiryType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice>
- *         &lt;element name="absolute" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="relative" type="{http://www.w3.org/2001/XMLSchema}duration"/>
- *       &lt;/choice>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="dcpExpiryType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;choice&gt;
+ *         &lt;element name="absolute" type="{http://www.w3.org/2001/XMLSchema}dateTime"/&gt;
+ *         &lt;element name="relative" type="{http://www.w3.org/2001/XMLSchema}duration"/&gt;
+ *       &lt;/choice&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dcpExpiryType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "relative",
-    "absolute"
+        "relative",
+        "absolute"
 })
 public class DcpExpiryType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Duration relative;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar absolute;
-
     /**
      * Gets the value of the relative property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Duration }
-     *     
+     *
+     * @return possible object is
+     * {@link Duration }
      */
     public Duration getRelative() {
         return relative;
@@ -64,11 +50,9 @@ public class DcpExpiryType {
 
     /**
      * Sets the value of the relative property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Duration }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Duration }
      */
     public void setRelative(Duration value) {
         this.relative = value;
@@ -76,11 +60,9 @@ public class DcpExpiryType {
 
     /**
      * Gets the value of the absolute property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getAbsolute() {
         return absolute;
@@ -88,14 +70,19 @@ public class DcpExpiryType {
 
     /**
      * Sets the value of the absolute property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setAbsolute(XMLGregorianCalendar value) {
         this.absolute = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Duration relative;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar absolute;
 
 }

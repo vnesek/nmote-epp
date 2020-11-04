@@ -15,20 +15,19 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for hostsType.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="hostsType">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
- *     &lt;enumeration value="all"/>
- *     &lt;enumeration value="del"/>
- *     &lt;enumeration value="none"/>
- *     &lt;enumeration value="sub"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;simpleType name="hostsType"&gt;
+ *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token"&gt;
+ *     &lt;enumeration value="all"/&gt;
+ *     &lt;enumeration value="del"/&gt;
+ *     &lt;enumeration value="none"/&gt;
+ *     &lt;enumeration value="sub"/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
  * </pre>
- * 
  */
 @XmlType(name = "hostsType")
 @XmlEnum
@@ -42,23 +41,24 @@ public enum HostsType {
     NONE("none"),
     @XmlEnumValue("sub")
     SUB("sub");
-    private final String value;
 
     HostsType(String v) {
         value = v;
     }
 
-    public String value() {
-        return value;
-    }
-
     public static HostsType fromValue(String v) {
-        for (HostsType c: HostsType.values()) {
+        for (HostsType c : HostsType.values()) {
             if (c.value.equals(v)) {
                 return c;
             }
         }
         throw new IllegalArgumentException(v);
     }
+
+    public String value() {
+        return value;
+    }
+
+    private final String value;
 
 }

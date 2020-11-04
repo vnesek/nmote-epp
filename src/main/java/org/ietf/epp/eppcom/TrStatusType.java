@@ -15,22 +15,21 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for trStatusType.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="trStatusType">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
- *     &lt;enumeration value="clientApproved"/>
- *     &lt;enumeration value="clientCancelled"/>
- *     &lt;enumeration value="clientRejected"/>
- *     &lt;enumeration value="pending"/>
- *     &lt;enumeration value="serverApproved"/>
- *     &lt;enumeration value="serverCancelled"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;simpleType name="trStatusType"&gt;
+ *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token"&gt;
+ *     &lt;enumeration value="clientApproved"/&gt;
+ *     &lt;enumeration value="clientCancelled"/&gt;
+ *     &lt;enumeration value="clientRejected"/&gt;
+ *     &lt;enumeration value="pending"/&gt;
+ *     &lt;enumeration value="serverApproved"/&gt;
+ *     &lt;enumeration value="serverCancelled"/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
  * </pre>
- * 
  */
 @XmlType(name = "trStatusType", namespace = "urn:ietf:params:xml:ns:eppcom-1.0")
 @XmlEnum
@@ -48,23 +47,24 @@ public enum TrStatusType {
     SERVER_APPROVED("serverApproved"),
     @XmlEnumValue("serverCancelled")
     SERVER_CANCELLED("serverCancelled");
-    private final String value;
 
     TrStatusType(String v) {
         value = v;
     }
 
-    public String value() {
-        return value;
-    }
-
     public static TrStatusType fromValue(String v) {
-        for (TrStatusType c: TrStatusType.values()) {
+        for (TrStatusType c : TrStatusType.values()) {
             if (c.value.equals(v)) {
                 return c;
             }
         }
         throw new IllegalArgumentException(v);
     }
+
+    public String value() {
+        return value;
+    }
+
+    private final String value;
 
 }

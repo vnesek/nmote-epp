@@ -8,12 +8,7 @@
 
 package org.ietf.epp.domain;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -25,46 +20,33 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
- * &lt;complexType name="renewType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="name" type="{urn:ietf:params:xml:ns:eppcom-1.0}labelType"/>
- *         &lt;element name="curExpDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="period" type="{urn:ietf:params:xml:ns:domain-1.0}periodType" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="renewType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="name" type="{urn:ietf:params:xml:ns:eppcom-1.0}labelType"/&gt;
+ *         &lt;element name="curExpDate" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
+ *         &lt;element name="period" type="{urn:ietf:params:xml:ns:domain-1.0}periodType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "renewType", propOrder = {
-    "name",
-    "curExpDate",
-    "period"
+        "name",
+        "curExpDate",
+        "period"
 })
 @XmlRootElement(name = "renew")
 public class Renew {
 
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String name;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar curExpDate;
-    protected PeriodType period;
-
     /**
      * Gets the value of the name property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -73,10 +55,8 @@ public class Renew {
     /**
      * Sets the value of the name property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -85,10 +65,8 @@ public class Renew {
     /**
      * Gets the value of the curExpDate property.
      *
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getCurExpDate() {
         return curExpDate;
@@ -97,10 +75,8 @@ public class Renew {
     /**
      * Sets the value of the curExpDate property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setCurExpDate(XMLGregorianCalendar value) {
         this.curExpDate = value;
@@ -109,10 +85,8 @@ public class Renew {
     /**
      * Gets the value of the period property.
      *
-     * @return
-     *     possible object is
-     *     {@link PeriodType }
-     *
+     * @return possible object is
+     * {@link PeriodType }
      */
     public PeriodType getPeriod() {
         return period;
@@ -121,13 +95,22 @@ public class Renew {
     /**
      * Sets the value of the period property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link PeriodType }
-     *
+     * @param value allowed object is
+     *              {@link PeriodType }
      */
     public void setPeriod(PeriodType value) {
         this.period = value;
     }
+
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String name;
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar curExpDate;
+
+    protected PeriodType period;
 
 }

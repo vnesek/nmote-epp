@@ -16,51 +16,38 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for dcpPurposeType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="dcpPurposeType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="admin" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
- *         &lt;element name="contact" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
- *         &lt;element name="other" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
- *         &lt;element name="prov" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="dcpPurposeType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="admin" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/&gt;
+ *         &lt;element name="contact" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/&gt;
+ *         &lt;element name="other" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/&gt;
+ *         &lt;element name="prov" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dcpPurposeType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "admin",
-    "contact",
-    "other",
-    "prov"
+        "admin",
+        "contact",
+        "other",
+        "prov"
 })
 public class DcpPurposeType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object admin;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object contact;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object other;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object prov;
-
     /**
      * Gets the value of the admin property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getAdmin() {
         return admin;
@@ -68,11 +55,9 @@ public class DcpPurposeType {
 
     /**
      * Sets the value of the admin property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setAdmin(Object value) {
         this.admin = value;
@@ -80,11 +65,9 @@ public class DcpPurposeType {
 
     /**
      * Gets the value of the contact property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getContact() {
         return contact;
@@ -92,11 +75,9 @@ public class DcpPurposeType {
 
     /**
      * Sets the value of the contact property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setContact(Object value) {
         this.contact = value;
@@ -104,11 +85,9 @@ public class DcpPurposeType {
 
     /**
      * Gets the value of the other property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getOther() {
         return other;
@@ -116,11 +95,9 @@ public class DcpPurposeType {
 
     /**
      * Sets the value of the other property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setOther(Object value) {
         this.other = value;
@@ -128,11 +105,9 @@ public class DcpPurposeType {
 
     /**
      * Gets the value of the prov property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getProv() {
         return prov;
@@ -140,14 +115,24 @@ public class DcpPurposeType {
 
     /**
      * Sets the value of the prov property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setProv(Object value) {
         this.prov = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object admin;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object contact;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object other;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object prov;
 
 }

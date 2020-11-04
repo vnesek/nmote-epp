@@ -8,57 +8,43 @@
 
 package org.ietf.epp.secdns;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for updateType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="updateType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="rem" type="{urn:ietf:params:xml:ns:secDNS-1.1}remType" minOccurs="0"/>
- *         &lt;element name="add" type="{urn:ietf:params:xml:ns:secDNS-1.1}dsOrKeyType" minOccurs="0"/>
- *         &lt;element name="chg" type="{urn:ietf:params:xml:ns:secDNS-1.1}chgType" minOccurs="0"/>
- *       &lt;/sequence>
- *       &lt;attribute name="urgent" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="updateType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="rem" type="{urn:ietf:params:xml:ns:secDNS-1.1}remType" minOccurs="0"/&gt;
+ *         &lt;element name="add" type="{urn:ietf:params:xml:ns:secDNS-1.1}dsOrKeyType" minOccurs="0"/&gt;
+ *         &lt;element name="chg" type="{urn:ietf:params:xml:ns:secDNS-1.1}chgType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="urgent" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "updateType", propOrder = {
-    "rem",
-    "add",
-    "chg"
+        "rem",
+        "add",
+        "chg"
 })
 @XmlRootElement(name = "update")
 public class Update {
 
-    protected RemType rem;
-    protected DsOrKeyType add;
-    protected ChgType chg;
-    @XmlAttribute(name = "urgent")
-    protected Boolean urgent;
-
     /**
      * Gets the value of the rem property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RemType }
-     *     
+     *
+     * @return possible object is
+     * {@link RemType }
      */
     public RemType getRem() {
         return rem;
@@ -66,11 +52,9 @@ public class Update {
 
     /**
      * Sets the value of the rem property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RemType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link RemType }
      */
     public void setRem(RemType value) {
         this.rem = value;
@@ -78,11 +62,9 @@ public class Update {
 
     /**
      * Gets the value of the add property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DsOrKeyType }
-     *     
+     *
+     * @return possible object is
+     * {@link DsOrKeyType }
      */
     public DsOrKeyType getAdd() {
         return add;
@@ -90,11 +72,9 @@ public class Update {
 
     /**
      * Sets the value of the add property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DsOrKeyType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link DsOrKeyType }
      */
     public void setAdd(DsOrKeyType value) {
         this.add = value;
@@ -102,11 +82,9 @@ public class Update {
 
     /**
      * Gets the value of the chg property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ChgType }
-     *     
+     *
+     * @return possible object is
+     * {@link ChgType }
      */
     public ChgType getChg() {
         return chg;
@@ -114,11 +92,9 @@ public class Update {
 
     /**
      * Sets the value of the chg property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ChgType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ChgType }
      */
     public void setChg(ChgType value) {
         this.chg = value;
@@ -126,11 +102,9 @@ public class Update {
 
     /**
      * Gets the value of the urgent property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
+     *
+     * @return possible object is
+     * {@link Boolean }
      */
     public boolean isUrgent() {
         if (urgent == null) {
@@ -142,14 +116,21 @@ public class Update {
 
     /**
      * Sets the value of the urgent property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Boolean }
      */
     public void setUrgent(Boolean value) {
         this.urgent = value;
     }
+
+    protected RemType rem;
+
+    protected DsOrKeyType add;
+
+    protected ChgType chg;
+
+    @XmlAttribute(name = "urgent")
+    protected Boolean urgent;
 
 }

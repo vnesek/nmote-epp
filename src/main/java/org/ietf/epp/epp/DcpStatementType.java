@@ -16,47 +16,36 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for dcpStatementType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="dcpStatementType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="purpose" type="{urn:ietf:params:xml:ns:epp-1.0}dcpPurposeType"/>
- *         &lt;element name="recipient" type="{urn:ietf:params:xml:ns:epp-1.0}dcpRecipientType"/>
- *         &lt;element name="retention" type="{urn:ietf:params:xml:ns:epp-1.0}dcpRetentionType"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="dcpStatementType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="purpose" type="{urn:ietf:params:xml:ns:epp-1.0}dcpPurposeType"/&gt;
+ *         &lt;element name="recipient" type="{urn:ietf:params:xml:ns:epp-1.0}dcpRecipientType"/&gt;
+ *         &lt;element name="retention" type="{urn:ietf:params:xml:ns:epp-1.0}dcpRetentionType"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dcpStatementType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "purpose",
-    "recipient",
-    "retention"
+        "purpose",
+        "recipient",
+        "retention"
 })
 public class DcpStatementType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    protected DcpPurposeType purpose;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    protected DcpRecipientType recipient;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    protected DcpRetentionType retention;
-
     /**
      * Gets the value of the purpose property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DcpPurposeType }
-     *     
+     *
+     * @return possible object is
+     * {@link DcpPurposeType }
      */
     public DcpPurposeType getPurpose() {
         return purpose;
@@ -64,11 +53,9 @@ public class DcpStatementType {
 
     /**
      * Sets the value of the purpose property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DcpPurposeType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link DcpPurposeType }
      */
     public void setPurpose(DcpPurposeType value) {
         this.purpose = value;
@@ -76,11 +63,9 @@ public class DcpStatementType {
 
     /**
      * Gets the value of the recipient property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DcpRecipientType }
-     *     
+     *
+     * @return possible object is
+     * {@link DcpRecipientType }
      */
     public DcpRecipientType getRecipient() {
         return recipient;
@@ -88,11 +73,9 @@ public class DcpStatementType {
 
     /**
      * Sets the value of the recipient property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DcpRecipientType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link DcpRecipientType }
      */
     public void setRecipient(DcpRecipientType value) {
         this.recipient = value;
@@ -100,11 +83,9 @@ public class DcpStatementType {
 
     /**
      * Gets the value of the retention property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DcpRetentionType }
-     *     
+     *
+     * @return possible object is
+     * {@link DcpRetentionType }
      */
     public DcpRetentionType getRetention() {
         return retention;
@@ -112,14 +93,21 @@ public class DcpStatementType {
 
     /**
      * Sets the value of the retention property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DcpRetentionType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link DcpRetentionType }
      */
     public void setRetention(DcpRetentionType value) {
         this.retention = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    protected DcpPurposeType purpose;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    protected DcpRecipientType recipient;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    protected DcpRetentionType retention;
 
 }

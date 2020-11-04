@@ -8,101 +8,61 @@
 
 package org.ietf.epp.host;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * <p>Java class for infDataType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="infDataType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="name" type="{urn:ietf:params:xml:ns:eppcom-1.0}labelType"/>
- *         &lt;element name="roid" type="{urn:ietf:params:xml:ns:eppcom-1.0}roidType"/>
- *         &lt;element name="status" type="{urn:ietf:params:xml:ns:host-1.0}statusType" maxOccurs="7"/>
- *         &lt;element name="addr" type="{urn:ietf:params:xml:ns:host-1.0}addrType" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="clID" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType"/>
- *         &lt;element name="crID" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType"/>
- *         &lt;element name="crDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="upID" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType" minOccurs="0"/>
- *         &lt;element name="upDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="trDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="infDataType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="name" type="{urn:ietf:params:xml:ns:eppcom-1.0}labelType"/&gt;
+ *         &lt;element name="roid" type="{urn:ietf:params:xml:ns:eppcom-1.0}roidType"/&gt;
+ *         &lt;element name="status" type="{urn:ietf:params:xml:ns:host-1.0}statusType" maxOccurs="7"/&gt;
+ *         &lt;element name="addr" type="{urn:ietf:params:xml:ns:host-1.0}addrType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="clID" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType"/&gt;
+ *         &lt;element name="crID" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType"/&gt;
+ *         &lt;element name="crDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/&gt;
+ *         &lt;element name="upID" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType" minOccurs="0"/&gt;
+ *         &lt;element name="upDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
+ *         &lt;element name="trDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "infDataType", propOrder = {
-    "name",
-    "roid",
-    "statuses",
-    "addrs",
-    "clID",
-    "crID",
-    "crDate",
-    "upID",
-    "upDate",
-    "trDate"
+        "name",
+        "roid",
+        "statuses",
+        "addrs",
+        "clID",
+        "crID",
+        "crDate",
+        "upID",
+        "upDate",
+        "trDate"
 })
 @XmlRootElement(name = "infData")
 public class InfData {
 
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String name;
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String roid;
-    @XmlElement(name = "status", required = true)
-    protected List<StatusType> statuses;
-    @XmlElement(name = "addr")
-    protected List<AddrType> addrs;
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String clID;
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String crID;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar crDate;
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String upID;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar upDate;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar trDate;
-
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -110,11 +70,9 @@ public class InfData {
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -122,11 +80,9 @@ public class InfData {
 
     /**
      * Gets the value of the roid property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getRoid() {
         return roid;
@@ -134,11 +90,9 @@ public class InfData {
 
     /**
      * Sets the value of the roid property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setRoid(String value) {
         this.roid = value;
@@ -146,25 +100,23 @@ public class InfData {
 
     /**
      * Gets the value of the statuses property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the statuses property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getStatuses().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link StatusType }
-     * 
-     * 
      */
     public List<StatusType> getStatuses() {
         if (statuses == null) {
@@ -175,25 +127,23 @@ public class InfData {
 
     /**
      * Gets the value of the addrs property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the addrs property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAddrs().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AddrType }
-     * 
-     * 
      */
     public List<AddrType> getAddrs() {
         if (addrs == null) {
@@ -204,11 +154,9 @@ public class InfData {
 
     /**
      * Gets the value of the clID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getClID() {
         return clID;
@@ -216,11 +164,9 @@ public class InfData {
 
     /**
      * Sets the value of the clID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setClID(String value) {
         this.clID = value;
@@ -228,11 +174,9 @@ public class InfData {
 
     /**
      * Gets the value of the crID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCrID() {
         return crID;
@@ -240,11 +184,9 @@ public class InfData {
 
     /**
      * Sets the value of the crID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCrID(String value) {
         this.crID = value;
@@ -252,11 +194,9 @@ public class InfData {
 
     /**
      * Gets the value of the crDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getCrDate() {
         return crDate;
@@ -264,11 +204,9 @@ public class InfData {
 
     /**
      * Sets the value of the crDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setCrDate(XMLGregorianCalendar value) {
         this.crDate = value;
@@ -276,11 +214,9 @@ public class InfData {
 
     /**
      * Gets the value of the upID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getUpID() {
         return upID;
@@ -288,11 +224,9 @@ public class InfData {
 
     /**
      * Sets the value of the upID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setUpID(String value) {
         this.upID = value;
@@ -300,11 +234,9 @@ public class InfData {
 
     /**
      * Gets the value of the upDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getUpDate() {
         return upDate;
@@ -312,11 +244,9 @@ public class InfData {
 
     /**
      * Sets the value of the upDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setUpDate(XMLGregorianCalendar value) {
         this.upDate = value;
@@ -324,11 +254,9 @@ public class InfData {
 
     /**
      * Gets the value of the trDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getTrDate() {
         return trDate;
@@ -336,14 +264,52 @@ public class InfData {
 
     /**
      * Sets the value of the trDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setTrDate(XMLGregorianCalendar value) {
         this.trDate = value;
     }
+
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String name;
+
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String roid;
+
+    @XmlElement(name = "status", required = true)
+    protected List<StatusType> statuses;
+
+    @XmlElement(name = "addr")
+    protected List<AddrType> addrs;
+
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String clID;
+
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String crID;
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar crDate;
+
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String upID;
+
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar upDate;
+
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar trDate;
 
 }

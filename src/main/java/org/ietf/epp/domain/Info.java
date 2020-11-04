@@ -8,52 +8,40 @@
 
 package org.ietf.epp.domain;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for infoType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="infoType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="name" type="{urn:ietf:params:xml:ns:domain-1.0}infoNameType"/>
- *         &lt;element name="authInfo" type="{urn:ietf:params:xml:ns:domain-1.0}authInfoType" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="infoType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="name" type="{urn:ietf:params:xml:ns:domain-1.0}infoNameType"/&gt;
+ *         &lt;element name="authInfo" type="{urn:ietf:params:xml:ns:domain-1.0}authInfoType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "infoType", propOrder = {
-    "name",
-    "authInfo"
+        "name",
+        "authInfo"
 })
 @XmlRootElement(name = "info")
 public class Info {
 
-    @XmlElement(required = true)
-    protected InfoNameType name;
-    protected AuthInfoType authInfo;
-
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link InfoNameType }
-     *     
+     *
+     * @return possible object is
+     * {@link InfoNameType }
      */
     public InfoNameType getName() {
         return name;
@@ -61,11 +49,9 @@ public class Info {
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link InfoNameType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link InfoNameType }
      */
     public void setName(InfoNameType value) {
         this.name = value;
@@ -73,11 +59,9 @@ public class Info {
 
     /**
      * Gets the value of the authInfo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link AuthInfoType }
-     *     
+     *
+     * @return possible object is
+     * {@link AuthInfoType }
      */
     public AuthInfoType getAuthInfo() {
         return authInfo;
@@ -85,14 +69,17 @@ public class Info {
 
     /**
      * Sets the value of the authInfo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AuthInfoType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link AuthInfoType }
      */
     public void setAuthInfo(AuthInfoType value) {
         this.authInfo = value;
     }
+
+    @XmlElement(required = true)
+    protected InfoNameType name;
+
+    protected AuthInfoType authInfo;
 
 }

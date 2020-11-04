@@ -8,51 +8,37 @@
 
 package org.ietf.epp.domain;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Java class for contactType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="contactType">
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;urn:ietf:params:xml:ns:eppcom-1.0>clIDType">
- *       &lt;attribute name="type" type="{urn:ietf:params:xml:ns:domain-1.0}contactAttrType" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
- * &lt;/complexType>
+ * &lt;complexType name="contactType"&gt;
+ *   &lt;simpleContent&gt;
+ *     &lt;extension base="&lt;urn:ietf:params:xml:ns:eppcom-1.0&gt;clIDType"&gt;
+ *       &lt;attribute name="type" type="{urn:ietf:params:xml:ns:domain-1.0}contactAttrType" /&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/simpleContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "contactType", propOrder = {
-    "value"
+        "value"
 })
 public class ContactType {
 
-    @XmlValue
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String value;
-    @XmlAttribute(name = "type")
-    protected ContactAttrType type;
-
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getValue() {
         return value;
@@ -60,11 +46,9 @@ public class ContactType {
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setValue(String value) {
         this.value = value;
@@ -72,11 +56,9 @@ public class ContactType {
 
     /**
      * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ContactAttrType }
-     *     
+     *
+     * @return possible object is
+     * {@link ContactAttrType }
      */
     public ContactAttrType getType() {
         return type;
@@ -84,14 +66,19 @@ public class ContactType {
 
     /**
      * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ContactAttrType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ContactAttrType }
      */
     public void setType(ContactAttrType value) {
         this.type = value;
     }
+
+    @XmlValue
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String value;
+
+    @XmlAttribute(name = "type")
+    protected ContactAttrType type;
 
 }

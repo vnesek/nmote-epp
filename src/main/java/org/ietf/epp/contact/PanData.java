@@ -8,61 +8,45 @@
 
 package org.ietf.epp.contact;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 import org.ietf.epp.epp.TrIDType;
+
+import javax.xml.bind.annotation.*;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Java class for panDataType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="panDataType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="id" type="{urn:ietf:params:xml:ns:contact-1.0}paCLIDType"/>
- *         &lt;element name="paTRID" type="{urn:ietf:params:xml:ns:epp-1.0}trIDType"/>
- *         &lt;element name="paDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="panDataType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="id" type="{urn:ietf:params:xml:ns:contact-1.0}paCLIDType"/&gt;
+ *         &lt;element name="paTRID" type="{urn:ietf:params:xml:ns:epp-1.0}trIDType"/&gt;
+ *         &lt;element name="paDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "panDataType", propOrder = {
-    "id",
-    "paTRID",
-    "paDate"
+        "id",
+        "paTRID",
+        "paDate"
 })
 @XmlRootElement(name = "panData")
 public class PanData {
 
-    @XmlElement(required = true)
-    protected PaCLIDType id;
-    @XmlElement(required = true)
-    protected TrIDType paTRID;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar paDate;
-
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PaCLIDType }
-     *     
+     *
+     * @return possible object is
+     * {@link PaCLIDType }
      */
     public PaCLIDType getId() {
         return id;
@@ -70,11 +54,9 @@ public class PanData {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PaCLIDType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link PaCLIDType }
      */
     public void setId(PaCLIDType value) {
         this.id = value;
@@ -82,11 +64,9 @@ public class PanData {
 
     /**
      * Gets the value of the paTRID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link TrIDType }
-     *     
+     *
+     * @return possible object is
+     * {@link TrIDType }
      */
     public TrIDType getPaTRID() {
         return paTRID;
@@ -94,11 +74,9 @@ public class PanData {
 
     /**
      * Sets the value of the paTRID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TrIDType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link TrIDType }
      */
     public void setPaTRID(TrIDType value) {
         this.paTRID = value;
@@ -106,11 +84,9 @@ public class PanData {
 
     /**
      * Gets the value of the paDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getPaDate() {
         return paDate;
@@ -118,14 +94,22 @@ public class PanData {
 
     /**
      * Sets the value of the paDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setPaDate(XMLGregorianCalendar value) {
         this.paDate = value;
     }
+
+    @XmlElement(required = true)
+    protected PaCLIDType id;
+
+    @XmlElement(required = true)
+    protected TrIDType paTRID;
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar paDate;
 
 }

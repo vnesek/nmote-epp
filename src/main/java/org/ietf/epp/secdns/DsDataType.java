@@ -8,63 +8,44 @@
 
 package org.ietf.epp.secdns;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Java class for dsDataType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="dsDataType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="keyTag" type="{http://www.w3.org/2001/XMLSchema}unsignedShort"/>
- *         &lt;element name="alg" type="{http://www.w3.org/2001/XMLSchema}unsignedByte"/>
- *         &lt;element name="digestType" type="{http://www.w3.org/2001/XMLSchema}unsignedByte"/>
- *         &lt;element name="digest" type="{http://www.w3.org/2001/XMLSchema}hexBinary"/>
- *         &lt;element name="keyData" type="{urn:ietf:params:xml:ns:secDNS-1.1}keyDataType" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="dsDataType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="keyTag" type="{http://www.w3.org/2001/XMLSchema}unsignedShort"/&gt;
+ *         &lt;element name="alg" type="{http://www.w3.org/2001/XMLSchema}unsignedByte"/&gt;
+ *         &lt;element name="digestType" type="{http://www.w3.org/2001/XMLSchema}unsignedByte"/&gt;
+ *         &lt;element name="digest" type="{http://www.w3.org/2001/XMLSchema}hexBinary"/&gt;
+ *         &lt;element name="keyData" type="{urn:ietf:params:xml:ns:secDNS-1.1}keyDataType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dsDataType", propOrder = {
-    "keyTag",
-    "alg",
-    "digestType",
-    "digest",
-    "keyData"
+        "keyTag",
+        "alg",
+        "digestType",
+        "digest",
+        "keyData"
 })
 public class DsDataType {
 
-    @XmlSchemaType(name = "unsignedShort")
-    protected int keyTag;
-    @XmlSchemaType(name = "unsignedByte")
-    protected short alg;
-    @XmlSchemaType(name = "unsignedByte")
-    protected short digestType;
-    @XmlElement(required = true, type = String.class)
-    @XmlJavaTypeAdapter(HexBinaryAdapter.class)
-    @XmlSchemaType(name = "hexBinary")
-    protected byte[] digest;
-    protected KeyDataType keyData;
-
     /**
      * Gets the value of the keyTag property.
-     * 
      */
     public int getKeyTag() {
         return keyTag;
@@ -72,7 +53,6 @@ public class DsDataType {
 
     /**
      * Sets the value of the keyTag property.
-     * 
      */
     public void setKeyTag(int value) {
         this.keyTag = value;
@@ -80,7 +60,6 @@ public class DsDataType {
 
     /**
      * Gets the value of the alg property.
-     * 
      */
     public short getAlg() {
         return alg;
@@ -88,7 +67,6 @@ public class DsDataType {
 
     /**
      * Sets the value of the alg property.
-     * 
      */
     public void setAlg(short value) {
         this.alg = value;
@@ -96,7 +74,6 @@ public class DsDataType {
 
     /**
      * Gets the value of the digestType property.
-     * 
      */
     public short getDigestType() {
         return digestType;
@@ -104,7 +81,6 @@ public class DsDataType {
 
     /**
      * Sets the value of the digestType property.
-     * 
      */
     public void setDigestType(short value) {
         this.digestType = value;
@@ -112,11 +88,9 @@ public class DsDataType {
 
     /**
      * Gets the value of the digest property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public byte[] getDigest() {
         return digest;
@@ -124,11 +98,9 @@ public class DsDataType {
 
     /**
      * Sets the value of the digest property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setDigest(byte[] value) {
         this.digest = value;
@@ -136,11 +108,9 @@ public class DsDataType {
 
     /**
      * Gets the value of the keyData property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link KeyDataType }
-     *     
+     *
+     * @return possible object is
+     * {@link KeyDataType }
      */
     public KeyDataType getKeyData() {
         return keyData;
@@ -148,14 +118,28 @@ public class DsDataType {
 
     /**
      * Sets the value of the keyData property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link KeyDataType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link KeyDataType }
      */
     public void setKeyData(KeyDataType value) {
         this.keyData = value;
     }
+
+    @XmlSchemaType(name = "unsignedShort")
+    protected int keyTag;
+
+    @XmlSchemaType(name = "unsignedByte")
+    protected short alg;
+
+    @XmlSchemaType(name = "unsignedByte")
+    protected short digestType;
+
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(HexBinaryAdapter.class)
+    @XmlSchemaType(name = "hexBinary")
+    protected byte[] digest;
+
+    protected KeyDataType keyData;
 
 }

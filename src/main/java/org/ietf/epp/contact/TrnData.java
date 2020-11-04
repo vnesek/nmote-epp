@@ -8,83 +8,53 @@
 
 package org.ietf.epp.contact;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import org.ietf.epp.eppcom.TrStatusType;
+
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
-import org.ietf.epp.eppcom.TrStatusType;
 
 
 /**
  * <p>Java class for trnDataType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="trnDataType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="id" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType"/>
- *         &lt;element name="trStatus" type="{urn:ietf:params:xml:ns:eppcom-1.0}trStatusType"/>
- *         &lt;element name="reID" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType"/>
- *         &lt;element name="reDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="acID" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType"/>
- *         &lt;element name="acDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="trnDataType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="id" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType"/&gt;
+ *         &lt;element name="trStatus" type="{urn:ietf:params:xml:ns:eppcom-1.0}trStatusType"/&gt;
+ *         &lt;element name="reID" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType"/&gt;
+ *         &lt;element name="reDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/&gt;
+ *         &lt;element name="acID" type="{urn:ietf:params:xml:ns:eppcom-1.0}clIDType"/&gt;
+ *         &lt;element name="acDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "trnDataType", propOrder = {
-    "id",
-    "trStatus",
-    "reID",
-    "reDate",
-    "acID",
-    "acDate"
+        "id",
+        "trStatus",
+        "reID",
+        "reDate",
+        "acID",
+        "acDate"
 })
 @XmlRootElement(name = "trnData")
 public class TrnData {
 
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String id;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "token")
-    protected TrStatusType trStatus;
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String reID;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar reDate;
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String acID;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar acDate;
-
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -92,11 +62,9 @@ public class TrnData {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
@@ -104,11 +72,9 @@ public class TrnData {
 
     /**
      * Gets the value of the trStatus property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link TrStatusType }
-     *     
+     *
+     * @return possible object is
+     * {@link TrStatusType }
      */
     public TrStatusType getTrStatus() {
         return trStatus;
@@ -116,11 +82,9 @@ public class TrnData {
 
     /**
      * Sets the value of the trStatus property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TrStatusType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link TrStatusType }
      */
     public void setTrStatus(TrStatusType value) {
         this.trStatus = value;
@@ -128,11 +92,9 @@ public class TrnData {
 
     /**
      * Gets the value of the reID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getReID() {
         return reID;
@@ -140,11 +102,9 @@ public class TrnData {
 
     /**
      * Sets the value of the reID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setReID(String value) {
         this.reID = value;
@@ -152,11 +112,9 @@ public class TrnData {
 
     /**
      * Gets the value of the reDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getReDate() {
         return reDate;
@@ -164,11 +122,9 @@ public class TrnData {
 
     /**
      * Sets the value of the reDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setReDate(XMLGregorianCalendar value) {
         this.reDate = value;
@@ -176,11 +132,9 @@ public class TrnData {
 
     /**
      * Gets the value of the acID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getAcID() {
         return acID;
@@ -188,11 +142,9 @@ public class TrnData {
 
     /**
      * Sets the value of the acID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setAcID(String value) {
         this.acID = value;
@@ -200,11 +152,9 @@ public class TrnData {
 
     /**
      * Gets the value of the acDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getAcDate() {
         return acDate;
@@ -212,14 +162,39 @@ public class TrnData {
 
     /**
      * Sets the value of the acDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setAcDate(XMLGregorianCalendar value) {
         this.acDate = value;
     }
+
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String id;
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "token")
+    protected TrStatusType trStatus;
+
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String reID;
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar reDate;
+
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String acID;
+
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar acDate;
 
 }

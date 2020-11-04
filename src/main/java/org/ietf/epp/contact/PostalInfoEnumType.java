@@ -15,18 +15,17 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for postalInfoEnumType.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="postalInfoEnumType">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
- *     &lt;enumeration value="loc"/>
- *     &lt;enumeration value="int"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;simpleType name="postalInfoEnumType"&gt;
+ *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token"&gt;
+ *     &lt;enumeration value="loc"/&gt;
+ *     &lt;enumeration value="int"/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
  * </pre>
- * 
  */
 @XmlType(name = "postalInfoEnumType")
 @XmlEnum
@@ -36,23 +35,24 @@ public enum PostalInfoEnumType {
     LOC("loc"),
     @XmlEnumValue("int")
     INT("int");
-    private final String value;
 
     PostalInfoEnumType(String v) {
         value = v;
     }
 
-    public String value() {
-        return value;
-    }
-
     public static PostalInfoEnumType fromValue(String v) {
-        for (PostalInfoEnumType c: PostalInfoEnumType.values()) {
+        for (PostalInfoEnumType c : PostalInfoEnumType.values()) {
             if (c.value.equals(v)) {
                 return c;
             }
         }
         throw new IllegalArgumentException(v);
     }
+
+    public String value() {
+        return value;
+    }
+
+    private final String value;
 
 }

@@ -8,49 +8,38 @@
 
 package hr.dns.epp.contact;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for create complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="create">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="contact" type="{http://www.dns.hr/epp/hr-1.0}contactDataCreate"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="create"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="contact" type="{http://www.dns.hr/epp/hr-1.0}contactDataCreate"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "create", namespace = "http://www.dns.hr/epp/hr-1.0", propOrder = {
-    "contact"
+        "contact"
 })
 @XmlRootElement(name = "create", namespace = "http://www.dns.hr/epp/hr-1.0")
 public class Create {
 
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    protected ContactDataCreate contact;
-
     /**
      * Gets the value of the contact property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ContactDataCreate }
-     *     
+     *
+     * @return possible object is
+     * {@link ContactDataCreate }
      */
     public ContactDataCreate getContact() {
         return contact;
@@ -58,14 +47,15 @@ public class Create {
 
     /**
      * Sets the value of the contact property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ContactDataCreate }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ContactDataCreate }
      */
     public void setContact(ContactDataCreate value) {
         this.contact = value;
     }
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    protected ContactDataCreate contact;
 
 }

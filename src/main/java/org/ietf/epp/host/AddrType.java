@@ -8,51 +8,37 @@
 
 package org.ietf.epp.host;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Java class for addrType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="addrType">
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;urn:ietf:params:xml:ns:host-1.0>addrStringType">
- *       &lt;attribute name="ip" type="{urn:ietf:params:xml:ns:host-1.0}ipType" default="v4" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
- * &lt;/complexType>
+ * &lt;complexType name="addrType"&gt;
+ *   &lt;simpleContent&gt;
+ *     &lt;extension base="&lt;urn:ietf:params:xml:ns:host-1.0&gt;addrStringType"&gt;
+ *       &lt;attribute name="ip" type="{urn:ietf:params:xml:ns:host-1.0}ipType" default="v4" /&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/simpleContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "addrType", propOrder = {
-    "value"
+        "value"
 })
 public class AddrType {
 
-    @XmlValue
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String value;
-    @XmlAttribute(name = "ip")
-    protected IpType ip;
-
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getValue() {
         return value;
@@ -60,11 +46,9 @@ public class AddrType {
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setValue(String value) {
         this.value = value;
@@ -72,11 +56,9 @@ public class AddrType {
 
     /**
      * Gets the value of the ip property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link IpType }
-     *     
+     *
+     * @return possible object is
+     * {@link IpType }
      */
     public IpType getIp() {
         if (ip == null) {
@@ -88,14 +70,19 @@ public class AddrType {
 
     /**
      * Sets the value of the ip property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link IpType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link IpType }
      */
     public void setIp(IpType value) {
         this.ip = value;
     }
+
+    @XmlValue
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String value;
+
+    @XmlAttribute(name = "ip")
+    protected IpType ip;
 
 }

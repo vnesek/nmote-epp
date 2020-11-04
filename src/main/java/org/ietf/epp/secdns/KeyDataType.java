@@ -8,56 +8,40 @@
 
 package org.ietf.epp.secdns;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for keyDataType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="keyDataType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="flags" type="{http://www.w3.org/2001/XMLSchema}unsignedShort"/>
- *         &lt;element name="protocol" type="{http://www.w3.org/2001/XMLSchema}unsignedByte"/>
- *         &lt;element name="alg" type="{http://www.w3.org/2001/XMLSchema}unsignedByte"/>
- *         &lt;element name="pubKey" type="{urn:ietf:params:xml:ns:secDNS-1.1}keyType"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="keyDataType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="flags" type="{http://www.w3.org/2001/XMLSchema}unsignedShort"/&gt;
+ *         &lt;element name="protocol" type="{http://www.w3.org/2001/XMLSchema}unsignedByte"/&gt;
+ *         &lt;element name="alg" type="{http://www.w3.org/2001/XMLSchema}unsignedByte"/&gt;
+ *         &lt;element name="pubKey" type="{urn:ietf:params:xml:ns:secDNS-1.1}keyType"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "keyDataType", propOrder = {
-    "flags",
-    "protocol",
-    "alg",
-    "pubKey"
+        "flags",
+        "protocol",
+        "alg",
+        "pubKey"
 })
 public class KeyDataType {
 
-    @XmlSchemaType(name = "unsignedShort")
-    protected int flags;
-    @XmlSchemaType(name = "unsignedByte")
-    protected short protocol;
-    @XmlSchemaType(name = "unsignedByte")
-    protected short alg;
-    @XmlElement(required = true)
-    protected byte[] pubKey;
-
     /**
      * Gets the value of the flags property.
-     * 
      */
     public int getFlags() {
         return flags;
@@ -65,7 +49,6 @@ public class KeyDataType {
 
     /**
      * Sets the value of the flags property.
-     * 
      */
     public void setFlags(int value) {
         this.flags = value;
@@ -73,7 +56,6 @@ public class KeyDataType {
 
     /**
      * Gets the value of the protocol property.
-     * 
      */
     public short getProtocol() {
         return protocol;
@@ -81,7 +63,6 @@ public class KeyDataType {
 
     /**
      * Sets the value of the protocol property.
-     * 
      */
     public void setProtocol(short value) {
         this.protocol = value;
@@ -89,7 +70,6 @@ public class KeyDataType {
 
     /**
      * Gets the value of the alg property.
-     * 
      */
     public short getAlg() {
         return alg;
@@ -97,7 +77,6 @@ public class KeyDataType {
 
     /**
      * Sets the value of the alg property.
-     * 
      */
     public void setAlg(short value) {
         this.alg = value;
@@ -105,10 +84,9 @@ public class KeyDataType {
 
     /**
      * Gets the value of the pubKey property.
-     * 
-     * @return
-     *     possible object is
-     *     byte[]
+     *
+     * @return possible object is
+     * byte[]
      */
     public byte[] getPubKey() {
         return pubKey;
@@ -116,13 +94,24 @@ public class KeyDataType {
 
     /**
      * Sets the value of the pubKey property.
-     * 
-     * @param value
-     *     allowed object is
-     *     byte[]
+     *
+     * @param value allowed object is
+     *              byte[]
      */
     public void setPubKey(byte[] value) {
         this.pubKey = value;
     }
+
+    @XmlSchemaType(name = "unsignedShort")
+    protected int flags;
+
+    @XmlSchemaType(name = "unsignedByte")
+    protected short protocol;
+
+    @XmlSchemaType(name = "unsignedByte")
+    protected short alg;
+
+    @XmlElement(required = true)
+    protected byte[] pubKey;
 
 }

@@ -8,44 +8,32 @@
 
 package org.ietf.epp.domain;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for periodType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="periodType">
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;urn:ietf:params:xml:ns:domain-1.0>pLimitType">
- *       &lt;attribute name="unit" use="required" type="{urn:ietf:params:xml:ns:domain-1.0}pUnitType" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
- * &lt;/complexType>
+ * &lt;complexType name="periodType"&gt;
+ *   &lt;simpleContent&gt;
+ *     &lt;extension base="&lt;urn:ietf:params:xml:ns:domain-1.0&gt;pLimitType"&gt;
+ *       &lt;attribute name="unit" use="required" type="{urn:ietf:params:xml:ns:domain-1.0}pUnitType" /&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/simpleContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "periodType", propOrder = {
-    "value"
+        "value"
 })
 public class PeriodType {
 
-    @XmlValue
-    protected int value;
-    @XmlAttribute(name = "unit", required = true)
-    protected PUnitType unit;
-
     /**
      * Gets the value of the value property.
-     * 
      */
     public int getValue() {
         return value;
@@ -53,7 +41,6 @@ public class PeriodType {
 
     /**
      * Sets the value of the value property.
-     * 
      */
     public void setValue(int value) {
         this.value = value;
@@ -61,11 +48,9 @@ public class PeriodType {
 
     /**
      * Gets the value of the unit property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PUnitType }
-     *     
+     *
+     * @return possible object is
+     * {@link PUnitType }
      */
     public PUnitType getUnit() {
         return unit;
@@ -73,14 +58,18 @@ public class PeriodType {
 
     /**
      * Sets the value of the unit property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PUnitType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link PUnitType }
      */
     public void setUnit(PUnitType value) {
         this.unit = value;
     }
+
+    @XmlValue
+    protected int value;
+
+    @XmlAttribute(name = "unit", required = true)
+    protected PUnitType unit;
 
 }

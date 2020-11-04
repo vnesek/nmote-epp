@@ -8,41 +8,34 @@
 
 package hr.dns.epp.contact;
 
-import java.math.BigInteger;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.math.BigInteger;
 
 
 /**
  * <p>Java class for messageData complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="messageData">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger"/>
- *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/>
- *         &lt;element name="subject" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/>
- *         &lt;element name="body" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="sentTo" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/>
- *         &lt;element name="domainID" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/>
- *         &lt;element name="domainName" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/>
- *       &lt;/all>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="messageData"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;all&gt;
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger"/&gt;
+ *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/&gt;
+ *         &lt;element name="subject" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/&gt;
+ *         &lt;element name="body" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="sentTo" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/&gt;
+ *         &lt;element name="domainID" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/&gt;
+ *         &lt;element name="domainName" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/&gt;
+ *       &lt;/all&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "messageData", namespace = "http://www.dns.hr/epp/hr-1.0", propOrder = {
@@ -51,39 +44,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "messageData", namespace = "http://www.dns.hr/epp/hr-1.0")
 public class MessageData {
 
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger id;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String type;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String subject;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    protected String body;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String sentTo;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String domainID;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String domainName;
-
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
+     *
+     * @return possible object is
+     * {@link BigInteger }
      */
     public BigInteger getId() {
         return id;
@@ -91,11 +56,9 @@ public class MessageData {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link BigInteger }
      */
     public void setId(BigInteger value) {
         this.id = value;
@@ -103,11 +66,9 @@ public class MessageData {
 
     /**
      * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getType() {
         return type;
@@ -115,11 +76,9 @@ public class MessageData {
 
     /**
      * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setType(String value) {
         this.type = value;
@@ -127,11 +86,9 @@ public class MessageData {
 
     /**
      * Gets the value of the subject property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getSubject() {
         return subject;
@@ -139,11 +96,9 @@ public class MessageData {
 
     /**
      * Sets the value of the subject property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setSubject(String value) {
         this.subject = value;
@@ -151,11 +106,9 @@ public class MessageData {
 
     /**
      * Gets the value of the body property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getBody() {
         return body;
@@ -163,11 +116,9 @@ public class MessageData {
 
     /**
      * Sets the value of the body property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setBody(String value) {
         this.body = value;
@@ -175,11 +126,9 @@ public class MessageData {
 
     /**
      * Gets the value of the sentTo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getSentTo() {
         return sentTo;
@@ -187,11 +136,9 @@ public class MessageData {
 
     /**
      * Sets the value of the sentTo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setSentTo(String value) {
         this.sentTo = value;
@@ -199,11 +146,9 @@ public class MessageData {
 
     /**
      * Gets the value of the domainID property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getDomainID() {
         return domainID;
@@ -211,11 +156,9 @@ public class MessageData {
 
     /**
      * Sets the value of the domainID property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setDomainID(String value) {
         this.domainID = value;
@@ -223,11 +166,9 @@ public class MessageData {
 
     /**
      * Gets the value of the domainName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getDomainName() {
         return domainName;
@@ -235,14 +176,44 @@ public class MessageData {
 
     /**
      * Sets the value of the domainName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setDomainName(String value) {
         this.domainName = value;
     }
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected BigInteger id;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String type;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String subject;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    protected String body;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String sentTo;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String domainID;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String domainName;
 
 }

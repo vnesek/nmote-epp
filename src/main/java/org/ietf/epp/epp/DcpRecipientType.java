@@ -8,65 +8,50 @@
 
 package org.ietf.epp.epp;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * <p>Java class for dcpRecipientType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="dcpRecipientType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="other" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
- *         &lt;element name="ours" type="{urn:ietf:params:xml:ns:epp-1.0}dcpOursType" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="public" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
- *         &lt;element name="same" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
- *         &lt;element name="unrelated" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="dcpRecipientType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="other" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/&gt;
+ *         &lt;element name="ours" type="{urn:ietf:params:xml:ns:epp-1.0}dcpOursType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="public" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/&gt;
+ *         &lt;element name="same" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/&gt;
+ *         &lt;element name="unrelated" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dcpRecipientType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "other",
-    "ours",
-    "_public",
-    "same",
-    "unrelated"
+        "other",
+        "ours",
+        "_public",
+        "same",
+        "unrelated"
 })
 public class DcpRecipientType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object other;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected List<DcpOursType> ours;
-    @XmlElement(name = "public", namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object _public;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object same;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected Object unrelated;
-
     /**
      * Gets the value of the other property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getOther() {
         return other;
@@ -74,11 +59,9 @@ public class DcpRecipientType {
 
     /**
      * Sets the value of the other property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setOther(Object value) {
         this.other = value;
@@ -86,25 +69,23 @@ public class DcpRecipientType {
 
     /**
      * Gets the value of the ours property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the ours property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getOurs().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link DcpOursType }
-     * 
-     * 
      */
     public List<DcpOursType> getOurs() {
         if (ours == null) {
@@ -115,11 +96,9 @@ public class DcpRecipientType {
 
     /**
      * Gets the value of the public property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getPublic() {
         return _public;
@@ -127,11 +106,9 @@ public class DcpRecipientType {
 
     /**
      * Sets the value of the public property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setPublic(Object value) {
         this._public = value;
@@ -139,11 +116,9 @@ public class DcpRecipientType {
 
     /**
      * Gets the value of the same property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getSame() {
         return same;
@@ -151,11 +126,9 @@ public class DcpRecipientType {
 
     /**
      * Sets the value of the same property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setSame(Object value) {
         this.same = value;
@@ -163,11 +136,9 @@ public class DcpRecipientType {
 
     /**
      * Gets the value of the unrelated property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Object }
-     *     
+     *
+     * @return possible object is
+     * {@link Object }
      */
     public Object getUnrelated() {
         return unrelated;
@@ -175,14 +146,27 @@ public class DcpRecipientType {
 
     /**
      * Sets the value of the unrelated property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Object }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Object }
      */
     public void setUnrelated(Object value) {
         this.unrelated = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object other;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected List<DcpOursType> ours;
+
+    @XmlElement(name = "public", namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object _public;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object same;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected Object unrelated;
 
 }

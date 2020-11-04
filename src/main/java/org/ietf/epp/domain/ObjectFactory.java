@@ -12,18 +12,17 @@ import javax.xml.bind.annotation.XmlRegistry;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the org.ietf.epp.domain package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the org.ietf.epp.domain package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -31,14 +30,12 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.ietf.epp.domain
-     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link CreData }
-     * 
      */
     public CreData createCreData() {
         return new CreData();
@@ -46,7 +43,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Update }
-     * 
      */
     public Update createUpdate() {
         return new Update();
@@ -54,7 +50,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AddRemType }
-     * 
      */
     public AddRemType createAddRemType() {
         return new AddRemType();
@@ -62,7 +57,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ChgType }
-     * 
      */
     public ChgType createChgType() {
         return new ChgType();
@@ -70,7 +64,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PanData }
-     * 
      */
     public PanData createPanData() {
         return new PanData();
@@ -78,7 +71,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PaNameType }
-     * 
      */
     public PaNameType createPaNameType() {
         return new PaNameType();
@@ -86,7 +78,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link InfData }
-     * 
      */
     public InfData createInfData() {
         return new InfData();
@@ -94,7 +85,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link StatusType }
-     * 
      */
     public StatusType createStatusType() {
         return new StatusType();
@@ -102,7 +92,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ContactType }
-     * 
      */
     public ContactType createContactType() {
         return new ContactType();
@@ -110,7 +99,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link NsType }
-     * 
      */
     public NsType createNsType() {
         return new NsType();
@@ -118,7 +106,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AuthInfoType }
-     * 
      */
     public AuthInfoType createAuthInfoType() {
         return new AuthInfoType();
@@ -126,7 +113,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Check }
-     * 
      */
     public Check createCheck() {
         return new Check();
@@ -134,7 +120,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RenData }
-     * 
      */
     public RenData createRenData() {
         return new RenData();
@@ -142,7 +127,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Delete }
-     * 
      */
     public Delete createDelete() {
         return new Delete();
@@ -150,7 +134,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Transfer }
-     * 
      */
     public Transfer createTransfer() {
         return new Transfer();
@@ -158,7 +141,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PeriodType }
-     * 
      */
     public PeriodType createPeriodType() {
         return new PeriodType();
@@ -166,7 +148,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link TrnData }
-     * 
      */
     public TrnData createTrnData() {
         return new TrnData();
@@ -174,7 +155,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ChkData }
-     * 
      */
     public ChkData createChkData() {
         return new ChkData();
@@ -182,7 +162,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CheckType }
-     * 
      */
     public CheckType createCheckType() {
         return new CheckType();
@@ -190,7 +169,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Create }
-     * 
      */
     public Create createCreate() {
         return new Create();
@@ -198,7 +176,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Renew }
-     * 
      */
     public Renew createRenew() {
         return new Renew();
@@ -206,7 +183,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Info }
-     * 
      */
     public Info createInfo() {
         return new Info();
@@ -214,7 +190,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link InfoNameType }
-     * 
      */
     public InfoNameType createInfoNameType() {
         return new InfoNameType();
@@ -222,7 +197,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AuthInfoChgType }
-     * 
      */
     public AuthInfoChgType createAuthInfoChgType() {
         return new AuthInfoChgType();
@@ -230,7 +204,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link HostAttrType }
-     * 
      */
     public HostAttrType createHostAttrType() {
         return new HostAttrType();
@@ -238,7 +211,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CheckNameType }
-     * 
      */
     public CheckNameType createCheckNameType() {
         return new CheckNameType();

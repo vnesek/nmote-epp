@@ -8,12 +8,7 @@
 
 package org.ietf.epp.eppcom;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -21,42 +16,30 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for pwAuthInfoType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="pwAuthInfoType">
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>normalizedString">
- *       &lt;attribute name="roid" type="{urn:ietf:params:xml:ns:eppcom-1.0}roidType" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
- * &lt;/complexType>
+ * &lt;complexType name="pwAuthInfoType"&gt;
+ *   &lt;simpleContent&gt;
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;normalizedString"&gt;
+ *       &lt;attribute name="roid" type="{urn:ietf:params:xml:ns:eppcom-1.0}roidType" /&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/simpleContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "pwAuthInfoType", namespace = "urn:ietf:params:xml:ns:eppcom-1.0", propOrder = {
-    "value"
+        "value"
 })
 public class PwAuthInfoType {
 
-    @XmlValue
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String value;
-    @XmlAttribute(name = "roid")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String roid;
-
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getValue() {
         return value;
@@ -64,11 +47,9 @@ public class PwAuthInfoType {
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setValue(String value) {
         this.value = value;
@@ -76,11 +57,9 @@ public class PwAuthInfoType {
 
     /**
      * Gets the value of the roid property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getRoid() {
         return roid;
@@ -88,14 +67,21 @@ public class PwAuthInfoType {
 
     /**
      * Sets the value of the roid property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setRoid(String value) {
         this.roid = value;
     }
+
+    @XmlValue
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String value;
+
+    @XmlAttribute(name = "roid")
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    protected String roid;
 
 }

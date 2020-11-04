@@ -16,43 +16,34 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for registrarAccount complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="registrarAccount">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="balance" type="{http://www.dns.hr/epp/hr-1.0}registrarAccountAmount"/>
- *         &lt;element name="allowance" type="{http://www.dns.hr/epp/hr-1.0}registrarAccountAmount"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="registrarAccount"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="balance" type="{http://www.dns.hr/epp/hr-1.0}registrarAccountAmount"/&gt;
+ *         &lt;element name="allowance" type="{http://www.dns.hr/epp/hr-1.0}registrarAccountAmount"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "registrarAccount", namespace = "http://www.dns.hr/epp/hr-1.0", propOrder = {
-    "balance",
-    "allowance"
+        "balance",
+        "allowance"
 })
 public class RegistrarAccount {
 
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    protected RegistrarAccountAmount balance;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    protected RegistrarAccountAmount allowance;
-
     /**
      * Gets the value of the balance property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RegistrarAccountAmount }
-     *     
+     *
+     * @return possible object is
+     * {@link RegistrarAccountAmount }
      */
     public RegistrarAccountAmount getBalance() {
         return balance;
@@ -60,11 +51,9 @@ public class RegistrarAccount {
 
     /**
      * Sets the value of the balance property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RegistrarAccountAmount }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link RegistrarAccountAmount }
      */
     public void setBalance(RegistrarAccountAmount value) {
         this.balance = value;
@@ -72,11 +61,9 @@ public class RegistrarAccount {
 
     /**
      * Gets the value of the allowance property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link RegistrarAccountAmount }
-     *     
+     *
+     * @return possible object is
+     * {@link RegistrarAccountAmount }
      */
     public RegistrarAccountAmount getAllowance() {
         return allowance;
@@ -84,14 +71,18 @@ public class RegistrarAccount {
 
     /**
      * Sets the value of the allowance property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link RegistrarAccountAmount }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link RegistrarAccountAmount }
      */
     public void setAllowance(RegistrarAccountAmount value) {
         this.allowance = value;
     }
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    protected RegistrarAccountAmount balance;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    protected RegistrarAccountAmount allowance;
 
 }

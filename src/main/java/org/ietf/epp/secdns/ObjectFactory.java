@@ -15,35 +15,33 @@ import javax.xml.namespace.QName;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the org.ietf.epp.secdns package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the org.ietf.epp.secdns package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
  */
 @XmlRegistry
 public class ObjectFactory {
 
     private final static QName _InfData_QNAME = new QName("urn:ietf:params:xml:ns:secDNS-1.1", "infData");
+
     private final static QName _Create_QNAME = new QName("urn:ietf:params:xml:ns:secDNS-1.1", "create");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.ietf.epp.secdns
-     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link DsOrKeyType }
-     * 
      */
     public DsOrKeyType createDsOrKeyType() {
         return new DsOrKeyType();
@@ -51,7 +49,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Update }
-     * 
      */
     public Update createUpdate() {
         return new Update();
@@ -59,7 +56,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link RemType }
-     * 
      */
     public RemType createRemType() {
         return new RemType();
@@ -67,7 +63,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ChgType }
-     * 
      */
     public ChgType createChgType() {
         return new ChgType();
@@ -75,7 +70,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link KeyDataType }
-     * 
      */
     public KeyDataType createKeyDataType() {
         return new KeyDataType();
@@ -83,7 +77,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DsDataType }
-     * 
      */
     public DsDataType createDsDataType() {
         return new DsDataType();
@@ -91,7 +84,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DsOrKeyType }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "urn:ietf:params:xml:ns:secDNS-1.1", name = "infData")
     public JAXBElement<DsOrKeyType> createInfData(DsOrKeyType value) {
@@ -100,7 +92,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DsOrKeyType }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "urn:ietf:params:xml:ns:secDNS-1.1", name = "create")
     public JAXBElement<DsOrKeyType> createCreate(DsOrKeyType value) {

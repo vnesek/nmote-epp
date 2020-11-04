@@ -8,60 +8,40 @@
 
 package hr.dns.epp.contact;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for domainNum complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="domainNum">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="total" type="{http://www.w3.org/2001/XMLSchema}unsignedInt"/>
- *         &lt;element name="inZone" type="{http://www.w3.org/2001/XMLSchema}unsignedInt"/>
- *         &lt;element name="notInZone" type="{http://www.w3.org/2001/XMLSchema}unsignedInt"/>
- *         &lt;element name="inGrace" type="{http://www.w3.org/2001/XMLSchema}unsignedInt"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="domainNum"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="total" type="{http://www.w3.org/2001/XMLSchema}unsignedInt"/&gt;
+ *         &lt;element name="inZone" type="{http://www.w3.org/2001/XMLSchema}unsignedInt"/&gt;
+ *         &lt;element name="notInZone" type="{http://www.w3.org/2001/XMLSchema}unsignedInt"/&gt;
+ *         &lt;element name="inGrace" type="{http://www.w3.org/2001/XMLSchema}unsignedInt"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "domainNum", namespace = "http://www.dns.hr/epp/hr-1.0", propOrder = {
-    "total",
-    "inZone",
-    "notInZone",
-    "inGrace"
+        "total",
+        "inZone",
+        "notInZone",
+        "inGrace"
 })
 public class DomainNum {
 
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
-    @XmlSchemaType(name = "unsignedInt")
-    protected long total;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
-    @XmlSchemaType(name = "unsignedInt")
-    protected long inZone;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
-    @XmlSchemaType(name = "unsignedInt")
-    protected long notInZone;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
-    @XmlSchemaType(name = "unsignedInt")
-    protected long inGrace;
-
     /**
      * Gets the value of the total property.
-     * 
      */
     public long getTotal() {
         return total;
@@ -69,7 +49,6 @@ public class DomainNum {
 
     /**
      * Sets the value of the total property.
-     * 
      */
     public void setTotal(long value) {
         this.total = value;
@@ -77,7 +56,6 @@ public class DomainNum {
 
     /**
      * Gets the value of the inZone property.
-     * 
      */
     public long getInZone() {
         return inZone;
@@ -85,7 +63,6 @@ public class DomainNum {
 
     /**
      * Sets the value of the inZone property.
-     * 
      */
     public void setInZone(long value) {
         this.inZone = value;
@@ -93,7 +70,6 @@ public class DomainNum {
 
     /**
      * Gets the value of the notInZone property.
-     * 
      */
     public long getNotInZone() {
         return notInZone;
@@ -101,7 +77,6 @@ public class DomainNum {
 
     /**
      * Sets the value of the notInZone property.
-     * 
      */
     public void setNotInZone(long value) {
         this.notInZone = value;
@@ -109,7 +84,6 @@ public class DomainNum {
 
     /**
      * Gets the value of the inGrace property.
-     * 
      */
     public long getInGrace() {
         return inGrace;
@@ -117,10 +91,25 @@ public class DomainNum {
 
     /**
      * Sets the value of the inGrace property.
-     * 
      */
     public void setInGrace(long value) {
         this.inGrace = value;
     }
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
+    @XmlSchemaType(name = "unsignedInt")
+    protected long total;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
+    @XmlSchemaType(name = "unsignedInt")
+    protected long inZone;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
+    @XmlSchemaType(name = "unsignedInt")
+    protected long notInZone;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0")
+    @XmlSchemaType(name = "unsignedInt")
+    protected long inGrace;
 
 }

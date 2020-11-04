@@ -6,7 +6,7 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "urn:ietf:params:xml:ns:contact-1.0", //
-		elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED, //
-		xmlns = @javax.xml.bind.annotation.XmlNs(prefix = "contact", namespaceURI = "urn:ietf:params:xml:ns:contact-1.0"))
+        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED, //
+        xmlns = @javax.xml.bind.annotation.XmlNs(prefix = "contact", namespaceURI = "urn:ietf:params:xml:ns:contact-1.0"))
 package org.ietf.epp.contact;
 

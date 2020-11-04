@@ -8,56 +8,46 @@
 
 package org.ietf.epp.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * <p>Java class for addRemType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="addRemType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="ns" type="{urn:ietf:params:xml:ns:domain-1.0}nsType" minOccurs="0"/>
- *         &lt;element name="contact" type="{urn:ietf:params:xml:ns:domain-1.0}contactType" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="status" type="{urn:ietf:params:xml:ns:domain-1.0}statusType" maxOccurs="11" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="addRemType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="ns" type="{urn:ietf:params:xml:ns:domain-1.0}nsType" minOccurs="0"/&gt;
+ *         &lt;element name="contact" type="{urn:ietf:params:xml:ns:domain-1.0}contactType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="status" type="{urn:ietf:params:xml:ns:domain-1.0}statusType" maxOccurs="11" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "addRemType", propOrder = {
-    "ns",
-    "contacts",
-    "statuses"
+        "ns",
+        "contacts",
+        "statuses"
 })
 public class AddRemType {
 
-    protected NsType ns;
-    @XmlElement(name = "contact")
-    protected List<ContactType> contacts;
-    @XmlElement(name = "status")
-    protected List<StatusType> statuses;
-
     /**
      * Gets the value of the ns property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NsType }
-     *     
+     *
+     * @return possible object is
+     * {@link NsType }
      */
     public NsType getNs() {
         return ns;
@@ -65,11 +55,9 @@ public class AddRemType {
 
     /**
      * Sets the value of the ns property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NsType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link NsType }
      */
     public void setNs(NsType value) {
         this.ns = value;
@@ -77,25 +65,23 @@ public class AddRemType {
 
     /**
      * Gets the value of the contacts property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the contacts property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getContacts().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ContactType }
-     * 
-     * 
      */
     public List<ContactType> getContacts() {
         if (contacts == null) {
@@ -106,25 +92,23 @@ public class AddRemType {
 
     /**
      * Gets the value of the statuses property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the statuses property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getStatuses().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link StatusType }
-     * 
-     * 
      */
     public List<StatusType> getStatuses() {
         if (statuses == null) {
@@ -132,5 +116,13 @@ public class AddRemType {
         }
         return this.statuses;
     }
+
+    protected NsType ns;
+
+    @XmlElement(name = "contact")
+    protected List<ContactType> contacts;
+
+    @XmlElement(name = "status")
+    protected List<StatusType> statuses;
 
 }

@@ -12,18 +12,17 @@ import javax.xml.bind.annotation.XmlRegistry;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the org.ietf.epp.epp package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the org.ietf.epp.epp package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -31,14 +30,12 @@ public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.ietf.epp.epp
-     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link Epp }
-     * 
      */
     public Epp createEpp() {
         return new Epp();
@@ -46,7 +43,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ExtAnyType }
-     * 
      */
     public ExtAnyType createExtAnyType() {
         return new ExtAnyType();
@@ -54,7 +50,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ResponseType }
-     * 
      */
     public ResponseType createResponseType() {
         return new ResponseType();
@@ -62,7 +57,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CommandType }
-     * 
      */
     public CommandType createCommandType() {
         return new CommandType();
@@ -70,7 +64,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link GreetingType }
-     * 
      */
     public GreetingType createGreetingType() {
         return new GreetingType();
@@ -78,7 +71,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DcpAccessType }
-     * 
      */
     public DcpAccessType createDcpAccessType() {
         return new DcpAccessType();
@@ -86,7 +78,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DcpStatementType }
-     * 
      */
     public DcpStatementType createDcpStatementType() {
         return new DcpStatementType();
@@ -94,7 +85,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MixedMsgType }
-     * 
      */
     public MixedMsgType createMixedMsgType() {
         return new MixedMsgType();
@@ -102,7 +92,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsgType }
-     * 
      */
     public MsgType createMsgType() {
         return new MsgType();
@@ -110,7 +99,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ExtURIType }
-     * 
      */
     public ExtURIType createExtURIType() {
         return new ExtURIType();
@@ -118,7 +106,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LoginType }
-     * 
      */
     public LoginType createLoginType() {
         return new LoginType();
@@ -126,7 +113,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ExtErrValueType }
-     * 
      */
     public ExtErrValueType createExtErrValueType() {
         return new ExtErrValueType();
@@ -134,7 +120,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LoginSvcType }
-     * 
      */
     public LoginSvcType createLoginSvcType() {
         return new LoginSvcType();
@@ -142,7 +127,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SvcMenuType }
-     * 
      */
     public SvcMenuType createSvcMenuType() {
         return new SvcMenuType();
@@ -150,7 +134,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ErrValueType }
-     * 
      */
     public ErrValueType createErrValueType() {
         return new ErrValueType();
@@ -158,7 +141,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DcpType }
-     * 
      */
     public DcpType createDcpType() {
         return new DcpType();
@@ -166,7 +148,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DcpOursType }
-     * 
      */
     public DcpOursType createDcpOursType() {
         return new DcpOursType();
@@ -174,7 +155,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ResultType }
-     * 
      */
     public ResultType createResultType() {
         return new ResultType();
@@ -182,7 +162,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CredsOptionsType }
-     * 
      */
     public CredsOptionsType createCredsOptionsType() {
         return new CredsOptionsType();
@@ -190,7 +169,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DcpRetentionType }
-     * 
      */
     public DcpRetentionType createDcpRetentionType() {
         return new DcpRetentionType();
@@ -198,7 +176,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DcpExpiryType }
-     * 
      */
     public DcpExpiryType createDcpExpiryType() {
         return new DcpExpiryType();
@@ -206,7 +183,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PollType }
-     * 
      */
     public PollType createPollType() {
         return new PollType();
@@ -214,7 +190,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ReadWriteType }
-     * 
      */
     public ReadWriteType createReadWriteType() {
         return new ReadWriteType();
@@ -222,7 +197,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link MsgQType }
-     * 
      */
     public MsgQType createMsgQType() {
         return new MsgQType();
@@ -230,7 +204,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DcpPurposeType }
-     * 
      */
     public DcpPurposeType createDcpPurposeType() {
         return new DcpPurposeType();
@@ -238,7 +211,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link TrIDType }
-     * 
      */
     public TrIDType createTrIDType() {
         return new TrIDType();
@@ -246,7 +218,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link TransferType }
-     * 
      */
     public TransferType createTransferType() {
         return new TransferType();
@@ -254,7 +225,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DcpRecipientType }
-     * 
      */
     public DcpRecipientType createDcpRecipientType() {
         return new DcpRecipientType();

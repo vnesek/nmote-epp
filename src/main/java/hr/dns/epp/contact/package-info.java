@@ -6,7 +6,7 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://www.dns.hr/epp/hr-1.0", //
-		elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED, //
-		xmlns = @javax.xml.bind.annotation.XmlNs(prefix = "hr", namespaceURI = "http://www.dns.hr/epp/hr-1.0"))
+        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED, //
+        xmlns = @javax.xml.bind.annotation.XmlNs(prefix = "hr", namespaceURI = "http://www.dns.hr/epp/hr-1.0"))
 package hr.dns.epp.contact;
 

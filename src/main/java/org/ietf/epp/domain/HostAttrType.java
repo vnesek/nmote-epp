@@ -8,59 +8,45 @@
 
 package org.ietf.epp.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import org.ietf.epp.host.AddrType;
+
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import org.ietf.epp.host.AddrType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * <p>Java class for hostAttrType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="hostAttrType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="hostName" type="{urn:ietf:params:xml:ns:eppcom-1.0}labelType"/>
- *         &lt;element name="hostAddr" type="{urn:ietf:params:xml:ns:host-1.0}addrType" maxOccurs="unbounded" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="hostAttrType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="hostName" type="{urn:ietf:params:xml:ns:eppcom-1.0}labelType"/&gt;
+ *         &lt;element name="hostAddr" type="{urn:ietf:params:xml:ns:host-1.0}addrType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "hostAttrType", propOrder = {
-    "hostName",
-    "hostAddrs"
+        "hostName",
+        "hostAddrs"
 })
 public class HostAttrType {
 
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String hostName;
-    @XmlElement(name = "hostAddr")
-    protected List<AddrType> hostAddrs;
-
     /**
      * Gets the value of the hostName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getHostName() {
         return hostName;
@@ -68,11 +54,9 @@ public class HostAttrType {
 
     /**
      * Sets the value of the hostName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setHostName(String value) {
         this.hostName = value;
@@ -80,25 +64,23 @@ public class HostAttrType {
 
     /**
      * Gets the value of the hostAddrs property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the hostAddrs property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getHostAddrs().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AddrType }
-     * 
-     * 
      */
     public List<AddrType> getHostAddrs() {
         if (hostAddrs == null) {
@@ -106,5 +88,13 @@ public class HostAttrType {
         }
         return this.hostAddrs;
     }
+
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String hostName;
+
+    @XmlElement(name = "hostAddr")
+    protected List<AddrType> hostAddrs;
 
 }

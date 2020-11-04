@@ -16,43 +16,34 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for extErrValueType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="extErrValueType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="value" type="{urn:ietf:params:xml:ns:epp-1.0}errValueType"/>
- *         &lt;element name="reason" type="{urn:ietf:params:xml:ns:epp-1.0}msgType"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="extErrValueType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="value" type="{urn:ietf:params:xml:ns:epp-1.0}errValueType"/&gt;
+ *         &lt;element name="reason" type="{urn:ietf:params:xml:ns:epp-1.0}msgType"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "extErrValueType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "value",
-    "reason"
+        "value",
+        "reason"
 })
 public class ExtErrValueType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    protected ErrValueType value;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    protected MsgType reason;
-
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ErrValueType }
-     *     
+     *
+     * @return possible object is
+     * {@link ErrValueType }
      */
     public ErrValueType getValue() {
         return value;
@@ -60,11 +51,9 @@ public class ExtErrValueType {
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ErrValueType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ErrValueType }
      */
     public void setValue(ErrValueType value) {
         this.value = value;
@@ -72,11 +61,9 @@ public class ExtErrValueType {
 
     /**
      * Gets the value of the reason property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MsgType }
-     *     
+     *
+     * @return possible object is
+     * {@link MsgType }
      */
     public MsgType getReason() {
         return reason;
@@ -84,14 +71,18 @@ public class ExtErrValueType {
 
     /**
      * Sets the value of the reason property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MsgType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link MsgType }
      */
     public void setReason(MsgType value) {
         this.reason = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    protected ErrValueType value;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    protected MsgType reason;
 
 }

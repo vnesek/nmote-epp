@@ -8,49 +8,36 @@
 
 package hr.dns.epp.contact;
 
+import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
 
 
 /**
  * <p>Java class for registrarAccountAmount complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="registrarAccountAmount">
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>decimal">
- *       &lt;attribute name="currency" use="required" type="{http://www.dns.hr/epp/hr-1.0}currencyName" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
- * &lt;/complexType>
+ * &lt;complexType name="registrarAccountAmount"&gt;
+ *   &lt;simpleContent&gt;
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;decimal"&gt;
+ *       &lt;attribute name="currency" use="required" type="{http://www.dns.hr/epp/hr-1.0}currencyName" /&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/simpleContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "registrarAccountAmount", namespace = "http://www.dns.hr/epp/hr-1.0", propOrder = {
-    "value"
+        "value"
 })
 public class RegistrarAccountAmount {
 
-    @XmlValue
-    protected BigDecimal value;
-    @XmlAttribute(name = "currency", required = true)
-    protected CurrencyName currency;
-
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *     
+     *
+     * @return possible object is
+     * {@link BigDecimal }
      */
     public BigDecimal getValue() {
         return value;
@@ -58,11 +45,9 @@ public class RegistrarAccountAmount {
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link BigDecimal }
      */
     public void setValue(BigDecimal value) {
         this.value = value;
@@ -70,11 +55,9 @@ public class RegistrarAccountAmount {
 
     /**
      * Gets the value of the currency property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CurrencyName }
-     *     
+     *
+     * @return possible object is
+     * {@link CurrencyName }
      */
     public CurrencyName getCurrency() {
         return currency;
@@ -82,14 +65,18 @@ public class RegistrarAccountAmount {
 
     /**
      * Sets the value of the currency property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CurrencyName }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link CurrencyName }
      */
     public void setCurrency(CurrencyName value) {
         this.currency = value;
     }
+
+    @XmlValue
+    protected BigDecimal value;
+
+    @XmlAttribute(name = "currency", required = true)
+    protected CurrencyName currency;
 
 }

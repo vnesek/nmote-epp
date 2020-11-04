@@ -16,35 +16,28 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for intLocType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="intLocType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="type" use="required" type="{urn:ietf:params:xml:ns:contact-1.0}postalInfoEnumType" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="intLocType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;attribute name="type" use="required" type="{urn:ietf:params:xml:ns:contact-1.0}postalInfoEnumType" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "intLocType")
 public class IntLocType {
 
-    @XmlAttribute(name = "type", required = true)
-    protected PostalInfoEnumType type;
-
     /**
      * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PostalInfoEnumType }
-     *     
+     *
+     * @return possible object is
+     * {@link PostalInfoEnumType }
      */
     public PostalInfoEnumType getType() {
         return type;
@@ -52,14 +45,15 @@ public class IntLocType {
 
     /**
      * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PostalInfoEnumType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link PostalInfoEnumType }
      */
     public void setType(PostalInfoEnumType value) {
         this.type = value;
     }
+
+    @XmlAttribute(name = "type", required = true)
+    protected PostalInfoEnumType type;
 
 }

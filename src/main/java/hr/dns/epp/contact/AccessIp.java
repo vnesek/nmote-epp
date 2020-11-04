@@ -8,53 +8,37 @@
 
 package hr.dns.epp.contact;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Java class for accessIp complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="accessIp">
- *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>normalizedString">
- *       &lt;attribute name="ip" use="required" type="{http://www.dns.hr/epp/hr-1.0}accessIpType" />
- *     &lt;/extension>
- *   &lt;/simpleContent>
- * &lt;/complexType>
+ * &lt;complexType name="accessIp"&gt;
+ *   &lt;simpleContent&gt;
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema&gt;normalizedString"&gt;
+ *       &lt;attribute name="ip" use="required" type="{http://www.dns.hr/epp/hr-1.0}accessIpType" /&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/simpleContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "accessIp", namespace = "http://www.dns.hr/epp/hr-1.0", propOrder = {
-    "value"
+        "value"
 })
 public class AccessIp {
 
-    @XmlValue
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String value;
-    @XmlAttribute(name = "ip", required = true)
-    protected AccessIpType ip;
-
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getValue() {
         return value;
@@ -62,11 +46,9 @@ public class AccessIp {
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setValue(String value) {
         this.value = value;
@@ -74,11 +56,9 @@ public class AccessIp {
 
     /**
      * Gets the value of the ip property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link AccessIpType }
-     *     
+     *
+     * @return possible object is
+     * {@link AccessIpType }
      */
     public AccessIpType getIp() {
         return ip;
@@ -86,14 +66,20 @@ public class AccessIp {
 
     /**
      * Sets the value of the ip property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AccessIpType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link AccessIpType }
      */
     public void setIp(AccessIpType value) {
         this.ip = value;
     }
+
+    @XmlValue
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String value;
+
+    @XmlAttribute(name = "ip", required = true)
+    protected AccessIpType ip;
 
 }

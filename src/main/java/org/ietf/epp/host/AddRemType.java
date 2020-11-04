@@ -8,67 +8,58 @@
 
 package org.ietf.epp.host;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * <p>Java class for addRemType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="addRemType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="addr" type="{urn:ietf:params:xml:ns:host-1.0}addrType" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="status" type="{urn:ietf:params:xml:ns:host-1.0}statusType" maxOccurs="7" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="addRemType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="addr" type="{urn:ietf:params:xml:ns:host-1.0}addrType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="status" type="{urn:ietf:params:xml:ns:host-1.0}statusType" maxOccurs="7" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "addRemType", propOrder = {
-    "addrs",
-    "statuses"
+        "addrs",
+        "statuses"
 })
 public class AddRemType {
 
-    @XmlElement(name = "addr")
-    protected List<AddrType> addrs;
-    @XmlElement(name = "status")
-    protected List<StatusType> statuses;
-
     /**
      * Gets the value of the addrs property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the addrs property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getAddrs().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link AddrType }
-     * 
-     * 
      */
     public List<AddrType> getAddrs() {
         if (addrs == null) {
@@ -79,25 +70,23 @@ public class AddRemType {
 
     /**
      * Gets the value of the statuses property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the statuses property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getStatuses().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link StatusType }
-     * 
-     * 
      */
     public List<StatusType> getStatuses() {
         if (statuses == null) {
@@ -105,5 +94,11 @@ public class AddRemType {
         }
         return this.statuses;
     }
+
+    @XmlElement(name = "addr")
+    protected List<AddrType> addrs;
+
+    @XmlElement(name = "status")
+    protected List<StatusType> statuses;
 
 }

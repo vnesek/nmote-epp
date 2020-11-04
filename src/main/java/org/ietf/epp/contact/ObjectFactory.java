@@ -15,35 +15,33 @@ import javax.xml.namespace.QName;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the org.ietf.epp.contact package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the org.ietf.epp.contact package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
  */
 @XmlRegistry
 public class ObjectFactory {
 
     private final static QName _Info_QNAME = new QName("urn:ietf:params:xml:ns:contact-1.0", "info");
+
     private final static QName _Transfer_QNAME = new QName("urn:ietf:params:xml:ns:contact-1.0", "transfer");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.ietf.epp.contact
-     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link CreData }
-     * 
      */
     public CreData createCreData() {
         return new CreData();
@@ -51,7 +49,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AuthIDType }
-     * 
      */
     public AuthIDType createAuthIDType() {
         return new AuthIDType();
@@ -59,7 +56,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link TrnData }
-     * 
      */
     public TrnData createTrnData() {
         return new TrnData();
@@ -67,7 +63,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ChkData }
-     * 
      */
     public ChkData createChkData() {
         return new ChkData();
@@ -75,7 +70,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CheckType }
-     * 
      */
     public CheckType createCheckType() {
         return new CheckType();
@@ -83,7 +77,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Create }
-     * 
      */
     public Create createCreate() {
         return new Create();
@@ -91,7 +84,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PostalInfoType }
-     * 
      */
     public PostalInfoType createPostalInfoType() {
         return new PostalInfoType();
@@ -99,7 +91,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link E164Type }
-     * 
      */
     public E164Type createE164Type() {
         return new E164Type();
@@ -107,7 +98,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AuthInfoType }
-     * 
      */
     public AuthInfoType createAuthInfoType() {
         return new AuthInfoType();
@@ -115,7 +105,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link DiscloseType }
-     * 
      */
     public DiscloseType createDiscloseType() {
         return new DiscloseType();
@@ -123,7 +112,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Update }
-     * 
      */
     public Update createUpdate() {
         return new Update();
@@ -131,7 +119,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AddRemType }
-     * 
      */
     public AddRemType createAddRemType() {
         return new AddRemType();
@@ -139,7 +126,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ChgType }
-     * 
      */
     public ChgType createChgType() {
         return new ChgType();
@@ -147,7 +133,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PanData }
-     * 
      */
     public PanData createPanData() {
         return new PanData();
@@ -155,7 +140,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PaCLIDType }
-     * 
      */
     public PaCLIDType createPaCLIDType() {
         return new PaCLIDType();
@@ -163,7 +147,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link InfData }
-     * 
      */
     public InfData createInfData() {
         return new InfData();
@@ -171,7 +154,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link StatusType }
-     * 
      */
     public StatusType createStatusType() {
         return new StatusType();
@@ -179,7 +161,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Check }
-     * 
      */
     public Check createCheck() {
         return new Check();
@@ -187,7 +168,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Delete }
-     * 
      */
     public Delete createDelete() {
         return new Delete();
@@ -195,7 +175,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link IntLocType }
-     * 
      */
     public IntLocType createIntLocType() {
         return new IntLocType();
@@ -203,7 +182,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ChgPostalInfoType }
-     * 
      */
     public ChgPostalInfoType createChgPostalInfoType() {
         return new ChgPostalInfoType();
@@ -211,7 +189,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AddrType }
-     * 
      */
     public AddrType createAddrType() {
         return new AddrType();
@@ -219,7 +196,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CheckIDType }
-     * 
      */
     public CheckIDType createCheckIDType() {
         return new CheckIDType();
@@ -227,7 +203,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AuthIDType }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "urn:ietf:params:xml:ns:contact-1.0", name = "info")
     public JAXBElement<AuthIDType> createInfo(AuthIDType value) {
@@ -236,7 +211,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AuthIDType }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "urn:ietf:params:xml:ns:contact-1.0", name = "transfer")
     public JAXBElement<AuthIDType> createTransfer(AuthIDType value) {

@@ -15,26 +15,25 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for statusValueType.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="statusValueType">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
- *     &lt;enumeration value="clientDeleteProhibited"/>
- *     &lt;enumeration value="clientUpdateProhibited"/>
- *     &lt;enumeration value="linked"/>
- *     &lt;enumeration value="ok"/>
- *     &lt;enumeration value="pendingCreate"/>
- *     &lt;enumeration value="pendingDelete"/>
- *     &lt;enumeration value="pendingTransfer"/>
- *     &lt;enumeration value="pendingUpdate"/>
- *     &lt;enumeration value="serverDeleteProhibited"/>
- *     &lt;enumeration value="serverUpdateProhibited"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
+ * &lt;simpleType name="statusValueType"&gt;
+ *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token"&gt;
+ *     &lt;enumeration value="clientDeleteProhibited"/&gt;
+ *     &lt;enumeration value="clientUpdateProhibited"/&gt;
+ *     &lt;enumeration value="linked"/&gt;
+ *     &lt;enumeration value="ok"/&gt;
+ *     &lt;enumeration value="pendingCreate"/&gt;
+ *     &lt;enumeration value="pendingDelete"/&gt;
+ *     &lt;enumeration value="pendingTransfer"/&gt;
+ *     &lt;enumeration value="pendingUpdate"/&gt;
+ *     &lt;enumeration value="serverDeleteProhibited"/&gt;
+ *     &lt;enumeration value="serverUpdateProhibited"/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
  * </pre>
- * 
  */
 @XmlType(name = "statusValueType")
 @XmlEnum
@@ -60,23 +59,24 @@ public enum StatusValueType {
     SERVER_DELETE_PROHIBITED("serverDeleteProhibited"),
     @XmlEnumValue("serverUpdateProhibited")
     SERVER_UPDATE_PROHIBITED("serverUpdateProhibited");
-    private final String value;
 
     StatusValueType(String v) {
         value = v;
     }
 
-    public String value() {
-        return value;
-    }
-
     public static StatusValueType fromValue(String v) {
-        for (StatusValueType c: StatusValueType.values()) {
+        for (StatusValueType c : StatusValueType.values()) {
             if (c.value.equals(v)) {
                 return c;
             }
         }
         throw new IllegalArgumentException(v);
     }
+
+    public String value() {
+        return value;
+    }
+
+    private final String value;
 
 }

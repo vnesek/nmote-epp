@@ -8,11 +8,7 @@
 
 package hr.dns.epp.contact;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -20,57 +16,38 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for registrarPostalInfo complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="registrarPostalInfo">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="street" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/>
- *         &lt;element name="city" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/>
- *         &lt;element name="cc" type="{urn:ietf:params:xml:ns:contact-1.0}ccType"/>
- *         &lt;element name="pc" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="registrarPostalInfo"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="street" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/&gt;
+ *         &lt;element name="city" type="{http://www.w3.org/2001/XMLSchema}normalizedString"/&gt;
+ *         &lt;element name="cc" type="{urn:ietf:params:xml:ns:contact-1.0}ccType"/&gt;
+ *         &lt;element name="pc" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "registrarPostalInfo", namespace = "http://www.dns.hr/epp/hr-1.0", propOrder = {
-    "street",
-    "city",
-    "cc",
-    "pc"
+        "street",
+        "city",
+        "cc",
+        "pc"
 })
 public class RegistrarPostalInfo {
 
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String street;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String city;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "token")
-    protected String cc;
-    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
-    protected String pc;
-
     /**
      * Gets the value of the street property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getStreet() {
         return street;
@@ -78,11 +55,9 @@ public class RegistrarPostalInfo {
 
     /**
      * Sets the value of the street property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setStreet(String value) {
         this.street = value;
@@ -90,11 +65,9 @@ public class RegistrarPostalInfo {
 
     /**
      * Gets the value of the city property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCity() {
         return city;
@@ -102,11 +75,9 @@ public class RegistrarPostalInfo {
 
     /**
      * Sets the value of the city property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCity(String value) {
         this.city = value;
@@ -114,11 +85,9 @@ public class RegistrarPostalInfo {
 
     /**
      * Gets the value of the cc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getCc() {
         return cc;
@@ -126,11 +95,9 @@ public class RegistrarPostalInfo {
 
     /**
      * Sets the value of the cc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setCc(String value) {
         this.cc = value;
@@ -138,11 +105,9 @@ public class RegistrarPostalInfo {
 
     /**
      * Gets the value of the pc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPc() {
         return pc;
@@ -150,14 +115,30 @@ public class RegistrarPostalInfo {
 
     /**
      * Sets the value of the pc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPc(String value) {
         this.pc = value;
     }
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String street;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String city;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "token")
+    protected String cc;
+
+    @XmlElement(namespace = "http://www.dns.hr/epp/hr-1.0", required = true)
+    protected String pc;
 
 }

@@ -8,51 +8,44 @@
 
 package org.ietf.epp.domain;
 
+import org.ietf.epp.eppcom.ReasonType;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.ietf.epp.eppcom.ReasonType;
 
 
 /**
  * <p>Java class for checkType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="checkType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="name" type="{urn:ietf:params:xml:ns:domain-1.0}checkNameType"/>
- *         &lt;element name="reason" type="{urn:ietf:params:xml:ns:eppcom-1.0}reasonType" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="checkType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="name" type="{urn:ietf:params:xml:ns:domain-1.0}checkNameType"/&gt;
+ *         &lt;element name="reason" type="{urn:ietf:params:xml:ns:eppcom-1.0}reasonType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "checkType", propOrder = {
-    "name",
-    "reason"
+        "name",
+        "reason"
 })
 public class CheckType {
 
-    @XmlElement(required = true)
-    protected CheckNameType name;
-    protected ReasonType reason;
-
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CheckNameType }
-     *     
+     *
+     * @return possible object is
+     * {@link CheckNameType }
      */
     public CheckNameType getName() {
         return name;
@@ -60,11 +53,9 @@ public class CheckType {
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CheckNameType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link CheckNameType }
      */
     public void setName(CheckNameType value) {
         this.name = value;
@@ -72,11 +63,9 @@ public class CheckType {
 
     /**
      * Gets the value of the reason property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ReasonType }
-     *     
+     *
+     * @return possible object is
+     * {@link ReasonType }
      */
     public ReasonType getReason() {
         return reason;
@@ -84,14 +73,17 @@ public class CheckType {
 
     /**
      * Sets the value of the reason property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ReasonType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ReasonType }
      */
     public void setReason(ReasonType value) {
         this.reason = value;
     }
+
+    @XmlElement(required = true)
+    protected CheckNameType name;
+
+    protected ReasonType reason;
 
 }

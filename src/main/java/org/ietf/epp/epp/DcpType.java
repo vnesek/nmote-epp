@@ -8,57 +8,46 @@
 
 package org.ietf.epp.epp;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * <p>Java class for dcpType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="dcpType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="access" type="{urn:ietf:params:xml:ns:epp-1.0}dcpAccessType"/>
- *         &lt;element name="statement" type="{urn:ietf:params:xml:ns:epp-1.0}dcpStatementType" maxOccurs="unbounded"/>
- *         &lt;element name="expiry" type="{urn:ietf:params:xml:ns:epp-1.0}dcpExpiryType" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="dcpType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="access" type="{urn:ietf:params:xml:ns:epp-1.0}dcpAccessType"/&gt;
+ *         &lt;element name="statement" type="{urn:ietf:params:xml:ns:epp-1.0}dcpStatementType" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="expiry" type="{urn:ietf:params:xml:ns:epp-1.0}dcpExpiryType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dcpType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "access",
-    "statements",
-    "expiry"
+        "access",
+        "statements",
+        "expiry"
 })
 public class DcpType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    protected DcpAccessType access;
-    @XmlElement(name = "statement", namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    protected List<DcpStatementType> statements;
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
-    protected DcpExpiryType expiry;
-
     /**
      * Gets the value of the access property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DcpAccessType }
-     *     
+     *
+     * @return possible object is
+     * {@link DcpAccessType }
      */
     public DcpAccessType getAccess() {
         return access;
@@ -66,11 +55,9 @@ public class DcpType {
 
     /**
      * Sets the value of the access property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DcpAccessType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link DcpAccessType }
      */
     public void setAccess(DcpAccessType value) {
         this.access = value;
@@ -78,25 +65,23 @@ public class DcpType {
 
     /**
      * Gets the value of the statements property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the statements property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getStatements().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link DcpStatementType }
-     * 
-     * 
      */
     public List<DcpStatementType> getStatements() {
         if (statements == null) {
@@ -107,11 +92,9 @@ public class DcpType {
 
     /**
      * Gets the value of the expiry property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link DcpExpiryType }
-     *     
+     *
+     * @return possible object is
+     * {@link DcpExpiryType }
      */
     public DcpExpiryType getExpiry() {
         return expiry;
@@ -119,14 +102,21 @@ public class DcpType {
 
     /**
      * Sets the value of the expiry property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link DcpExpiryType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link DcpExpiryType }
      */
     public void setExpiry(DcpExpiryType value) {
         this.expiry = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    protected DcpAccessType access;
+
+    @XmlElement(name = "statement", namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    protected List<DcpStatementType> statements;
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0")
+    protected DcpExpiryType expiry;
 
 }

@@ -8,65 +8,44 @@
 
 package org.ietf.epp.contact;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.NormalizedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
  * <p>Java class for postalInfoType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="postalInfoType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="name" type="{urn:ietf:params:xml:ns:contact-1.0}postalLineType"/>
- *         &lt;element name="org" type="{urn:ietf:params:xml:ns:contact-1.0}optPostalLineType" minOccurs="0"/>
- *         &lt;element name="addr" type="{urn:ietf:params:xml:ns:contact-1.0}addrType"/>
- *       &lt;/sequence>
- *       &lt;attribute name="type" use="required" type="{urn:ietf:params:xml:ns:contact-1.0}postalInfoEnumType" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="postalInfoType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="name" type="{urn:ietf:params:xml:ns:contact-1.0}postalLineType"/&gt;
+ *         &lt;element name="org" type="{urn:ietf:params:xml:ns:contact-1.0}optPostalLineType" minOccurs="0"/&gt;
+ *         &lt;element name="addr" type="{urn:ietf:params:xml:ns:contact-1.0}addrType"/&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="type" use="required" type="{urn:ietf:params:xml:ns:contact-1.0}postalInfoEnumType" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "postalInfoType", propOrder = {
-    "name",
-    "org",
-    "addr"
+        "name",
+        "org",
+        "addr"
 })
 public class PostalInfoType {
 
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String name;
-    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
-    @XmlSchemaType(name = "normalizedString")
-    protected String org;
-    @XmlElement(required = true)
-    protected AddrType addr;
-    @XmlAttribute(name = "type", required = true)
-    protected PostalInfoEnumType type;
-
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -74,11 +53,9 @@ public class PostalInfoType {
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -86,11 +63,9 @@ public class PostalInfoType {
 
     /**
      * Gets the value of the org property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getOrg() {
         return org;
@@ -98,11 +73,9 @@ public class PostalInfoType {
 
     /**
      * Sets the value of the org property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOrg(String value) {
         this.org = value;
@@ -110,11 +83,9 @@ public class PostalInfoType {
 
     /**
      * Gets the value of the addr property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link AddrType }
-     *     
+     *
+     * @return possible object is
+     * {@link AddrType }
      */
     public AddrType getAddr() {
         return addr;
@@ -122,11 +93,9 @@ public class PostalInfoType {
 
     /**
      * Sets the value of the addr property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link AddrType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link AddrType }
      */
     public void setAddr(AddrType value) {
         this.addr = value;
@@ -134,11 +103,9 @@ public class PostalInfoType {
 
     /**
      * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PostalInfoEnumType }
-     *     
+     *
+     * @return possible object is
+     * {@link PostalInfoEnumType }
      */
     public PostalInfoEnumType getType() {
         return type;
@@ -146,14 +113,27 @@ public class PostalInfoType {
 
     /**
      * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PostalInfoEnumType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link PostalInfoEnumType }
      */
     public void setType(PostalInfoEnumType value) {
         this.type = value;
     }
+
+    @XmlElement(required = true)
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String name;
+
+    @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
+    @XmlSchemaType(name = "normalizedString")
+    protected String org;
+
+    @XmlElement(required = true)
+    protected AddrType addr;
+
+    @XmlAttribute(name = "type", required = true)
+    protected PostalInfoEnumType type;
 
 }

@@ -8,64 +8,45 @@
 
 package org.ietf.epp.epp;
 
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlType;
 
 
 /**
  * <p>Java class for resultType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="resultType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="msg" type="{urn:ietf:params:xml:ns:epp-1.0}msgType"/>
- *         &lt;choice maxOccurs="unbounded" minOccurs="0">
- *           &lt;element name="value" type="{urn:ietf:params:xml:ns:epp-1.0}errValueType"/>
- *           &lt;element name="extValue" type="{urn:ietf:params:xml:ns:epp-1.0}extErrValueType"/>
- *         &lt;/choice>
- *       &lt;/sequence>
- *       &lt;attribute name="code" use="required" type="{urn:ietf:params:xml:ns:epp-1.0}resultCodeType" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="resultType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="msg" type="{urn:ietf:params:xml:ns:epp-1.0}msgType"/&gt;
+ *         &lt;choice maxOccurs="unbounded" minOccurs="0"&gt;
+ *           &lt;element name="value" type="{urn:ietf:params:xml:ns:epp-1.0}errValueType"/&gt;
+ *           &lt;element name="extValue" type="{urn:ietf:params:xml:ns:epp-1.0}extErrValueType"/&gt;
+ *         &lt;/choice&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="code" use="required" type="{urn:ietf:params:xml:ns:epp-1.0}resultCodeType" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "resultType", namespace = "urn:ietf:params:xml:ns:epp-1.0", propOrder = {
-    "msg",
-    "valuesAndExtValues"
+        "msg",
+        "valuesAndExtValues"
 })
 public class ResultType {
 
-    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
-    protected MsgType msg;
-    @XmlElements({
-        @XmlElement(name = "value", namespace = "urn:ietf:params:xml:ns:epp-1.0", type = ErrValueType.class),
-        @XmlElement(name = "extValue", namespace = "urn:ietf:params:xml:ns:epp-1.0", type = ExtErrValueType.class)
-    })
-    protected List<Object> valuesAndExtValues;
-    @XmlAttribute(name = "code", required = true)
-    protected int code;
-
     /**
      * Gets the value of the msg property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MsgType }
-     *     
+     *
+     * @return possible object is
+     * {@link MsgType }
      */
     public MsgType getMsg() {
         return msg;
@@ -73,11 +54,9 @@ public class ResultType {
 
     /**
      * Sets the value of the msg property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MsgType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link MsgType }
      */
     public void setMsg(MsgType value) {
         this.msg = value;
@@ -85,26 +64,24 @@ public class ResultType {
 
     /**
      * Gets the value of the valuesAndExtValues property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the valuesAndExtValues property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getValuesAndExtValues().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link ErrValueType }
      * {@link ExtErrValueType }
-     * 
-     * 
      */
     public List<Object> getValuesAndExtValues() {
         if (valuesAndExtValues == null) {
@@ -115,7 +92,6 @@ public class ResultType {
 
     /**
      * Gets the value of the code property.
-     * 
      */
     public int getCode() {
         return code;
@@ -123,10 +99,21 @@ public class ResultType {
 
     /**
      * Sets the value of the code property.
-     * 
      */
     public void setCode(int value) {
         this.code = value;
     }
+
+    @XmlElement(namespace = "urn:ietf:params:xml:ns:epp-1.0", required = true)
+    protected MsgType msg;
+
+    @XmlElements({
+            @XmlElement(name = "value", namespace = "urn:ietf:params:xml:ns:epp-1.0", type = ErrValueType.class),
+            @XmlElement(name = "extValue", namespace = "urn:ietf:params:xml:ns:epp-1.0", type = ExtErrValueType.class)
+    })
+    protected List<Object> valuesAndExtValues;
+
+    @XmlAttribute(name = "code", required = true)
+    protected int code;
 
 }

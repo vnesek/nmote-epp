@@ -8,51 +8,44 @@
 
 package org.ietf.epp.contact;
 
+import org.ietf.epp.eppcom.ReasonType;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import org.ietf.epp.eppcom.ReasonType;
 
 
 /**
  * <p>Java class for checkType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
- * &lt;complexType name="checkType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="id" type="{urn:ietf:params:xml:ns:contact-1.0}checkIDType"/>
- *         &lt;element name="reason" type="{urn:ietf:params:xml:ns:eppcom-1.0}reasonType" minOccurs="0"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="checkType"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="id" type="{urn:ietf:params:xml:ns:contact-1.0}checkIDType"/&gt;
+ *         &lt;element name="reason" type="{urn:ietf:params:xml:ns:eppcom-1.0}reasonType" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "checkType", propOrder = {
-    "id",
-    "reason"
+        "id",
+        "reason"
 })
 public class CheckType {
 
-    @XmlElement(required = true)
-    protected CheckIDType id;
-    protected ReasonType reason;
-
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CheckIDType }
-     *     
+     *
+     * @return possible object is
+     * {@link CheckIDType }
      */
     public CheckIDType getId() {
         return id;
@@ -60,11 +53,9 @@ public class CheckType {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CheckIDType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link CheckIDType }
      */
     public void setId(CheckIDType value) {
         this.id = value;
@@ -72,11 +63,9 @@ public class CheckType {
 
     /**
      * Gets the value of the reason property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ReasonType }
-     *     
+     *
+     * @return possible object is
+     * {@link ReasonType }
      */
     public ReasonType getReason() {
         return reason;
@@ -84,14 +73,17 @@ public class CheckType {
 
     /**
      * Sets the value of the reason property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ReasonType }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link ReasonType }
      */
     public void setReason(ReasonType value) {
         this.reason = value;
     }
+
+    @XmlElement(required = true)
+    protected CheckIDType id;
+
+    protected ReasonType reason;
 
 }

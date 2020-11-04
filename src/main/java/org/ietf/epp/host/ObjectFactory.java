@@ -15,35 +15,33 @@ import javax.xml.namespace.QName;
 
 
 /**
- * This object contains factory methods for each 
- * Java content interface and Java element interface 
- * generated in the org.ietf.epp.host package. 
- * <p>An ObjectFactory allows you to programatically 
- * construct new instances of the Java representation 
- * for XML content. The Java representation of XML 
- * content can consist of schema derived interfaces 
- * and classes representing the binding of schema 
- * type definitions, element declarations and model 
- * groups.  Factory methods for each of these are 
+ * This object contains factory methods for each
+ * Java content interface and Java element interface
+ * generated in the org.ietf.epp.host package.
+ * <p>An ObjectFactory allows you to programatically
+ * construct new instances of the Java representation
+ * for XML content. The Java representation of XML
+ * content can consist of schema derived interfaces
+ * and classes representing the binding of schema
+ * type definitions, element declarations and model
+ * groups.  Factory methods for each of these are
  * provided in this class.
- * 
  */
 @XmlRegistry
 public class ObjectFactory {
 
     private final static QName _Info_QNAME = new QName("urn:ietf:params:xml:ns:host-1.0", "info");
+
     private final static QName _Delete_QNAME = new QName("urn:ietf:params:xml:ns:host-1.0", "delete");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.ietf.epp.host
-     * 
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link CreData }
-     * 
      */
     public CreData createCreData() {
         return new CreData();
@@ -51,7 +49,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ChkData }
-     * 
      */
     public ChkData createChkData() {
         return new ChkData();
@@ -59,7 +56,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CheckType }
-     * 
      */
     public CheckType createCheckType() {
         return new CheckType();
@@ -67,7 +63,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Create }
-     * 
      */
     public Create createCreate() {
         return new Create();
@@ -75,7 +70,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AddrType }
-     * 
      */
     public AddrType createAddrType() {
         return new AddrType();
@@ -83,7 +77,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Update }
-     * 
      */
     public Update createUpdate() {
         return new Update();
@@ -91,7 +84,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link AddRemType }
-     * 
      */
     public AddRemType createAddRemType() {
         return new AddRemType();
@@ -99,7 +91,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ChgType }
-     * 
      */
     public ChgType createChgType() {
         return new ChgType();
@@ -107,7 +98,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PanData }
-     * 
      */
     public PanData createPanData() {
         return new PanData();
@@ -115,7 +105,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PaNameType }
-     * 
      */
     public PaNameType createPaNameType() {
         return new PaNameType();
@@ -123,7 +112,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link InfData }
-     * 
      */
     public InfData createInfData() {
         return new InfData();
@@ -131,7 +119,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link StatusType }
-     * 
      */
     public StatusType createStatusType() {
         return new StatusType();
@@ -139,7 +126,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Check }
-     * 
      */
     public Check createCheck() {
         return new Check();
@@ -147,7 +133,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link SNameType }
-     * 
      */
     public SNameType createSNameType() {
         return new SNameType();
@@ -155,7 +140,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link CheckNameType }
-     * 
      */
     public CheckNameType createCheckNameType() {
         return new CheckNameType();
@@ -163,7 +147,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SNameType }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "urn:ietf:params:xml:ns:host-1.0", name = "info")
     public JAXBElement<SNameType> createInfo(SNameType value) {
@@ -172,7 +155,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SNameType }{@code >}}
-     * 
      */
     @XmlElementDecl(namespace = "urn:ietf:params:xml:ns:host-1.0", name = "delete")
     public JAXBElement<SNameType> createDelete(SNameType value) {
