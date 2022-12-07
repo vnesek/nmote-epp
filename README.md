@@ -6,7 +6,7 @@ See https://en.wikipedia.org/wiki/Extensible_Provisioning_Protocol
 
 Features
 --------
-* Minimal dependecies (SLF4J, commons-lang, jaxb)
+* Minimal dependencies (SLF4J, commons-lang, jaxb)
 * Auto reconnecting
 
 
