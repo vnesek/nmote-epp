@@ -172,11 +172,12 @@ public abstract class EppEndpoint implements Closeable {
 		return this;
 	}
 
-	public void maxResponseSize(int size) {
+	public EppEndpoint maxResponseSize(int size) {
 		if (size < 4096) {
 			throw new IllegalArgumentException("maxResponseSize < 4096: " + size);
 		}
 		this.maxResponseSize = size;
+		return this;
 	}
 
 	public Epp readEpp(InputStream in) throws IOException, JAXBException {

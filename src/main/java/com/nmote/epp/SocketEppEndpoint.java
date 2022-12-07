@@ -15,6 +15,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.net.SocketFactory;
@@ -98,9 +99,9 @@ public class SocketEppEndpoint extends EppEndpoint {
 							request.setHello("");
 							sendEpp(request);
 							receiveEpp();
-						} catch (IOException ignored) {
+						} catch (IOException ex) {
 							closeInternal();
-							log.debug("Hello failed, reconnecting... " + ignored);
+							log.debug("Hello failed, reconnecting... " + ex);
 						}
 					}
 				}
@@ -140,8 +141,7 @@ public class SocketEppEndpoint extends EppEndpoint {
 	}
 
 	protected String getHost() {
-		String host = getURI().getHost();
-		return host;
+		return getURI().getHost();
 	}
 
 	protected int getPort() {
@@ -160,10 +160,16 @@ public class SocketEppEndpoint extends EppEndpoint {
 		super.close();
 	}
 
+	public SocketEppEndpoint keepAliveInterval(int keepAliveInterval) {
+		this.keepAliveInterval = keepAliveInterval;
+		return this;
+	}
+
 	private Epp receiveEpp() throws IOException, JAXBException, EppException {
 		// Read response (or greeting)
-		synchronized (input) {
-			final int length = input.readInt() - 4;
+		DataInputStream in = input;
+		synchronized (in) {
+			final int length = in.readInt() - 4;
 			if (length <= 0 || length > getMaxResponseSize()) {
 				throw new IOException("invalid EPP response size: " + length);
 			}
@@ -172,11 +178,11 @@ public class SocketEppEndpoint extends EppEndpoint {
 				if (inBuffer == null || inBuffer.length < length) {
 					inBuffer = new byte[length + 4000];
 				}
-				input.readFully(inBuffer, 0, length);
-				log.trace("Received {}", new String(inBuffer, 0, length, "UTF-8"));
+				in.readFully(inBuffer, 0, length);
+				log.trace("Received {}", new String(inBuffer, 0, length, StandardCharsets.UTF_8));
 				rin = new ByteArrayInputStream(inBuffer, 0, length);
 			} else {
-				rin = new LengthLimitedInputStream(input, length);
+				rin = new LengthLimitedInputStream(in, length);
 			}
 			lastActivity = System.currentTimeMillis();
 			Epp response = (Epp) readEpp(rin);
@@ -200,19 +206,20 @@ public class SocketEppEndpoint extends EppEndpoint {
 	}
 
 	private void sendEpp(Epp request) throws IOException, JAXBException, EppException {
-		synchronized (output) {
+		DataOutputStream out = output;
+		synchronized (out) {
 			if (outBuffer == null) {
 				outBuffer = new ByteArrayOutputStream(4096);
 			}
 			outBuffer.reset();
 			writeEpp(request, outBuffer);
-			output.writeInt(outBuffer.size() + 4);
-			outBuffer.writeTo(output);
+			out.writeInt(outBuffer.size() + 4);
+			outBuffer.writeTo(out);
 
 			if (log.isTraceEnabled()) {
 				log.trace("Sent {}", outBuffer.toString("UTF-8"));
 			}
-			output.flush();
+			out.flush();
 		}
 	}
 
