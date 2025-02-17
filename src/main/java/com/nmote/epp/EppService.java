@@ -38,7 +38,7 @@ public class EppService {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null || !(obj instanceof EppService)) {
+		if (!(obj instanceof EppService)) {
 			return false;
 		}
 		return ((EppService) obj).namespaceURI.equals(namespaceURI);

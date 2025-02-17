@@ -19,6 +19,6 @@ public class ReadMessageSample {
 		String src = "/hr/dns/epp/info-contact-response-1.xml";
 		InputStream in = ReadMessageSample.class.getResourceAsStream(src);
 		Object result = unmarshaller.unmarshal(in);
-		System.out.println(ToStringBuilder.reflectionToString(result, new RecursiveToStringStyle()));
+		System.out.println(result);
 	}
 }

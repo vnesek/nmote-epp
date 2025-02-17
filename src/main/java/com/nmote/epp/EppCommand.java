@@ -38,7 +38,7 @@ import com.nmote.epp.domain.UpdateDomainCommand;
  * @param <C>
  *            JAXB bound EPP command type
  * @param <R>
- *            JAXB boild ERR response type
+ *            JAXB build ERR response type
  * @param <T>
  *            Self-type reference
  */
@@ -280,7 +280,7 @@ public abstract class EppCommand<C, R, T extends EppCommand<C, R, T>> {
 	}
 
 	/**
-	 * Instantiates and configures nw {@link ExtAnyType} for this command.
+	 * Instantiates and configures new {@link ExtAnyType} for this command.
 	 *
 	 * @param endpoint
 	 *            endpoint used

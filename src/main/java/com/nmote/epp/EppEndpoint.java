@@ -34,6 +34,10 @@ import org.slf4j.LoggerFactory;
 
 public abstract class EppEndpoint implements Closeable {
 
+	public static EppEndpoint createServer() {
+		return new ServerEppEndpoint();
+	}
+
 	@SuppressWarnings("resource")
 	public static EppEndpoint create(String uri) throws URISyntaxException {
 		if (!uri.startsWith("epp://")) {
@@ -95,7 +99,7 @@ public abstract class EppEndpoint implements Closeable {
 						+ response.getTrID().getClTRID());
 			}
 		}
-		return new EppResponse<R>(response);
+		return new EppResponse<>(response);
 	}
 
 	public JAXBContext getJAXBContext() throws JAXBException {

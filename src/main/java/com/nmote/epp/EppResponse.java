@@ -71,7 +71,7 @@ public class EppResponse<R> {
 
 	public List<ResultType> getResults() {
 		if (results == null) {
-			results = new ArrayList<ResultType>();
+			results = new ArrayList<>();
 		}
 		return results;
 	}
