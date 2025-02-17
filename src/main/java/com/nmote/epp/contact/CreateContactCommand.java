@@ -42,7 +42,7 @@ public class CreateContactCommand<T extends CreateContactCommand<T>> extends Cre
 	}
 
 	public T fax(String value) {
-		return voice(value, null);
+		return fax(value, null);
 	}
 
 	public T fax(String value, String x) {

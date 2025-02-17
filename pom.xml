@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.nmote.epp</groupId>
     <artifactId>nmote-epp</artifactId>
-    <version>0.7.3</version>
+    <version>0.7.4</version>
     <packaging>jar</packaging>
     <name>nmote-EPP</name>
     <description>EPP client/server library</description>
